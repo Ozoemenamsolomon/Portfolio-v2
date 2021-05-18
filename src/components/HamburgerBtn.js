@@ -24,7 +24,6 @@ const ButtonDiv = styled.button`
   );
   --fg-color: #fff;
   background: var(--bg-color);
-  /*display:inline;*/
   width: var(--menu-size);
   height: var(--menu-size);
   display: flex;
@@ -33,11 +32,20 @@ const ButtonDiv = styled.button`
   border: none;
   border-radius: 35%;
   overflow: hidden;
+
+  &:focus .line {
+    background-color: transparent;
+    transform: translatex(100%);
+  }
+  &:focus .line::before {
+    transform: translatex(-100%) rotate(315deg);
+    top: 0%;
+  }
+  &:focus .line::after {
+    bottom: 0%;
+    transform: translatex(-100%) rotate(-315deg);
+  }
 `
-// &:focus.line {
-//   background-color: transparent;
-//   transform: translatex(100%);
-// }
 
 const Line = styled.div`
   background-color: var(--fg-color);
@@ -55,7 +63,6 @@ const Line = styled.div`
     background-color: var(--fg-color);
     width: 100%;
     height: 100%;
-    /*transform:rotate(45deg);*/
     border-radius: 100vh;
     transition: all var(--animation-duration) ease-in;
   }
