@@ -1,6 +1,8 @@
 import * as React from "react"
 import PropTypes from "prop-types"
-import { Link } from "gatsby"
+// import { Link } from "gatsby"
+import styled from "styled-components"
+import HamburgerBtn from "./HamburgerBtn"
 
 const Header = ({ siteTitle }) => (
   <header
@@ -9,14 +11,8 @@ const Header = ({ siteTitle }) => (
       marginBottom: `1.45rem`,
     }}
   >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
+    <Wrapper>
+      {/* <h1 style={{ margin: 0 }}>
         <Link
           to="/"
           style={{
@@ -26,8 +22,9 @@ const Header = ({ siteTitle }) => (
         >
           {siteTitle}
         </Link>
-      </h1>
-    </div>
+      </h1> */}
+      <HamburgerBtn></HamburgerBtn>
+    </Wrapper>
   </header>
 )
 
@@ -40,3 +37,9 @@ Header.defaultProps = {
 }
 
 export default Header
+
+const Wrapper = styled.div`
+  margin: 0 auto;
+  maxwidth: 960;
+  padding: 1.45rem 1.0875rem;
+`
