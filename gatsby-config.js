@@ -25,9 +25,23 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/rehabedge-logo.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-source-strapi`,
+      options: {
+        apiURL: `https://soo-portfolio-api.herokuapp.com`,
+        queryLimit: 1000, // Defaults to 100
+        loginData: {
+          identifier: "solozo360@gmail.com",
+          password: "solozo",
+        },
+        contentTypes: [`project`, `techstack`],
+        singleTypes: [`about`],
+      },
+    },
+    `gatsby-plugin-styled-components`,
     `gatsby-plugin-gatsby-cloud`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
