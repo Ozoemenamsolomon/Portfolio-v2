@@ -8,7 +8,11 @@ import Header from "./Header"
 import Footer from "./Footer"
 import "./layout.css"
 
-const Layout = ({ children }) => {
+export interface LayoutProps {
+  pageTitle?: string
+}
+
+const Layout: React.FC<LayoutProps> = ({ children, pageTitle }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -21,29 +25,32 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+      <Header />
 
       <Main>
-        <MainWrapper>{children}</MainWrapper>
+        {pageTitle ? (
+          <MainWrapper>
+            <h1>{pageTitle}</h1>
+          </MainWrapper>
+        ) : null}
+        {children}
       </Main>
       <Footer />
     </>
   )
 }
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
-
 export default Layout
 
 const Main = styled.main`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   min-height: 100vh;
 `
 
-const MainWrapper = styled.div`
+export const MainWrapper = styled.div`
   width: clamp(200px, 1200px, 1200px);
+  padding: 0px 1.5em;
   background-color: aliceblue;
 `

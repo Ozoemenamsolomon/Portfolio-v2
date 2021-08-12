@@ -1,3 +1,4 @@
+require("dotenv").config()
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -34,8 +35,8 @@ module.exports = {
         apiURL: `https://soo-portfolio-api.herokuapp.com`,
         queryLimit: 1000, // Defaults to 100
         loginData: {
-          identifier: "solozo360@gmail.com",
-          password: "solozo",
+          identifier: process.env.LOGIN_IDENTIFIER,
+          password: process.env.LOGIN_PASSWORD, //if by chance you dirty hackers see the password from my previous commit, just not that I´ve changed it!😉
         },
         contentTypes: [`project`, `techstack`],
         singleTypes: [`about`],

@@ -1,25 +1,29 @@
 import * as React from "react"
-import PropTypes from "prop-types"
+import PropTypes, { string } from "prop-types"
 import styled from "styled-components"
-import SooLink from "./SooLink"
 import { Link } from "gatsby"
+import { StaticImage } from "gatsby-plugin-image"
 
-const NavLinks = (prop: { userLang: string }) => (
+export interface NavLinkProps {
+  userLang?: string
+}
+
+const NavLinks: React.FC<NavLinkProps> = ({ userLang }) => (
   <LinkGroup>
-    {prop.userLang === "de" ? (
+    {userLang === "de" ? (
       <ul className="no-settings de">
         <li>
-          <SooLink goingTo="Über mich" href="#about_de" />
+          <Link to="#about_de">Über mich</Link>{" "}
         </li>
         <li>
-          <SooLink goingTo="Projekte" href="#work_de" />
+          <Link to="#work_de">Projekte</Link>
         </li>
         <li>
-          <SooLink href="#process_de">Prozess</SooLink>
+          <Link to="#process_de">Prozess</Link>
         </li>
         <li>
-          <SooLink href="#contact_de">Kontakt</SooLink>
-        </li>{" "}
+          <Link to="#contact_de">Kontakt</Link>
+        </li>
         <li className="material-icons settings">
           settings
           <span className="material-icons">arrow_drop_down</span>
@@ -41,16 +45,16 @@ const NavLinks = (prop: { userLang: string }) => (
     ) : (
       <ul className="no-settings en">
         <li>
-          <SooLink href="#about">About</SooLink>
+          <Link to="/about">About</Link>
         </li>
         <li>
-          <SooLink href="#work">Work</SooLink>
+          <Link to="/work">Work</Link>
         </li>
         <li>
-          <SooLink href="#process">Process</SooLink>
+          <Link to="/process">Process</Link>
         </li>
         <li>
-          <SooLink href="#contact">Contact</SooLink>
+          <Link to="/contact">Contact</Link>
         </li>
         <li className="material-icons settings">
           settings
@@ -76,27 +80,37 @@ const NavLinks = (prop: { userLang: string }) => (
 
 export const LinkGroup = styled.span``
 
-const Header = ({}) => (
-  <MyHeader>
-    <Wrapper>
-      <nav>
-        <div className="logo logo-en">
-          <Link href="#home">
-            <h1>Solozo</h1>
-          </Link>
-        </div>
-        <div className="logo logo-de">
-          <Link href="#home_de">
-            <h1>Solozo</h1>
-          </Link>
-        </div>
-        <div className="navigation">
-          <NavLinks userLang="de" />
-        </div>
-      </nav>{" "}
-    </Wrapper>
-  </MyHeader>
-)
+const Header: React.FC = () => {
+  return (
+    <MyHeader>
+      <Wrapper>
+        <nav>
+          <div className="logo logo-en">
+            <Link to="/">
+              <StaticImage
+                width={100}
+                loading="eager"
+                alt="Solozo´s Logo"
+                placeholder="tracedSVG"
+                src="../images/soo-logo/soo_logo-blue.svg"
+              />
+            </Link>
+          </div>
+          <div className="logo logo-de">
+            <Link to="#home_de">
+              <h1>Solozo</h1>
+            </Link>
+          </div>
+          <div className="navigation">
+            <NavLinks userLang="en" />
+          </div>
+        </nav>{" "}
+      </Wrapper>
+    </MyHeader>
+  )
+}
+
+export default Header
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
@@ -105,8 +119,6 @@ Header.propTypes = {
 Header.defaultProps = {
   siteTitle: ``,
 }
-
-export default Header
 
 const MyHeader = styled.header`
   background-color: red;

@@ -2,7 +2,7 @@
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
-  color: var(--text-colour);
+  /* color: var(--text-colour); */
   font-family: "Tw Cen MT", "Century Gothic", "Arial";
   scroll-behavior: smooth;
 }
