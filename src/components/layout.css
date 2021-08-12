@@ -1,10 +1,27 @@
 * {
-  margin: 0;
-  padding: 0;
+  padding: 0px;
+  margin: 0px;
   box-sizing: border-box;
+  color: var(--text-colour);
+  font-family: "Tw Cen MT", "Century Gothic", "Arial";
+  scroll-behavior: smooth;
 }
-main {
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
+:root {
+  --firstbg: #2b2625;
+  --secondbg: #23201f;
+  --text-colour: #fff;
+  /* --settings-icon: url(./Images/settings_dark.png);
+  --dropdown-icon: url(./Images/dropdown.png); */
+  --nav-footer-height: 6.5vh;
+  --btn-colour: #fff;
+  --header-colour: #322e2dc2;
+}
+.lightmood {
+  --firstbg: #e2e2e2;
+  --secondbg: rgb(245, 245, 245);
+  --text-colour: #23201f;
+  /* --settings-icon: url(./Images/settings_light.png);
+  --dropdown-icon: url(./Images/dropdown_dark.png); */
+  --btn-colour: #fff;
+  --header-colour: #eaeaea;
 }
