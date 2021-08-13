@@ -1,5 +1,5 @@
 import React from "react"
-import Layout, { MainWrapper } from "../components/layout"
+import Layout, { MainWrapper } from "../../../components/layout"
 
 const Process = () => {
   return (

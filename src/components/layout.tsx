@@ -24,7 +24,9 @@ const Layout: React.FC<LayoutProps> = ({ children, pageTitle }) => {
   `)
 
   return (
-    <>
+    <div
+      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+    >
       <Header />
 
       <Main>
@@ -36,21 +38,32 @@ const Layout: React.FC<LayoutProps> = ({ children, pageTitle }) => {
         {children}
       </Main>
       <Footer />
-    </>
+    </div>
   )
 }
 
 export default Layout
 
 const Main = styled.main`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
+  flex: 1;
+  /* min-height: 100vh; */
 `
 
 export const MainWrapper = styled.div`
-  width: clamp(200px, 1200px, 1200px);
   padding: 0px 1.5em;
-  background-color: aliceblue;
+  width: 90%;
+  height: 100%;
+  @media (max-width: 600px) {
+    & {
+      width: 99.99%;
+    }
+  }
+  /* width: clamp(150px, 80%, 1200px); */
+  /* max-width: 1200px;
+  min-width: 74%;*/
+  /* background-color: aliceblue; */
 `

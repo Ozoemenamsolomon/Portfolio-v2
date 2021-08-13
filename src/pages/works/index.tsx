@@ -1,8 +1,8 @@
+import { Link } from "gatsby"
 import React from "react"
-import Layout, { MainWrapper } from "../components/layout"
+import Layout, { MainWrapper } from "../../components/layout"
 
 const Work: React.FC = props => {
-  console.log(props)
   return (
     <Layout pageTitle="Portfolio">
       <MainWrapper>
@@ -16,7 +16,7 @@ const Work: React.FC = props => {
                   To learn more about my design process using my website as a
                   case study please click on the button below.
                 </p>
-                <a href="#process">Design Process</a>
+                <Link to="/blog/posts/process">Design Process</Link>
                 {/* <!-- <input type="button" value="Design Process"> --> */}
               </div>
               <div className="work1" data-description="coming soon">
