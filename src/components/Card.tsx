@@ -1,7 +1,14 @@
 import React from "react"
 import styled from "styled-components"
 
-const Card = props => {
+export interface CardType {
+  readtime: number
+  title: string
+  excerpt: string
+  date: string
+}
+
+const Card: React.FC<CardType> = props => {
   return (
     <>
       <CardDiv>

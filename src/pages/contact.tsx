@@ -1,9 +1,10 @@
+import { PageProps } from "gatsby"
 import React from "react"
 import Layout, { MainWrapper } from "../components/layout"
 
 export interface ContactProps {}
 
-const Contact: React.FC<ContactProps> = () => {
+const Contact: React.FC<PageProps<ContactProps>> = () => {
   return (
     <Layout pageTitle="Contact Me">
       <MainWrapper>

@@ -2,7 +2,6 @@
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
-  /* color: var(--text-colour); */
   font-family: "Tw Cen MT", "Century Gothic", "Arial";
   scroll-behavior: smooth;
   font-size: 24px;
@@ -36,21 +35,39 @@ h1 {
   font-size: 3.5rem;
 }
 :root {
+  --btn-colour: #fff;
+  --light-blue: #3f73a7;
+  --dark-blue: #233e63;
+  --nav-footer-height: 6.5vh;
+  --soo-gradient: linear-gradient(var(--light-blue), var(--dark-blue));
+  /* --soo-gradient: linear-gradient(rgb(63, 115, 167), rgb(35, 62, 99)); */
+}
+.darkmode {
   --firstbg: #2b2625;
   --secondbg: #23201f;
   --text-colour: #fff;
-  /* --settings-icon: url(./Images/settings_dark.png);
-  --dropdown-icon: url(./Images/dropdown.png); */
-  --nav-footer-height: 6.5vh;
-  --btn-colour: #fff;
   --header-colour: #322e2dc2;
 }
-.lightmood {
+@media (prefers-color-scheme: dark) {
+  :root {
+    --firstbg: #2b2625;
+    --secondbg: #23201f;
+    --text-colour: #fff;
+    --header-colour: #322e2dc2;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --firstbg: #e2e2e2;
+    --secondbg: rgb(245, 245, 245);
+    --text-colour: #23201f;
+    --header-colour: #eaeaea;
+  }
+}
+.lightmode {
   --firstbg: #e2e2e2;
   --secondbg: rgb(245, 245, 245);
   --text-colour: #23201f;
-  /* --settings-icon: url(./Images/settings_light.png);
-  --dropdown-icon: url(./Images/dropdown_dark.png); */
-  --btn-colour: #fff;
   --header-colour: #eaeaea;
 }

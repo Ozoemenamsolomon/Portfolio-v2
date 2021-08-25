@@ -1,5 +1,4 @@
 import * as React from "react"
-import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
 import styled from "styled-components"
@@ -25,6 +24,7 @@ const Layout: React.FC<LayoutProps> = ({ children, pageTitle }) => {
 
   return (
     <div
+      // className="lightmode"
       style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
     >
       <Header />
@@ -49,6 +49,8 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--secondbg);
+  color: var(--text-colour);
   flex: 1;
   /* min-height: 100vh; */
 `
@@ -59,7 +61,8 @@ export const MainWrapper = styled.div`
   height: 100%;
   @media (max-width: 600px) {
     & {
-      width: 99.99%;
+      width: 100%;
+      padding: 0px 1em;
     }
   }
   /* width: clamp(150px, 80%, 1200px); */

@@ -23,7 +23,7 @@ const About: React.FC = () => {
                   goal of becoming a Full-Stack developer.
                   <br />
                   Feel free to reach out to me by using the contact form below
-                  or by clicking
+                  or by clicking{" "}
                   <a href="mailto:ozoemenamsolomon@yahoo.com">here</a>.
                 </p>
               </div>

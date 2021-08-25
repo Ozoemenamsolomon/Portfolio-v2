@@ -2,34 +2,75 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import MyNavLink from "./MyNavLink"
+import { AdjustmentsIcon } from "@heroicons/react/outline"
+import { useState } from "react"
+import { useEffect } from "react"
 
 interface NavigationProps {
   userLang: string
 }
 
-interface NavLinkProps {}
-const NavLink: React.FC = () => {
-  return <div>Solozo</div>
-}
-
 const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
+  const [langChoice, setLangChoice] = useState("en")
+  const [themeChoice, setThemeChoice] = useState("dark")
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const body = window.document.querySelector("body") || { className: "" }
+      const langChoice: string | null = window.localStorage.getItem(
+        "langChoice"
+      )
+      const themeChoice: string | null = window.localStorage.getItem(
+        "themeChoice"
+      )
+      switch (themeChoice) {
+        case "auto" || null:
+          body.className = ""
+          break
+        case "dark":
+          body.className = "darkmode"
+          break
+        case "light":
+          body.className = "lightmode"
+          break
+        default:
+          return
+      }
+    }
+  }, [])
+
   const handleLanguageChoice = () => {
     if (typeof window !== "undefined") {
-      // console.log(window.localStorage.getItem("langChoice"))
-      if (window.localStorage.getItem("langChoice") === "de") {
+      const langChoice: string | null = window.localStorage.getItem(
+        "langChoice"
+      )
+
+      if (langChoice === "de") {
         window.localStorage.setItem("langChoice", "en")
       } else {
         window.localStorage.setItem("langChoice", "de")
       }
     }
   }
-  const handleThemeChoice = () => {
+  const handleThemeChoice = (e: React.MouseEvent<HTMLElement>) => {
+    const inputValue = e.target.value
     if (typeof window !== "undefined") {
-      // console.log(window.localStorage.getItem("langChoice"))
-      if (window.localStorage.getItem("themeChoice") === "light") {
-        window.localStorage.setItem("themeChoice", "dark")
-      } else {
-        window.localStorage.setItem("themeChoice", "light")
+      const body = window.document.querySelector("body") || { className: "" }
+
+      window.localStorage.setItem("themeChoice", inputValue)
+      setThemeChoice(inputValue)
+      switch (inputValue) {
+        case "auto":
+          body.className = ""
+          break
+        case "dark":
+          body.className = "darkmode"
+          break
+        case "light":
+          body.className = "lightmode"
+          break
+        default:
+          return
       }
     }
   }
@@ -80,10 +121,14 @@ const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
         <MyNavLink to="/contact">Contact</MyNavLink>
       </NavItem>
       <NavItem className="material-icons settings">
-        <span>settings</span>
-        {/* <span className="material-icons">arrow_drop_down</span> */}
+        <span>
+          <NavSettings>
+            <AdjustmentsIcon />
+          </NavSettings>
+        </span>
         <SubNavList className="dropdown">
           <li className="settings-list-items">
+            {/* <div style={{ display: "flex" }}> */}
             EN
             <input
               type="checkbox"
@@ -92,9 +137,60 @@ const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
               className="checkbox"
             />
             DE
+            {/* </div> */}
           </li>
           <li className="material-icons moodtoggle settings-list-items">
-            <button onClick={handleThemeChoice}>Toogle theme</button>
+            {/* <button onClick={handleThemeChoice}>Toogle theme</button> */}
+            {/* <div style={{ display: "flex", justifyContent: "center" }}> */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <input
+                type="radio"
+                id="light"
+                onClick={handleThemeChoice}
+                name="theme"
+                value="light"
+              />
+              <label htmlFor="light">Light</label>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <input
+                type="radio"
+                id="auto"
+                onClick={handleThemeChoice}
+                name="theme"
+                value="auto"
+              />
+              <label htmlFor="auto">Auto</label>{" "}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <input
+                type="radio"
+                id="dark"
+                onClick={handleThemeChoice}
+                name="theme"
+                value="dark"
+              />
+              <label htmlFor="dark">Dark</label>{" "}
+            </div>
+            {/* </div> */}
           </li>
         </SubNavList>
       </NavItem>
@@ -116,17 +212,56 @@ export const NavList = styled.ul`
 `
 
 export const NavItem = styled.li`
-  margin-right: 1em;
+  &:not(:last-child) {
+    margin-right: 1em;
+  }
   height: 100%;
+  /* display: flex; */
+  flex-direction: column;
+  position: relative;
   & > * {
     text-decoration: none;
     color: var(--text-colour);
-    height: 100%;
+    min-height: 100%;
     display: flex;
     align-items: center;
+  }
+  &:hover > ul,
+  &:focus-within > ul {
+    /* display: block; */
+    opacity: 1;
+    pointer-events: auto;
+  }
+`
+const NavSettings = styled.span`
+  background: var(--soo-gradient);
+  color: var(--btn-colour);
+  border: solid #ffffff 3px;
+  height: 1.6rem;
+  width: 1.6rem;
+  box-shadow: 2px 2px 7px #00000034;
+  border-radius: 0.8rem;
+  display: grid;
+  place-content: center;
+  justify-self: center;
+  & > svg {
+    width: 1rem;
+    stroke: var(--btn-colour);
   }
 `
 
 export const SubNavList = styled.ul`
-  display: none;
+  /* display: none; */
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  list-style: none;
+  background-color: var(--firstbg);
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1rem;
+  & > li {
+    display: flex;
+  }
 `

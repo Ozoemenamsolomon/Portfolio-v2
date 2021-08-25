@@ -18,7 +18,7 @@ const Header: React.FC = () => {
               alt="Solozo´s Logo"
               placeholder="tracedSVG"
               src="../images/soo-logo/soo_logo-blue.svg"
-              layout="fullWidth"
+              layout="constrained"
             />
           </Link>
         </Logo>
@@ -42,9 +42,10 @@ Header.defaultProps = {
 }
 
 const MyHeader = styled.header`
-  background-color: red;
+  background-color: var(--firstbg);
   display: flex;
   justify-content: center;
+  z-index: 5;
 `
 
 const Logo = styled.div`

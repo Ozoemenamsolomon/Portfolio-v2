@@ -21,6 +21,8 @@ const MyFooter = styled.footer`
   padding: 0.5rem 0;
   display: flex;
   justify-content: center;
+  background-color: var(--firstbg);
+  color: var(--text-colour);
 `
 const FooterP = styled.p`
   text-align: center;
