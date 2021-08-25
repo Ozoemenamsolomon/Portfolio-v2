@@ -1,9 +1,17 @@
 import React from "react"
 import Layout, { MainWrapper } from "../components/layout"
+import Seo from "../components/seo"
 
 const About: React.FC = () => {
   return (
     <Layout pageTitle="About Me">
+      <Seo
+        title="About"
+        lang="en"
+        description={
+          "Solomon Obinna Ozoemenam is a 22-year-old frontend developer with a freelance background in Graphics Design, currently studying computer science in the university of Siegen."
+        }
+      />
       <MainWrapper>
         <div>
           <section className="about" id="about">

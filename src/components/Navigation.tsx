@@ -93,9 +93,11 @@ const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
         <span className="material-icons">arrow_drop_down</span>
         <ul className="dropdown">
           <li className="settings-list-items">
-            EN
-            <input type="checkbox" value="" className="checkbox" />
-            DE
+            <label>
+              EN
+              <input type="checkbox" value="" className="checkbox" />
+              DE
+            </label>
           </li>
           <li className="material-icons moodtoggle settings-list-items">
             dark_mode

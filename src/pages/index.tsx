@@ -3,6 +3,7 @@ import Layout, { MainWrapper } from "../components/layout"
 import { Link, PageProps } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import styled from "styled-components"
+import Seo from "../components/seo"
 // import ScrollAnimation from "react-animate-on-scroll"
 // import "animate.css/animate.min.css"
 
@@ -13,6 +14,8 @@ interface IndexProps {}
 const Index: React.FC<PageProps<IndexProps>> = () => {
   return (
     <Layout>
+      <Seo title="Home of" lang="en" />
+
       <MainWrapper
         style={{
           flex: ".4",
@@ -22,11 +25,11 @@ const Index: React.FC<PageProps<IndexProps>> = () => {
       >
         <section>
           <div className="hello">
-            <h1>
+            <h2>
               Hello,
               <br />
               I´m Solomon.
-            </h1>
+            </h2>
             <h3>Frontend Developer</h3>
             <Link state={{ from: "home_hero" }} to="/works">
               View my portfolio
