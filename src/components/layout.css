@@ -34,6 +34,9 @@
 h1 {
   font-size: 3.5rem;
 }
+a {
+  color: var(--text-colour);
+}
 :root {
   --btn-colour: #fff;
   --light-blue: #3f73a7;

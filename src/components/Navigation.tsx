@@ -131,14 +131,16 @@ const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
         <SubNavList className="dropdown">
           <li className="settings-list-items">
             {/* <div style={{ display: "flex" }}> */}
-            EN
-            <input
-              type="checkbox"
-              value=""
-              onChange={handleLanguageChoice}
-              className="checkbox"
-            />
-            DE
+            <label>
+              EN
+              <input
+                type="checkbox"
+                value=""
+                onChange={handleLanguageChoice}
+                className="checkbox"
+              />
+              DE
+            </label>
             {/* </div> */}
           </li>
           <li className="material-icons moodtoggle settings-list-items">

@@ -25,12 +25,12 @@ const Index: React.FC<PageProps<IndexProps>> = () => {
       >
         <section>
           <div className="hello">
-            <h2>
+            <h1>
               Hello,
               <br />
               I´m Solomon.
-            </h2>
-            <h3>Frontend Developer</h3>
+            </h1>
+            <h2>Frontend Developer</h2>
             <Link state={{ from: "home_hero" }} to="/works">
               View my portfolio
             </Link>
