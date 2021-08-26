@@ -52,8 +52,8 @@ const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
       }
     }
   }
-  const handleThemeChoice = (e: React.MouseEvent<HTMLElement>) => {
-    const inputValue = e.target.value
+  const handleThemeChoice = (e: React.FormEvent<HTMLInputElement>) => {
+    const inputValue = e.currentTarget.value
     if (typeof window !== "undefined") {
       const body = window.document.querySelector("body") || { className: "" }
 

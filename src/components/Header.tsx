@@ -3,8 +3,8 @@ import PropTypes, { string } from "prop-types"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
-import { MainWrapper } from "./layout"
 import Navigation from "./Navigation"
+import MainWrapper from "./MainWrapper"
 
 const Header: React.FC = () => {
   return (

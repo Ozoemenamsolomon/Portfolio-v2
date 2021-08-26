@@ -1,9 +1,10 @@
-import React from "react"
-import Layout, { MainWrapper } from "../components/layout"
+import React, { Fragment } from "react"
+import Layout from "../components/layout"
 import { Link, PageProps } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import Seo from "../components/seo"
+import MainWrapper from "../components/MainWrapper"
 // import ScrollAnimation from "react-animate-on-scroll"
 // import "animate.css/animate.min.css"
 
@@ -11,11 +12,10 @@ import Seo from "../components/seo"
 // import Seo from "../components/seo"
 interface IndexProps {}
 
-const Index: React.FC<PageProps<IndexProps>> = () => {
+const Index: React.FC<PageProps<IndexProps>> = ({ location: { search } }) => {
+  console.log(search)
   return (
     <Layout>
-      <Seo title="Home of" lang="en" />
-
       <MainWrapper
         style={{
           flex: ".4",
@@ -23,6 +23,7 @@ const Index: React.FC<PageProps<IndexProps>> = () => {
           display: "flex",
         }}
       >
+        <Seo title="Home of" lang="en" />
         <section>
           <div className="hello">
             <h1>

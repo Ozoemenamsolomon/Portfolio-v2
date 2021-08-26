@@ -1,7 +1,7 @@
 import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-import { MainWrapper } from "./layout"
+import MainWrapper from "./MainWrapper"
 
 const Footer = () => {
   return (

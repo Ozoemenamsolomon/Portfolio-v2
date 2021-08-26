@@ -1,10 +1,12 @@
 import React from "react"
-import Layout, { MainWrapper } from "../../../components/layout"
+import Layout from "../../../components/layout"
+import MainWrapper from "../../../components/MainWrapper"
 
 const Process = () => {
   return (
-    <Layout pageTitle="Typical Design Process">
+    <Layout>
       <MainWrapper>
+        <h1>Typical Design Process</h1>
         <div>
           <section className="process" id="process">
             <div className="process-content">

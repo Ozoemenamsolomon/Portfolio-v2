@@ -5,13 +5,14 @@ import styled from "styled-components"
 
 import Header from "./Header"
 import Footer from "./Footer"
+import { SkipNavLink, SkipNavContent } from "@reach/skip-nav"
+import "@reach/skip-nav/styles.css"
+
 import "./layout.css"
 
-export interface LayoutProps {
-  pageTitle?: string
-}
+export interface LayoutProps {}
 
-const Layout: React.FC<LayoutProps> = ({ children, pageTitle }) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -23,26 +24,26 @@ const Layout: React.FC<LayoutProps> = ({ children, pageTitle }) => {
   `)
 
   return (
-    <div
-      // className="lightmode"
-      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
-    >
-      <Header />
+    <React.Fragment>
+      <LayoutDiv>
+        <SkipNavLink />
+        <Header />
 
-      <Main>
-        {pageTitle ? (
-          <MainWrapper>
-            <h1>{pageTitle}</h1>
-          </MainWrapper>
-        ) : null}
-        {children}
-      </Main>
-      <Footer />
-    </div>
+        <SkipNavContent />
+        <Main>{children}</Main>
+        <Footer />
+      </LayoutDiv>
+    </React.Fragment>
   )
 }
 
 export default Layout
+
+const LayoutDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`
 
 const Main = styled.main`
   position: relative;
@@ -53,20 +54,4 @@ const Main = styled.main`
   color: var(--text-colour);
   flex: 1;
   /* min-height: 100vh; */
-`
-
-export const MainWrapper = styled.div`
-  padding: 0px 1.5em;
-  width: 90%;
-  height: 100%;
-  @media (max-width: 600px) {
-    & {
-      width: 100%;
-      padding: 0px 1em;
-    }
-  }
-  /* width: clamp(150px, 80%, 1200px); */
-  /* max-width: 1200px;
-  min-width: 74%;*/
-  /* background-color: aliceblue; */
 `

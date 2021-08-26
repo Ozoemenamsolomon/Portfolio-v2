@@ -1,15 +1,18 @@
 import { PageProps } from "gatsby"
 import React from "react"
-import Layout, { MainWrapper } from "../components/layout"
+import Layout from "../components/layout"
+import MainWrapper from "../components/MainWrapper"
 import Seo from "../components/seo"
 
 export interface ContactProps {}
 
 const Contact: React.FC<PageProps<ContactProps>> = () => {
   return (
-    <Layout pageTitle="Contact Me">
-      <Seo title="Contact" lang="en" />
+    <Layout>
       <MainWrapper>
+        <Seo title="Contact" lang="en" />
+
+        <h1>Contact Me</h1>
         <div>
           <section className="contact" id="contact">
             <div className="contact-content">

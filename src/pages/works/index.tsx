@@ -1,11 +1,13 @@
 import { Link } from "gatsby"
 import React from "react"
-import Layout, { MainWrapper } from "../../components/layout"
+import Layout from "../../components/layout"
+import MainWrapper from "../../components/MainWrapper"
 
 const Work: React.FC = props => {
   return (
-    <Layout pageTitle="Portfolio">
+    <Layout>
       <MainWrapper>
+        <h1>Portfolio</h1>
         <div>
           <section className="work" id="work">
             <div className="work-content">

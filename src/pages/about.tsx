@@ -1,18 +1,21 @@
 import React from "react"
-import Layout, { MainWrapper } from "../components/layout"
+import Layout from "../components/layout"
+import MainWrapper from "../components/MainWrapper"
 import Seo from "../components/seo"
 
 const About: React.FC = () => {
   return (
-    <Layout pageTitle="About Me">
-      <Seo
-        title="About"
-        lang="en"
-        description={
-          "Solomon Obinna Ozoemenam is a 22-year-old frontend developer with a freelance background in Graphics Design, currently studying computer science in the university of Siegen."
-        }
-      />
+    <Layout>
       <MainWrapper>
+        <Seo
+          title="About"
+          lang="en"
+          description={
+            "Solomon Obinna Ozoemenam is a 22-year-old frontend developer with a freelance background in Graphics Design, currently studying computer science in the university of Siegen."
+          }
+        />
+
+        <h1>About Me</h1>
         <div>
           <section className="about" id="about">
             <div className="about-content">

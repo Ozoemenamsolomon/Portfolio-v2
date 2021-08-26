@@ -6,6 +6,7 @@
   "author": "Solomon Obinna Ozoemenam <ozoemenamsolomon@yahoo.com>",
   "dependencies": {
     "@heroicons/react": "^1.0.3",
+    "@reach/skip-nav": "^0.16.0",
     "@types/react": "^17.0.17",
     "babel-plugin-styled-components": "^1.13.1",
     "gatsby": "^3.4.1",
