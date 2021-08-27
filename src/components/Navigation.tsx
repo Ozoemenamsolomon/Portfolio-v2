@@ -55,19 +55,22 @@ const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
   const handleThemeChoice = (e: React.FormEvent<HTMLInputElement>) => {
     const inputValue = e.currentTarget.value
     if (typeof window !== "undefined") {
-      const body = window.document.querySelector("body") || { className: "" }
+      const body: HTMLElement = window.document.body
 
       window.localStorage.setItem("themeChoice", inputValue)
       setThemeChoice(inputValue)
       switch (inputValue) {
         case "auto":
-          body.className = ""
+          body.classList.remove("darkmode")
+          body.classList.remove("lightmode")
           break
         case "dark":
-          body.className = "darkmode"
+          body.classList.add("darkmode")
+          body.classList.remove("lightmode")
           break
         case "light":
-          body.className = "lightmode"
+          body.classList.add("lightmode")
+          body.classList.remove("darkmode")
           break
         default:
           return
@@ -257,6 +260,7 @@ const NavSettings = styled.span`
 export const SubNavList = styled.ul`
   /* display: none; */
   opacity: 0;
+  transform: translateX(25%);
   pointer-events: none;
   position: absolute;
   right: 0;

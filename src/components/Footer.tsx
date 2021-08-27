@@ -26,4 +26,5 @@ const MyFooter = styled.footer`
 `
 const FooterP = styled.p`
   text-align: center;
+  margin-bottom: 0;
 `

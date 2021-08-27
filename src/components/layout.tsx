@@ -47,6 +47,7 @@ const LayoutDiv = styled.div`
 
 const Main = styled.main`
   position: relative;
+  padding-top: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -38,8 +38,36 @@ module.exports = {
           identifier: process.env.LOGIN_IDENTIFIER,
           password: process.env.LOGIN_PASSWORD, //if by chance you dirty hackers see the password from my previous commit, just not that I´ve changed it!😉
         },
-        contentTypes: [`project`, `techstack`, `blog-article`],
-        singleTypes: [`about`],
+        collectionTypes: [
+          {
+            name: `project`,
+            api: { qs: { _locale: `all` } },
+          },
+          {
+            name: `blog-article`,
+            api: { qs: { _locale: `all` } },
+          },
+
+          `techstack`,
+        ],
+        singleTypes: [
+          {
+            name: "about",
+            api: {
+              qs: {
+                _locale: "en",
+              },
+            },
+          },
+          {
+            name: "about",
+            api: {
+              qs: {
+                _locale: "de-DE",
+              },
+            },
+          },
+        ],
       },
     },
     `gatsby-plugin-styled-components`,

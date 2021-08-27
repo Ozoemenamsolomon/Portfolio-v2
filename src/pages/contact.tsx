@@ -1,5 +1,6 @@
 import { PageProps } from "gatsby"
 import React from "react"
+import { SooBtn } from "."
 import Layout from "../components/layout"
 import MainWrapper from "../components/MainWrapper"
 import Seo from "../components/seo"
@@ -59,7 +60,7 @@ const Contact: React.FC<PageProps<ContactProps>> = () => {
                         cols={30}
                         rows={10}
                       ></textarea>
-                      <button type="submit">Send</button>
+                      <SooBtn type="submit">Send</SooBtn>
                       {/* <!-- <input type="submit" value=""> --> */}
                     </div>
                   </form>

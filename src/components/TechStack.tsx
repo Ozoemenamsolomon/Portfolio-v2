@@ -16,14 +16,13 @@ const TechStack: React.FC<TechStackProps> = ({ techStack }) => {
   }`
   return (
     <TechStackDiv>
-      {!techStack.img.childImageSharp ? (
-        <img
-          style={imgStyles}
-          src={techStack.img.publicURL}
-          alt={titleAndAlt}
-          title={titleAndAlt}
-        />
-      ) : (
+      <img
+        style={imgStyles}
+        src={techStack.img.url}
+        alt={titleAndAlt}
+        title={titleAndAlt}
+      />
+      {/* ) : (
         <div
           style={{
             height: "3rem",
@@ -37,7 +36,7 @@ const TechStack: React.FC<TechStackProps> = ({ techStack }) => {
             title={titleAndAlt}
           />
         </div>
-      )}
+      )} */}
 
       <p>{techStack.name}</p>
     </TechStackDiv>

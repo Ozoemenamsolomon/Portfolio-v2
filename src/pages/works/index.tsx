@@ -1,5 +1,6 @@
 import { Link } from "gatsby"
 import React from "react"
+import { SooBtn } from ".."
 import Layout from "../../components/layout"
 import MainWrapper from "../../components/MainWrapper"
 import { PageTitle } from "../about"
@@ -19,7 +20,9 @@ const Work: React.FC = props => {
                   To learn more about my design process using my website as a
                   case study please click on the button below.
                 </p>
-                <Link to="/blog/posts/process">Design Process</Link>
+                <Link to="/blog/posts/process">
+                  <SooBtn>Design Process</SooBtn>
+                </Link>
                 {/* <!-- <input type="button" value="Design Process"> --> */}
               </div>
               <div className="work1" data-description="coming soon">

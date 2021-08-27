@@ -36,10 +36,10 @@ const About: React.FC<PageProps<AboutPageProps>> = ({
         <PageTitle>About Me</PageTitle>
         <div>
           <section className="about" id="about">
-            <div className="about-content">
-              <div className="about-text">
-                <p>{strapiAboutContent}</p>
-              </div>
+            <div className="about-text">
+              <p>{strapiAboutContent}</p>
+            </div>
+            <AboutContent style={{}} className="about-content">
               <div className="about-devtools">
                 <h2>Devtools</h2>
                 <DevToolsImages>
@@ -49,7 +49,7 @@ const About: React.FC<PageProps<AboutPageProps>> = ({
                       <TechStack key={techStack.id} techStack={techStack} />
                     ))}
                 </DevToolsImages>
-              </div>{" "}
+              </div>
               <div className="about-software">
                 <h3>Softwares</h3>
                 <DevToolsImages>
@@ -78,9 +78,9 @@ const About: React.FC<PageProps<AboutPageProps>> = ({
                   <li>Ready to learn</li>
                 </ul>
               </div>
-              <div className="about-img">
-                <img src="./Images/AboutMe_Char.png" alt="" />
-              </div>
+            </AboutContent>
+            <div className="about-img">
+              <img src="./Images/AboutMe_Char.png" alt="" />
             </div>
           </section>
         </div>
@@ -98,10 +98,7 @@ export const pageQuery = graphql`
         id
         imgUrl
         img {
-          childImageSharp {
-            gatsbyImageData
-          }
-          publicURL
+          url
         }
         name
         isSoftware
@@ -125,9 +122,12 @@ const DevToolsImages = styled.div`
   flex-wrap: wrap;
   gap: 1rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  @media (max-width: 350px) {
-    grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+`
+const AboutContent = styled.div`
+  @media (min-width: 900px) {
+    gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
-  /* justify-content: center; */
 `

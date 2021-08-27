@@ -31,23 +31,25 @@ const Index: React.FC<PageProps<IndexProps>> = ({ location: { search } }) => {
             </h1>
             <h2>Frontend Developer</h2>
             <Link state={{ from: "home_hero" }} to="/works">
-              View my portfolio
+              <SooBtn>View my portfolio</SooBtn>
             </Link>
           </div>
-          <HomeImg>
+          <HomeImg
+            style={{
+              position: `absolute`,
+              bottom: 0,
+              right: 0,
+              width: "18rem",
+              // maxHeight: "70%",
+              pointerEvents: "none",
+            }}
+          >
             <StaticImage
               src="../images/me.png"
               placeholder="tracedSVG"
               objectFit="contain"
               layout="constrained"
-              alt="A picture of solomon in a professional outfit 😉"
-              style={{
-                position: `absolute`,
-                bottom: 0,
-                right: 0,
-                width: "18rem",
-                pointerEvents: "none",
-              }}
+              alt="Solomon Ozoemenam in a professional outfit 😉"
             />
           </HomeImg>
         </section>
@@ -65,4 +67,14 @@ const HomeImg = styled.div`
   @media (max-width: 900px) and (orientation: landscape) {
     display: none;
   }
+`
+export const SooBtn = styled.button`
+  border: solid var(--btn-colour) 3px;
+  background: var(--soo-gradient);
+  box-shadow: 1.5px 1.5px 7px rgb(0 0 0 / 25%);
+  color: var(--btn-colour);
+  padding: 0.4rem 1rem;
+  margin-top: 0.5rem;
+  border-radius: 1em;
+  cursor: inherit;
 `
