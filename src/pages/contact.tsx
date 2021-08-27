@@ -3,6 +3,7 @@ import React from "react"
 import Layout from "../components/layout"
 import MainWrapper from "../components/MainWrapper"
 import Seo from "../components/seo"
+import { PageTitle } from "./about"
 
 export interface ContactProps {}
 
@@ -12,7 +13,7 @@ const Contact: React.FC<PageProps<ContactProps>> = () => {
       <MainWrapper>
         <Seo title="Contact" lang="en" />
 
-        <h1>Contact Me</h1>
+        <PageTitle>Contact Me</PageTitle>
         <div>
           <section className="contact" id="contact">
             <div className="contact-content">

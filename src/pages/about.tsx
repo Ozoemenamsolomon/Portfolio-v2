@@ -1,9 +1,27 @@
+import { graphql, PageProps } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
+import styled from "styled-components"
 import Layout from "../components/layout"
 import MainWrapper from "../components/MainWrapper"
 import Seo from "../components/seo"
+import TechStack from "../components/TechStack"
+import { myTechStack } from "../definiton"
 
-const About: React.FC = () => {
+export interface AboutPageProps {
+  allStrapiTechstack: {
+    nodes: myTechStack[]
+  }
+  strapiAbout: { content: string }
+}
+
+const About: React.FC<PageProps<AboutPageProps>> = ({
+  //TODO relationship between about and teckstack
+  data: {
+    allStrapiTechstack: { nodes: techStacks },
+    strapiAbout: { content: strapiAboutContent },
+  },
+}) => {
   return (
     <Layout>
       <MainWrapper>
@@ -15,48 +33,32 @@ const About: React.FC = () => {
           }
         />
 
-        <h1>About Me</h1>
+        <PageTitle>About Me</PageTitle>
         <div>
           <section className="about" id="about">
             <div className="about-content">
               <div className="about-text">
-                <p>
-                  I´m a 22-year-old frontend developer with a freelance
-                  background in Graphics Design, currently studying computer
-                  science in the university of Siegen.
-                  <br />
-                  With a combination of graphics designing and software
-                  development, I look for creative ways to write efficient codes
-                  without compromising on the aesthetics of my projects.
-                  <br />
-                  I´m very interested in the software development spectrum and
-                  very much open to learning more technologies with the ultimate
-                  goal of becoming a Full-Stack developer.
-                  <br />
-                  Feel free to reach out to me by using the contact form below
-                  or by clicking{" "}
-                  <a href="mailto:ozoemenamsolomon@yahoo.com">here</a>.
-                </p>
-              </div>
-              <div className="about-software">
-                <h3>Softwares</h3>
-                <div className="software-images">
-                  <img src="./Images/Adobe_XD.png" alt="" />
-                  <img src="./Images/MS_Powerpoint.png" alt="" />
-                  <img src="./Images/Adobe_Photoshop.png" alt="" />
-                  <img src="./Images/MS_Excel.png" alt="" />
-                  <img src="./Images/MS_Word.png" alt="" />
-                  <img src="./Images/MS_Access.png" alt="" />
-                  <img src="./Images/Adobe_Illustrator.png" alt="" />
-                </div>
+                <p>{strapiAboutContent}</p>
               </div>
               <div className="about-devtools">
-                <h3>Devtools</h3>
-                <div className="devtools-images">
-                  <img src="./Images/html.png" alt="" />
-                  <img src="./Images/CSS.png" alt="" />
-                  <img src="./Images/JS.png" alt="" />
-                </div>
+                <h2>Devtools</h2>
+                <DevToolsImages>
+                  {techStacks
+                    .filter(techStack => !techStack.isSoftware)
+                    .map(techStack => (
+                      <TechStack key={techStack.id} techStack={techStack} />
+                    ))}
+                </DevToolsImages>
+              </div>{" "}
+              <div className="about-software">
+                <h3>Softwares</h3>
+                <DevToolsImages>
+                  {techStacks
+                    .filter(techStack => techStack.isSoftware)
+                    .map(techStack => (
+                      <TechStack key={techStack.id} techStack={techStack} />
+                    ))}
+                </DevToolsImages>
               </div>
               <div className="about-language">
                 <h3>Languages</h3>
@@ -88,3 +90,44 @@ const About: React.FC = () => {
 }
 
 export default About
+
+export const pageQuery = graphql`
+  {
+    allStrapiTechstack {
+      nodes {
+        id
+        imgUrl
+        img {
+          childImageSharp {
+            gatsbyImageData
+          }
+          publicURL
+        }
+        name
+        isSoftware
+      }
+    }
+
+    strapiAbout {
+      content
+    }
+  }
+`
+export const PageTitle = styled.h1`
+  background: var(--soo-gradient);
+  -webkit-text-stroke: 0.021rem var(--text-colour);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+const DevToolsImages = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  @media (max-width: 350px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  /* justify-content: center; */
+`

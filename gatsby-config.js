@@ -38,7 +38,7 @@ module.exports = {
           identifier: process.env.LOGIN_IDENTIFIER,
           password: process.env.LOGIN_PASSWORD, //if by chance you dirty hackers see the password from my previous commit, just not that I´ve changed it!😉
         },
-        contentTypes: [`project`, `techstack`],
+        contentTypes: [`project`, `techstack`, `blog-article`],
         singleTypes: [`about`],
       },
     },

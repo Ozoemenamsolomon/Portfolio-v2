@@ -2,12 +2,13 @@ import { Link } from "gatsby"
 import React from "react"
 import Layout from "../../components/layout"
 import MainWrapper from "../../components/MainWrapper"
+import { PageTitle } from "../about"
 
 const Work: React.FC = props => {
   return (
     <Layout>
       <MainWrapper>
-        <h1>Portfolio</h1>
+        <PageTitle>Portfolio</PageTitle>
         <div>
           <section className="work" id="work">
             <div className="work-content">

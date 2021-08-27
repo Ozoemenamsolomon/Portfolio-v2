@@ -7,11 +7,12 @@ export interface MyNavLinkProps {
   activeStyle?: object
 }
 
-const MyNavLink: React.FC<MyNavLinkProps> = ({ children, to, activeStyle }) => {
+const MyNavLink: React.FC<MyNavLinkProps> = props => {
+  const { children, to, activeStyle } = props
   return (
     <MyLink
       activeStyle={{ borderBottom: `inset`, color: `var(--light-blue)` }}
-      to={to}
+      {...props}
     >
       {children}
     </MyLink>

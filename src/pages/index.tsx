@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import Layout from "../components/layout"
 import { Link, PageProps } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
@@ -8,8 +8,6 @@ import MainWrapper from "../components/MainWrapper"
 // import ScrollAnimation from "react-animate-on-scroll"
 // import "animate.css/animate.min.css"
 
-// import Layout from "../components/layout"
-// import Seo from "../components/seo"
 interface IndexProps {}
 
 const Index: React.FC<PageProps<IndexProps>> = ({ location: { search } }) => {
@@ -49,7 +47,6 @@ const Index: React.FC<PageProps<IndexProps>> = ({ location: { search } }) => {
                 right: 0,
                 width: "18rem",
                 pointerEvents: "none",
-                // aspectRatio: "9/2",
               }}
             />
           </HomeImg>
@@ -63,6 +60,9 @@ export default Index
 
 const HomeImg = styled.div`
   @media (max-width: 400px) {
+    display: none;
+  }
+  @media (max-width: 900px) and (orientation: landscape) {
     display: none;
   }
 `
