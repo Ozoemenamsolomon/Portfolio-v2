@@ -1,5 +1,11 @@
 import { PageProps } from "gatsby"
-import React from "react"
+import React, {
+  ChangeEvent,
+  ChangeEventHandler,
+  FormEvent,
+  FormEventHandler,
+  useState,
+} from "react"
 import { SooBtn } from "."
 import Layout from "../components/layout"
 import MainWrapper from "../components/MainWrapper"
@@ -9,6 +15,56 @@ import { PageTitle } from "./about"
 export interface ContactProps {}
 
 const Contact: React.FC<PageProps<ContactProps>> = () => {
+  const [formValue, setFormvalue] = useState({
+    email: "",
+    name: "",
+    subject: "",
+    message: "",
+    company: "",
+  })
+  const handleChange: ChangeEventHandler = (
+    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const inputName = e.target.name
+    const inputValue = e.target.value
+
+    switch (inputName) {
+      case "email":
+        setFormvalue({ ...formValue, email: inputValue })
+        break
+      case "name":
+        setFormvalue({ ...formValue, name: inputValue })
+        break
+      case "subject":
+        setFormvalue({ ...formValue, subject: inputValue })
+        break
+      case "message":
+        setFormvalue({ ...formValue, message: inputValue })
+        break
+      case "company":
+        setFormvalue({ ...formValue, company: inputValue })
+        break
+      default:
+        break
+    }
+  }
+
+  const handleSubmit: FormEventHandler = async (e: FormEvent) => {
+    e.preventDefault()
+    // TODO the code below works but I still need to sort the type out
+    // e.target[0].focus()
+    const apiResponse = await fetch("/api/soo-contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...formValue }),
+    }).then(res => res.json())
+    console.log(formValue)
+    console.log(apiResponse)
+    // TODO: redirect to thank you page
+  }
+
   return (
     <Layout>
       <MainWrapper>
@@ -20,41 +76,53 @@ const Contact: React.FC<PageProps<ContactProps>> = () => {
             <div className="contact-content">
               <div className="form-findme">
                 <div className="contact-form">
-                  <form method="POST" data-netlify="true">
+                  <form onSubmit={handleSubmit}>
+                    {/* method="POST"
+                    data-netlify="true" */}
                     <div className="form1">
                       <input
+                        onChange={handleChange}
+                        value={formValue.name}
                         type="text"
-                        name="Name_en"
+                        name="name"
                         autoComplete="name"
                         placeholder="Name"
                         required
                       />
                       <input
+                        onChange={handleChange}
+                        value={formValue.email}
                         type="email"
-                        name="Email_en"
+                        name="email"
                         autoComplete="email"
                         placeholder="Email"
                         required
                       />
                       <input
+                        onChange={handleChange}
+                        value={formValue.subject}
                         type="text"
-                        name="Subject_en"
+                        name="subject"
                         required
                         placeholder="Subject"
                       />
                       <div
-                        className="recaptcha_en"
+                        className="recaptcha"
                         data-netlify-recaptcha="true"
                       ></div>
                     </div>
                     <div className="form2">
                       <input
+                        onChange={handleChange}
+                        value={formValue.company}
                         type="text"
-                        name="Company_en"
+                        name="company"
                         placeholder="Company (optional)"
                       />
                       <textarea
-                        name="Message_en"
+                        onChange={handleChange}
+                        value={formValue.message}
+                        name="message"
                         required
                         placeholder="Message..."
                         cols={30}
