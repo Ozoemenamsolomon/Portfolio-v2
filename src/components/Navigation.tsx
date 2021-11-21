@@ -1,10 +1,8 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import MyNavLink from "./MyNavLink"
 import { AdjustmentsIcon } from "@heroicons/react/outline"
-import { useState } from "react"
-import { useEffect } from "react"
 
 interface NavigationProps {
   userLang: string
@@ -199,6 +197,9 @@ const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
             </div>
             {/* </div> */}
           </li>
+          <p style={{ opacity: 0.5, font: "small-caption" }}>
+            &#42; Your choice is saved for your next visit
+          </p>
         </SubNavList>
       </NavItem>
     </NavList>
