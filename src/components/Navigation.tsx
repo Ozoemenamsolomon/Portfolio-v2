@@ -220,6 +220,7 @@ export const NavList = styled.ul`
   @media (max-width: 600px)
     &>li:nth-child(n+3):not(:last-child) {
     display: none;
+    }
   }
 `
 
