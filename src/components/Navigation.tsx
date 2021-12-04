@@ -262,7 +262,7 @@ const NavSettings = styled.span`
 export const SubNavList = styled.ul`
   /* display: none; */
   opacity: 0;
-  transform: translateX(25%);
+  transform: translateX(10%);
   pointer-events: none;
   position: absolute;
   right: 0;
