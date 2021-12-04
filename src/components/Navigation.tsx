@@ -212,14 +212,10 @@ export const NavList = styled.ul`
   display: flex;
   list-style: none;
   height: 100%;
-  // @media (max-width: 900px) {
-  //   & {
-  //     display: none;
-  //   }
-  // }
-  @media (max-width: 600px)
-    &>li:nth-child(n+3):not(:last-child) {
-    display: none;
+
+  @media (max-width: 600px) {
+    & > li:nth-child(n + 3):not(:last-child) {
+      display: none;
     }
   }
 `
