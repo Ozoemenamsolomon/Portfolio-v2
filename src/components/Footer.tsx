@@ -18,7 +18,7 @@ const Footer = () => {
 
 export default Footer
 const MyFooter = styled.footer`
-  padding: 0.5rem 0;
+  padding: 1rem 0px 1.5rem;
   display: flex;
   justify-content: center;
   background-color: var(--firstbg);

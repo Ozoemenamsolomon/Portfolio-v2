@@ -34,18 +34,10 @@ const Index: React.FC<PageProps<IndexProps>> = ({ location: { search } }) => {
               <SooBtn>View my portfolio</SooBtn>
             </Link>
           </div>
-          <HomeImg
-            style={{
-              position: `absolute`,
-              bottom: 0,
-              right: 0,
-              width: "18rem",
-              // maxHeight: "70%",
-              pointerEvents: "none",
-            }}
-          >
+          <HomeImg>
             <StaticImage
               src="../images/me.png"
+              height={350}
               placeholder="tracedSVG"
               objectFit="contain"
               layout="constrained"
@@ -61,12 +53,16 @@ const Index: React.FC<PageProps<IndexProps>> = ({ location: { search } }) => {
 export default Index
 
 const HomeImg = styled.div`
-  @media (max-width: 400px) {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-left: 10rem;
+  /* @media (max-width: 400px) {
     display: none;
   }
   @media (max-width: 900px) and (orientation: landscape) {
     display: none;
-  }
+  } */
 `
 export const SooBtn = styled.button`
   border: solid var(--btn-colour) 3px;

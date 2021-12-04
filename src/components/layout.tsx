@@ -26,7 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <React.Fragment>
       <LayoutDiv>
-        <SkipNavLink />
+        <SkipNavLink>Skip to content</SkipNavLink>
         <Header />
 
         <SkipNavContent />

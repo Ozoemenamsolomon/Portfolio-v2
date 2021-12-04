@@ -144,62 +144,50 @@ const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
             </label>
             {/* </div> */}
           </li>
-          <li className="material-icons moodtoggle settings-list-items">
+          <li className="moodtoggle settings-list-items">
             {/* <button onClick={handleThemeChoice}>Toogle theme</button> */}
-            {/* <div style={{ display: "flex", justifyContent: "center" }}> */}
-            <div
+            <ThemeChoiceContainer>
+              <ThemeInputContainer>
+                <input
+                  type="radio"
+                  id="light"
+                  onClick={handleThemeChoice}
+                  name="theme"
+                  value="light"
+                />
+                <label htmlFor="light">Light</label>
+              </ThemeInputContainer>
+              <ThemeInputContainer>
+                <input
+                  type="radio"
+                  id="auto"
+                  onClick={handleThemeChoice}
+                  name="theme"
+                  value="auto"
+                />
+                <label htmlFor="auto">Auto</label>{" "}
+              </ThemeInputContainer>
+              <ThemeInputContainer>
+                <input
+                  type="radio"
+                  id="dark"
+                  onClick={handleThemeChoice}
+                  name="theme"
+                  value="dark"
+                />
+                <label htmlFor="dark">Dark</label>{" "}
+              </ThemeInputContainer>
+            </ThemeChoiceContainer>
+            <p
               style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
+                opacity: 0.5,
+                font: "small-caption",
+                paddingBottom: "none",
               }}
             >
-              <input
-                type="radio"
-                id="light"
-                onClick={handleThemeChoice}
-                name="theme"
-                value="light"
-              />
-              <label htmlFor="light">Light</label>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <input
-                type="radio"
-                id="auto"
-                onClick={handleThemeChoice}
-                name="theme"
-                value="auto"
-              />
-              <label htmlFor="auto">Auto</label>{" "}
-            </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <input
-                type="radio"
-                id="dark"
-                onClick={handleThemeChoice}
-                name="theme"
-                value="dark"
-              />
-              <label htmlFor="dark">Dark</label>{" "}
-            </div>
-            {/* </div> */}
+              &#42; Your choice is saved for your next visit
+            </p>
           </li>
-          <p style={{ opacity: 0.5, font: "small-caption" }}>
-            &#42; Your choice is saved for your next visit
-          </p>
         </SubNavList>
       </NavItem>
     </NavList>
@@ -258,6 +246,16 @@ const NavSettings = styled.span`
     stroke: var(--btn-colour);
   }
 `
+const ThemeChoiceContainer = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`
+
+const ThemeInputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
 export const SubNavList = styled.ul`
   /* display: none; */
@@ -269,9 +267,7 @@ export const SubNavList = styled.ul`
   list-style: none;
   background-color: var(--firstbg);
   display: flex;
+  gap: 0.5rem;
   flex-direction: column;
   padding: 0.5rem 1rem;
-  & > li {
-    display: flex;
-  }
 `

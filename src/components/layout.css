@@ -67,6 +67,7 @@ a {
   --nav-footer-height: 6.5vh;
   --soo-gradient: linear-gradient(var(--light-blue), var(--dark-blue));
   /* --soo-gradient: linear-gradient(rgb(63, 115, 167), rgb(35, 62, 99)); */
+  --reach-skip-nav: 1;
 }
 .darkmode {
   --firstbg: #2b2625;
@@ -96,6 +97,16 @@ a {
   --secondbg: rgb(245, 245, 245);
   --text-colour: #23201f;
   --header-colour: #eaeaea;
+}
+
+[data-reach-skip-nav-link]:focus {
+  background: var(--firstbg);
+  background-clip: border-box;
+  z-index: 7;
+  color: var(--text-colour);
+  padding: 0.5rem;
+  border-radius: 0.8rem;
+  border: solid 3px var(--light-blue);
 }
 
 /* from twitter */

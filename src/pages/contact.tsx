@@ -27,26 +27,7 @@ const Contact: React.FC<PageProps<ContactProps>> = () => {
   ) => {
     const inputName = e.target.name
     const inputValue = e.target.value
-
-    switch (inputName) {
-      case "email":
-        setFormvalue({ ...formValue, email: inputValue })
-        break
-      case "name":
-        setFormvalue({ ...formValue, name: inputValue })
-        break
-      case "subject":
-        setFormvalue({ ...formValue, subject: inputValue })
-        break
-      case "message":
-        setFormvalue({ ...formValue, message: inputValue })
-        break
-      case "company":
-        setFormvalue({ ...formValue, company: inputValue })
-        break
-      default:
-        break
-    }
+    setFormvalue({ ...formValue, [inputName]: inputValue })
   }
 
   const handleSubmit: FormEventHandler = async (e: FormEvent) => {
