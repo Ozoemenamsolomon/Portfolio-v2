@@ -62,21 +62,21 @@ const About: React.FC<PageProps<AboutPageProps>> = ({
               </div>
               <div className="about-language">
                 <h3>Languages</h3>
-                <ul>
+                <AboutList>
                   <li>German</li>
                   <li>English</li>
                   <li>Igbo</li>
                   <li>Yoruba</li>
-                </ul>
+                </AboutList>
               </div>
               <div className="about-softskills">
                 <h3>Softskills</h3>
-                <ul>
+                <AboutList>
                   <li>Attention to detail</li>
                   <li>Teamwork</li>
                   <li>Goal oriented</li>
                   <li>Ready to learn</li>
-                </ul>
+                </AboutList>
               </div>
             </AboutContent>
             <div className="about-img">
@@ -130,4 +130,7 @@ const AboutContent = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
+`
+const AboutList = styled.ul`
+  margin-left: 1.5rem;
 `

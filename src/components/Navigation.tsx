@@ -214,7 +214,7 @@ export const NavList = styled.ul`
   height: 100%;
 
   @media (max-width: 600px) {
-    & > li:nth-child(n + 3):not(:last-child) {
+    & > li:nth-child(n + 3):not(:last-child, :nth-last-child(2)) {
       display: none;
     }
   }
