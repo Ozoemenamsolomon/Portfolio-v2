@@ -12,6 +12,7 @@ const MyNavLink: React.FC<MyNavLinkProps> = props => {
   return (
     <MyLink
       activeStyle={{ borderBottom: `inset`, color: `var(--light-blue)` }}
+      partiallyActive={true}
       {...props}
     >
       {children}

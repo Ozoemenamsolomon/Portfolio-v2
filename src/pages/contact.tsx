@@ -1,4 +1,4 @@
-import { PageProps } from "gatsby"
+import { PageProps, navigate } from "gatsby"
 import React, {
   ChangeEvent,
   ChangeEventHandler,
@@ -11,6 +11,7 @@ import styled from "styled-components"
 import { SooBtn } from "."
 import Layout from "../components/layout"
 import Container from "../components/MainWrapper"
+import { SOOHint } from "../components/Navigation"
 import Seo from "../components/seo"
 import { PageTitle } from "./about"
 
@@ -43,7 +44,7 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
     return () => {
       setFormvalue(initialFormValue)
     }
-  }, [location.state])
+  }, [])
   const [formValue, setFormvalue] = useState<FormValueProp>(initialFormValue)
   const handleChange: ChangeEventHandler = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
@@ -67,11 +68,16 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
         },
         body: JSON.stringify({ ...formValue }),
       }).then(res => res.json())
-      console.log(apiResponse.status)
-      console.log(apiResponse)
-      setFormvalue(initialFormValue)
-      console.log(formValue)
-      // TODO: redirect to thank you page
+      if (
+        Object.keys(apiResponse).length === 0 &&
+        apiResponse.constructor === Object
+      ) {
+        setFormvalue(initialFormValue)
+        navigate("/thank-you/", { replace: true, state: { ...formValue } })
+        return
+      }
+      // console.log(apiResponse)
+      throw new Error(`${apiResponse.message}`)
     } catch (err) {
       console.log(
         "an error occured, please make sure all field have been field appropriately",
@@ -138,6 +144,10 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
                       rows={7}
                     ></textarea>
                     <div>
+                      <SOOHint style={{ marginBottom: "1rem" }}>
+                        Red outline means invalid field, make sure all field are
+                        valid.
+                      </SOOHint>
                       <SooBtn type="submit">Send</SooBtn>
                     </div>
                     {/* <!-- <input type="submit" value=""> --> */}

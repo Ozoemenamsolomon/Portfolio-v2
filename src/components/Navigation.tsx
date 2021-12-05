@@ -178,24 +178,10 @@ const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
                 <label htmlFor="dark">Dark</label>{" "}
               </ThemeInputContainer>
             </ThemeChoiceContainer>
-            <p
-              style={{
-                opacity: 0.5,
-                font: "small-caption",
-                marginBottom: "0",
-              }}
-            >
-              &#42; Your choice is saved for your next visit
-            </p>
+            <SOOHint>&#42; Your choice is saved for your next visit</SOOHint>
           </li>
-          <li
-            style={{
-              textAlign: "center",
-              font: "small-caption",
-              opacity: "20%",
-            }}
-          >
-            coming soon: i18n
+          <li>
+            <SOOHint>coming soon: i18n</SOOHint>
           </li>
         </SubNavList>
       </NavItem>
@@ -279,4 +265,9 @@ export const SubNavList = styled.ul`
   gap: 0.5rem;
   flex-direction: column;
   padding: 0.5rem 1rem;
+`
+export const SOOHint = styled.p`
+  opacity: 0.5;
+  font: small-caption;
+  margin-bottom: 0;
 `
