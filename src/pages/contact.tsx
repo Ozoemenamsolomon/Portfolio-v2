@@ -35,16 +35,18 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
     message: "",
     company: "",
   }
-  // useEffect(() => {
-  //   setFormvalue({
-  //     ...formValue,
-  //     //@ts-ignore
-  //     subject: `${location.state.subject ? location.state.subject : ""}`,
-  //   })
-  //   return () => {
-  //     setFormvalue(initialFormValue)
-  //   }
-  // }, [])
+  useEffect(() => {
+    if (typeof window !== "undefined" && location.state) {
+      setFormvalue({
+        ...formValue,
+        //@ts-ignore
+        subject: `${location.state.subject ? location.state.subject : ""}`,
+      })
+    }
+    return () => {
+      setFormvalue(initialFormValue)
+    }
+  }, [])
   const [formValue, setFormvalue] = useState<FormValueProp>(initialFormValue)
   const handleChange: ChangeEventHandler = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
