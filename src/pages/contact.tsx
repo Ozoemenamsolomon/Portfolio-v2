@@ -36,7 +36,7 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
     company: "",
   }
   useEffect(() => {
-    if (typeof window !== "undefined" && location.state) {
+    if (typeof window !== "undefined") {
       setFormvalue({
         ...formValue,
         //@ts-ignore
