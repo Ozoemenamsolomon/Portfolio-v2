@@ -15,8 +15,9 @@ import Seo from "../components/seo"
 import { PageTitle } from "./about"
 
 export interface ContactProps {
-  state: { subject: string }
+  location: { state: {} }
 }
+type LocationStateProp = { subject: string }
 export type FormValueProp = {
   email: string
   name: string
@@ -36,6 +37,7 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
   useEffect(() => {
     setFormvalue({
       ...formValue,
+      //@ts-ignore
       subject: `${location.state.subject ? location.state.subject : ""}`,
     })
     return () => {
@@ -203,9 +205,17 @@ const ContactForm = styled.form`
     margin-top: 0;
   }
 
+  & textarea:invalid,
+  & input:invalid {
+    border-color: red;
+  }
+
   & textarea,
   & input {
-    padding: 0.3rem;
+    padding: 0.5rem;
     border-radius: 0.5rem;
+
+    border: 2px solid var(--light-blue);
+    box-shadow: 2px 3px 5px #00000033;
   }
 `

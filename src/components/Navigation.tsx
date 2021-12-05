@@ -93,7 +93,7 @@ const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
         settings
         <span className="material-icons">arrow_drop_down</span>
         <ul className="dropdown">
-          <li className="settings-list-items">
+          <li style={{ display: "none" }} className="settings-list-items">
             <label>
               EN
               <input type="checkbox" value="" className="checkbox" />
@@ -130,7 +130,7 @@ const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
           </NavSettings>
         </span>
         <SubNavList className="dropdown">
-          <li className="settings-list-items">
+          <li style={{ display: "none" }} className="settings-list-items">
             {/* <div style={{ display: "flex" }}> */}
             <label>
               EN
@@ -182,11 +182,20 @@ const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
               style={{
                 opacity: 0.5,
                 font: "small-caption",
-                paddingBottom: "0",
+                marginBottom: "0",
               }}
             >
               &#42; Your choice is saved for your next visit
             </p>
+          </li>
+          <li
+            style={{
+              textAlign: "center",
+              font: "small-caption",
+              opacity: "20%",
+            }}
+          >
+            coming soon: i18n
           </li>
         </SubNavList>
       </NavItem>
