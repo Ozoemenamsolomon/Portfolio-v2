@@ -7,12 +7,15 @@ import Header from "./Header"
 import Footer from "./Footer"
 import { SkipNavLink, SkipNavContent } from "@reach/skip-nav"
 import "@reach/skip-nav/styles.css"
+import { WindowLocation } from "@reach/router"
 
 import "./layout.css"
 
-export interface LayoutProps {}
+export interface LayoutProps {
+  location: WindowLocation
+}
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children, location }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -31,7 +34,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
         <SkipNavContent />
         <Main>{children}</Main>
-        <Footer />
+        <Footer locationPath={location?.pathname} />
       </LayoutDiv>
     </React.Fragment>
   )

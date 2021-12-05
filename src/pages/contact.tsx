@@ -4,24 +4,45 @@ import React, {
   ChangeEventHandler,
   FormEvent,
   FormEventHandler,
+  useEffect,
   useState,
 } from "react"
+import styled from "styled-components"
 import { SooBtn } from "."
 import Layout from "../components/layout"
-import MainWrapper from "../components/MainWrapper"
+import Container from "../components/MainWrapper"
 import Seo from "../components/seo"
 import { PageTitle } from "./about"
 
-export interface ContactProps {}
+export interface ContactProps {
+  state: { subject: string }
+}
+export type FormValueProp = {
+  email: string
+  name: string
+  subject?: string
+  message: string
+  company: string
+}
 
-const Contact: React.FC<PageProps<ContactProps>> = () => {
-  const [formValue, setFormvalue] = useState({
+const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
+  const initialFormValue = {
     email: "",
     name: "",
     subject: "",
     message: "",
     company: "",
-  })
+  }
+  useEffect(() => {
+    setFormvalue({
+      ...formValue,
+      subject: `${location.state.subject ? location.state.subject : ""}`,
+    })
+    return () => {
+      setFormvalue(initialFormValue)
+    }
+  }, [location.state])
+  const [formValue, setFormvalue] = useState<FormValueProp>(initialFormValue)
   const handleChange: ChangeEventHandler = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
   ) => {
@@ -30,25 +51,36 @@ const Contact: React.FC<PageProps<ContactProps>> = () => {
     setFormvalue({ ...formValue, [inputName]: inputValue })
   }
 
-  const handleSubmit: FormEventHandler = async (e: FormEvent) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (
+    e: FormEvent
+  ) => {
     e.preventDefault()
     // TODO the code below works but I still need to sort the type out
     // e.target[0].focus()
-    const apiResponse = await fetch("/api/soo-contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ ...formValue }),
-    }).then(res => res.json())
-    console.log(formValue)
-    console.log(apiResponse)
-    // TODO: redirect to thank you page
+    try {
+      const apiResponse = await fetch("/api/soo-contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...formValue }),
+      }).then(res => res.json())
+      console.log(apiResponse.status)
+      console.log(apiResponse)
+      setFormvalue(initialFormValue)
+      console.log(formValue)
+      // TODO: redirect to thank you page
+    } catch (err) {
+      console.log(
+        "an error occured, please make sure all field have been field appropriately",
+        `${err}`
+      )
+    }
   }
 
   return (
-    <Layout>
-      <MainWrapper>
+    <Layout location={location}>
+      <Container>
         <Seo title="Contact" lang="en" />
 
         <PageTitle>Contact Me</PageTitle>
@@ -57,62 +89,57 @@ const Contact: React.FC<PageProps<ContactProps>> = () => {
             <div className="contact-content">
               <div className="form-findme">
                 <div className="contact-form">
-                  <form onSubmit={handleSubmit}>
+                  <ContactForm onSubmit={handleSubmit}>
                     {/* method="POST"
                     data-netlify="true" */}
-                    <div className="form1">
-                      <input
-                        onChange={handleChange}
-                        value={formValue.name}
-                        type="text"
-                        name="name"
-                        autoComplete="name"
-                        placeholder="Name"
-                        required
-                      />
-                      <input
-                        onChange={handleChange}
-                        value={formValue.email}
-                        type="email"
-                        name="email"
-                        autoComplete="email"
-                        placeholder="Email"
-                        required
-                      />
-                      <input
-                        onChange={handleChange}
-                        value={formValue.subject}
-                        type="text"
-                        name="subject"
-                        required
-                        placeholder="Subject"
-                      />
-                      <div
-                        className="recaptcha"
-                        data-netlify-recaptcha="true"
-                      ></div>
-                    </div>
-                    <div className="form2">
-                      <input
-                        onChange={handleChange}
-                        value={formValue.company}
-                        type="text"
-                        name="company"
-                        placeholder="Company (optional)"
-                      />
-                      <textarea
-                        onChange={handleChange}
-                        value={formValue.message}
-                        name="message"
-                        required
-                        placeholder="Message..."
-                        cols={30}
-                        rows={10}
-                      ></textarea>
+                    <input
+                      onChange={handleChange}
+                      value={formValue.name}
+                      type="text"
+                      name="name"
+                      autoComplete="name"
+                      placeholder="Name"
+                      required
+                    />
+                    <input
+                      onChange={handleChange}
+                      value={formValue.email}
+                      type="email"
+                      name="email"
+                      autoComplete="email"
+                      placeholder="Email"
+                      required
+                    />
+                    <input
+                      onChange={handleChange}
+                      value={formValue.subject}
+                      type="text"
+                      name="subject"
+                      required
+                      placeholder="Subject"
+                    />
+
+                    <input
+                      onChange={handleChange}
+                      value={formValue.company}
+                      type="text"
+                      name="company"
+                      placeholder="Company (optional)"
+                    />
+                    <textarea
+                      onChange={handleChange}
+                      value={formValue.message}
+                      name="message"
+                      required
+                      placeholder="Message..."
+                      cols={30}
+                      rows={7}
+                    ></textarea>
+                    <div>
                       <SooBtn type="submit">Send</SooBtn>
-                      {/* <!-- <input type="submit" value=""> --> */}
                     </div>
-                  </form>
+                    {/* <!-- <input type="submit" value=""> --> */}
+                  </ContactForm>
                 </div>
                 <div className="contact-findme">
                   <p>Find me on:</p>
@@ -154,9 +181,31 @@ const Contact: React.FC<PageProps<ContactProps>> = () => {
             </div>
           </section>
         </div>
-      </MainWrapper>
+      </Container>
     </Layout>
   )
 }
 
 export default Contact
+
+const ContactForm = styled.form`
+  display: grid;
+  gap: 0.51rem;
+  @media (min-width: 600px) {
+    & {
+      grid-template-columns: 1fr 1fr;
+    }
+    & textarea {
+      grid-column: span 2;
+    }
+  }
+  & button {
+    margin-top: 0;
+  }
+
+  & textarea,
+  & input {
+    padding: 0.3rem;
+    border-radius: 0.5rem;
+  }
+`

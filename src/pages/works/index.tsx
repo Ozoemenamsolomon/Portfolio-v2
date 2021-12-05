@@ -1,14 +1,16 @@
-import { Link } from "gatsby"
+import { Link, PageProps } from "gatsby"
 import React from "react"
 import { SooBtn } from ".."
 import Layout from "../../components/layout"
-import MainWrapper from "../../components/MainWrapper"
+import Container from "../../components/MainWrapper"
 import { PageTitle } from "../about"
 
-const Work: React.FC = props => {
+interface WorkProp {}
+
+const Work: React.FC<PageProps<WorkProp>> = ({ location }) => {
   return (
-    <Layout>
-      <MainWrapper>
+    <Layout location={location}>
+      <Container>
         <PageTitle>Portfolio</PageTitle>
         <div>
           <section className="work" id="work">
@@ -21,7 +23,7 @@ const Work: React.FC = props => {
                   case study please click on the button below.
                 </p>
                 <Link to="/blog/posts/process">
-                  <SooBtn>Design Process</SooBtn>
+                  <SooBtn tabIndex={-1}>Design Process</SooBtn>
                 </Link>
                 {/* <!-- <input type="button" value="Design Process"> --> */}
               </div>
@@ -108,7 +110,7 @@ const Work: React.FC = props => {
             </div>
           </section>
         </div>
-      </MainWrapper>
+      </Container>
     </Layout>
   )
 }

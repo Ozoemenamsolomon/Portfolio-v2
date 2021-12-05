@@ -1,12 +1,13 @@
+import { PageProps } from "gatsby"
 import React from "react"
 import Layout from "../../../components/layout"
-import MainWrapper from "../../../components/MainWrapper"
+import Container from "../../../components/MainWrapper"
 import { PageTitle } from "../../about"
 
-const Process = () => {
+const Process: React.FC<PageProps> = ({ location }) => {
   return (
-    <Layout>
-      <MainWrapper>
+    <Layout location={location}>
+      <Container>
         <PageTitle>Typical Design Process</PageTitle>
         <div>
           <section className="process" id="process">
@@ -35,7 +36,7 @@ const Process = () => {
             </div>
           </section>
         </div>
-      </MainWrapper>
+      </Container>
     </Layout>
   )
 }

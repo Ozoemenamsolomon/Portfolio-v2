@@ -3,7 +3,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import Layout from "../components/layout"
-import MainWrapper from "../components/MainWrapper"
+import Container from "../components/MainWrapper"
 import Seo from "../components/seo"
 import TechStack from "../components/TechStack"
 import { myTechStack } from "../definiton"
@@ -21,10 +21,11 @@ const About: React.FC<PageProps<AboutPageProps>> = ({
     allStrapiTechstack: { nodes: techStacks },
     strapiAbout: { content: strapiAboutContent },
   },
+  location,
 }) => {
   return (
-    <Layout>
-      <MainWrapper>
+    <Layout location={location}>
+      <Container>
         <Seo
           title="About"
           lang="en"
@@ -84,7 +85,7 @@ const About: React.FC<PageProps<AboutPageProps>> = ({
             </div>
           </section>
         </div>
-      </MainWrapper>
+      </Container>
     </Layout>
   )
 }

@@ -4,12 +4,12 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import Navigation from "./Navigation"
-import MainWrapper from "./MainWrapper"
+import Container from "./MainWrapper"
 
 const Header: React.FC = () => {
   return (
     <MyHeader>
-      <MainWrapper style={{ display: `flex`, justifyContent: `space-between` }}>
+      <Container style={{ display: `flex`, justifyContent: `space-between` }}>
         <Logo>
           <Link to="/">
             <StaticImage
@@ -25,7 +25,7 @@ const Header: React.FC = () => {
         <Nav>
           <Navigation userLang="en" />
         </Nav>{" "}
-      </MainWrapper>
+      </Container>
     </MyHeader>
   )
 }

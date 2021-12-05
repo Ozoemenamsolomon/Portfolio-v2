@@ -4,17 +4,17 @@ import { Link, PageProps } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import Seo from "../components/seo"
-import MainWrapper from "../components/MainWrapper"
+import Container from "../components/MainWrapper"
 // import ScrollAnimation from "react-animate-on-scroll"
 // import "animate.css/animate.min.css"
 
 interface IndexProps {}
 
-const Index: React.FC<PageProps<IndexProps>> = ({ location: { search } }) => {
-  console.log(search)
+const Index: React.FC<PageProps<IndexProps>> = ({ location }) => {
+  // console.log(search)
   return (
-    <Layout>
-      <MainWrapper
+    <Layout location={location}>
+      <Container
         style={{
           flex: ".4",
           alignItems: "center",
@@ -31,7 +31,7 @@ const Index: React.FC<PageProps<IndexProps>> = ({ location: { search } }) => {
             </h1>
             <h2>Frontend Developer</h2>
             <Link state={{ from: "home_hero" }} to="/works">
-              <SooBtn>View my portfolio</SooBtn>
+              <SooBtn tabIndex={-1}>View my portfolio</SooBtn>
             </Link>
           </div>
           <HomeImg>
@@ -45,7 +45,7 @@ const Index: React.FC<PageProps<IndexProps>> = ({ location: { search } }) => {
             />
           </HomeImg>
         </section>
-      </MainWrapper>
+      </Container>
     </Layout>
   )
 }

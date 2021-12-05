@@ -1,17 +1,48 @@
 import { Link } from "gatsby"
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
-import MainWrapper from "./MainWrapper"
+import Container from "./MainWrapper"
 
-const Footer = () => {
+let location: string
+type FooterProp = {
+  locationPath: string
+}
+
+const Footer: React.FC<FooterProp> = ({ locationPath }) => {
   return (
     <MyFooter>
-      <MainWrapper>
+      <Container
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "start",
+          flexWrap: "wrap",
+        }}
+      >
         <FooterP>
           Coyright&copy; {new Date().getFullYear()}
           <Link to="/">solozo.page</Link>
         </FooterP>
-      </MainWrapper>
+        <p
+          style={{
+            font: "small-caption",
+            textAlign: "right",
+            marginBottom: "0",
+          }}
+        >
+          ps: you can tab your way through this page as it's designed and
+          created with ❤ by Solozo. <br /> Found any bug or improvement
+          suggestion?{" "}
+          <Link
+            style={{ font: "inherit" }}
+            to="/contact"
+            state={{ subject: `Problem with your "${locationPath}" page` }}
+          >
+            Contact me
+          </Link>
+          .
+        </p>
+      </Container>
     </MyFooter>
   )
 }

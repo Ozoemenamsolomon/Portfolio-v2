@@ -182,7 +182,7 @@ const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
               style={{
                 opacity: 0.5,
                 font: "small-caption",
-                paddingBottom: "none",
+                paddingBottom: "0",
               }}
             >
               &#42; Your choice is saved for your next visit
