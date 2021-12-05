@@ -29,8 +29,7 @@ const Footer: React.FC<FooterProp> = ({ locationPath }) => {
           Found any bug or improvement suggestion?{" "}
           <Link
             style={{ font: "inherit" }}
-            to="/contact"
-            state={{ subject: `Problem with your "${locationPath}" page` }}
+            to={`/contact?subject=Problem with your "${locationPath}" page`}
           >
             Contact me
           </Link>

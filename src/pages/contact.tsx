@@ -14,10 +14,9 @@ import Container from "../components/MainWrapper"
 import { SOOHint } from "../components/Navigation"
 import Seo from "../components/seo"
 import { PageTitle } from "./about"
+import { RouteComponentProps } from "@reach/router"
 
-export interface ContactProps {
-  location: { state: {} }
-}
+export interface ContactProps {}
 type LocationStateProp = { subject: string }
 export type FormValueProp = {
   email: string
@@ -35,14 +34,13 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
     message: "",
     company: "",
   }
+  // console.log("params=" )
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setFormvalue({
-        ...formValue,
-        //@ts-ignore
-        subject: `${location.state.subject ? location.state.subject : ""}`,
-      })
-    }
+    const newURL = new URLSearchParams(location.search)
+    setFormvalue({
+      ...formValue,
+      subject: newURL.get("subject") === null ? "" : `${newURL.get("subject")}`,
+    })
     return () => {
       setFormvalue(initialFormValue)
     }
