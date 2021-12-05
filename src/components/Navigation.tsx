@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 import MyNavLink from "./MyNavLink"
 import { AdjustmentsIcon } from "@heroicons/react/outline"
+import { changeClassBasedOnThemeChoice } from "../utils"
 
 interface NavigationProps {
   userLang: string
@@ -10,30 +11,17 @@ interface NavigationProps {
 
 const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
   const [langChoice, setLangChoice] = useState("en")
-  const [themeChoice, setThemeChoice] = useState("dark")
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const body = window.document.querySelector("body") || { className: "" }
       const langChoice: string | null = window.localStorage.getItem(
         "langChoice"
+        // TODO: use this value
       )
       const themeChoice: string | null = window.localStorage.getItem(
         "themeChoice"
       )
-      switch (themeChoice) {
-        case "auto" || null:
-          body.className = ""
-          break
-        case "dark":
-          body.className = "darkmode"
-          break
-        case "light":
-          body.className = "lightmode"
-          break
-        default:
-          return
-      }
+      changeClassBasedOnThemeChoice(themeChoice)
     }
   }, [])
 
@@ -53,26 +41,8 @@ const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
   const handleThemeChoice = (e: React.FormEvent<HTMLInputElement>) => {
     const inputValue = e.currentTarget.value
     if (typeof window !== "undefined") {
-      const body: HTMLElement = window.document.body
-
       window.localStorage.setItem("themeChoice", inputValue)
-      setThemeChoice(inputValue)
-      switch (inputValue) {
-        case "auto":
-          body.classList.remove("darkmode")
-          body.classList.remove("lightmode")
-          break
-        case "dark":
-          body.classList.add("darkmode")
-          body.classList.remove("lightmode")
-          break
-        case "light":
-          body.classList.add("lightmode")
-          body.classList.remove("darkmode")
-          break
-        default:
-          return
-      }
+      changeClassBasedOnThemeChoice(inputValue)
     }
   }
   return userLang === "de" ? (

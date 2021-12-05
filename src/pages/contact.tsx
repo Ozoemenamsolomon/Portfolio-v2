@@ -98,51 +98,67 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
               <div className="form-findme">
                 <div className="contact-form">
                   <ContactForm onSubmit={handleSubmit}>
-                    {/* method="POST"
-                    data-netlify="true" */}
-                    <input
-                      onChange={handleChange}
-                      value={formValue.name}
-                      type="text"
-                      name="name"
-                      autoComplete="name"
-                      placeholder="Name"
-                      required
-                    />
-                    <input
-                      onChange={handleChange}
-                      value={formValue.email}
-                      type="email"
-                      name="email"
-                      autoComplete="email"
-                      placeholder="Email"
-                      required
-                    />
-                    <input
-                      onChange={handleChange}
-                      value={formValue.subject}
-                      type="text"
-                      name="subject"
-                      required
-                      placeholder="Subject"
-                    />
+                    <div>
+                      <label htmlFor="name">Name</label>
+                      <input
+                        onChange={handleChange}
+                        value={formValue.name}
+                        type="text"
+                        id="name"
+                        name="name"
+                        autoComplete="name"
+                        placeholder="Name"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email">E-mail</label>
+                      <input
+                        onChange={handleChange}
+                        value={formValue.email}
+                        type="email"
+                        name="email"
+                        autoComplete="email"
+                        placeholder="Email"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="subject">Subject</label>
+                      <input
+                        onChange={handleChange}
+                        value={formValue.subject}
+                        type="text"
+                        name="subject"
+                        id="subject"
+                        required
+                        placeholder="Subject"
+                      />
+                    </div>
 
-                    <input
-                      onChange={handleChange}
-                      value={formValue.company}
-                      type="text"
-                      name="company"
-                      placeholder="Company (optional)"
-                    />
-                    <textarea
-                      onChange={handleChange}
-                      value={formValue.message}
-                      name="message"
-                      required
-                      placeholder="Message..."
-                      cols={30}
-                      rows={7}
-                    ></textarea>
+                    <div>
+                      <label htmlFor="company">Company</label>
+                      <input
+                        onChange={handleChange}
+                        value={formValue.company}
+                        type="text"
+                        id="company"
+                        name="company"
+                        placeholder="Company (optional)"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="message">Message</label>
+                      <textarea
+                        onChange={handleChange}
+                        value={formValue.message}
+                        name="message"
+                        required
+                        placeholder="Message..."
+                        cols={30}
+                        rows={7}
+                      ></textarea>
+                    </div>
                     <div>
                       <SOOHint style={{ marginBottom: "1rem" }}>
                         Red outline means invalid field, make sure all field are
@@ -207,7 +223,7 @@ const ContactForm = styled.form`
     & {
       grid-template-columns: 1fr 1fr;
     }
-    & textarea {
+    & > *:nth-last-child(2) {
       grid-column: span 2;
     }
   }
@@ -224,6 +240,8 @@ const ContactForm = styled.form`
   & input {
     padding: 0.5rem;
     border-radius: 0.5rem;
+    width: 100%;
+    resize: vertical;
 
     border: 2px solid var(--light-blue);
     box-shadow: 2px 3px 5px #00000033;
