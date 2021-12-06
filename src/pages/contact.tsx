@@ -8,16 +8,14 @@ import React, {
   useState,
 } from "react"
 import styled from "styled-components"
-import { SooBtn } from "."
 import Layout from "../components/layout"
 import Container from "../components/MainWrapper"
 import { SOOHint } from "../components/Navigation"
 import Seo from "../components/seo"
 import { PageTitle } from "./about"
-import { RouteComponentProps } from "@reach/router"
+import { SooBtn } from "../components"
 
 export interface ContactProps {}
-type LocationStateProp = { subject: string }
 export type FormValueProp = {
   email: string
   name: string
@@ -46,6 +44,8 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
     }
   }, [])
   const [formValue, setFormvalue] = useState<FormValueProp>(initialFormValue)
+  const [submitting, setSubmitting] = useState(false)
+  const [formError, setFormError] = useState("")
   const handleChange: ChangeEventHandler = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
   ) => {
@@ -60,6 +60,8 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
     e.preventDefault()
     // TODO the code below works but I still need to sort the type out
     // e.target[0].focus()
+    setSubmitting(true)
+    setFormError("")
     try {
       const apiResponse = await fetch("/api/soo-contact", {
         method: "POST",
@@ -68,6 +70,7 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
         },
         body: JSON.stringify({ ...formValue }),
       }).then(res => res.json())
+      console.log(apiResponse)
       if (
         Object.keys(apiResponse).length === 0 &&
         apiResponse.constructor === Object
@@ -83,6 +86,11 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
         "an error occured, please make sure all field have been field appropriately",
         `${err}`
       )
+      setFormError(
+        "An error occured, please make sure all field have been field appropriately."
+      )
+    } finally {
+      setSubmitting(false)
     }
   }
 
@@ -160,11 +168,56 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
                       ></textarea>
                     </div>
                     <div>
-                      <SOOHint style={{ marginBottom: "1rem" }}>
+                      <SOOHint style={{ marginBottom: "1rem", opacity: 1 }}>
                         Red outline means invalid field, make sure all field are
-                        valid.
+                        valid. <br />
+                        {formError !== "" && (
+                          <span style={{ color: "red" }}>{formError}</span>
+                        )}
                       </SOOHint>
-                      <SooBtn type="submit">Send</SooBtn>
+                      <SooBtn
+                        style={{ display: "flex", alignItems: "center" }}
+                        type="submit"
+                        disabled={submitting}
+                      >
+                        Send{submitting && "ing"}
+                        {submitting && (
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlnsXlink="http://www.w3.org/1999/xlink"
+                            style={{
+                              margin: "auto",
+                              background: "transparent",
+                              display: "inline",
+                            }}
+                            width="23px"
+                            height="23px"
+                            viewBox="0 0 100 100"
+                            preserveAspectRatio="xMidYMid"
+                          >
+                            <path
+                              fill="none"
+                              stroke="#ffffff"
+                              strokeWidth="8"
+                              stroke-dasharray="42.76482137044271 42.76482137044271"
+                              d="M24.3 30C11.4 30 5 43.3 5 50s6.4 20 19.3 20c19.3 0 32.1-40 51.4-40 C88.6 30 95 43.3 95 50s-6.4 20-19.3 20C56.4 70 43.6 30 24.3 30z"
+                              strokeLinecap="round"
+                              style={{
+                                transform: "scale(0.79)",
+                                transformOrigin: "50px 50px",
+                              }}
+                            >
+                              <animate
+                                attributeName="stroke-dashoffset"
+                                repeatCount="indefinite"
+                                dur="1.6666666666666667s"
+                                keyTimes="0;1"
+                                values="0;256.58892822265625"
+                              ></animate>
+                            </path>
+                          </svg>
+                        )}
+                      </SooBtn>
                     </div>
                     {/* <!-- <input type="submit" value=""> --> */}
                   </ContactForm>

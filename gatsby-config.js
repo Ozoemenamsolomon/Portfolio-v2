@@ -5,6 +5,9 @@ module.exports = {
     description: `Solomon Obinna Ozoemenam is a 22-year-old frontend developer with a freelance background in Graphics Design, currently studying computer science in the university of Siegen.`,
     author: `Solomon Obinna Ozoemenam <ozoemenamsolomo@yahoo.com>`,
   },
+  flags: {
+    DEV_SSR: true,
+  },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,

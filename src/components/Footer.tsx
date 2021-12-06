@@ -1,10 +1,10 @@
 import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-import { SooBtn } from "../pages"
 import Container from "./MainWrapper"
 import { SOOHint } from "./Navigation"
 import { InformationCircleIcon } from "@heroicons/react/outline"
+import { SooHintBtn } from "."
 
 let location: string
 type FooterProp = {
@@ -12,17 +12,6 @@ type FooterProp = {
 }
 
 const Footer: React.FC<FooterProp> = ({ locationPath }) => {
-  const SooHintBtn = styled(SooBtn)`
-    @media (max-width: 600px) {
-      &:hover + p,
-      &:focus + p,
-      & + p:focus-within {
-        height: unset;
-        overflow: unset;
-        padding: 0.5rem;
-      }
-    }
-  `
   return (
     <MyFooter>
       <Container

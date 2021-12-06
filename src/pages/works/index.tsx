@@ -1,8 +1,9 @@
 import { Link, PageProps } from "gatsby"
 import React from "react"
-import { SooBtn } from ".."
+import { SooBtn } from "../../components"
 import Layout from "../../components/layout"
 import Container from "../../components/MainWrapper"
+import ProjectCard from "../../components/ProjectCard"
 import { PageTitle } from "../about"
 
 interface WorkProp {}
@@ -25,8 +26,8 @@ const Work: React.FC<PageProps<WorkProp>> = ({ location }) => {
                 <Link to="/blog/posts/process">
                   <SooBtn tabIndex={-1}>Design Process</SooBtn>
                 </Link>
-                {/* <!-- <input type="button" value="Design Process"> --> */}
               </div>
+              <ProjectCard title={""} excerpt={""} date={""} />
               <div className="work1" data-description="coming soon">
                 <div className="card-hover">
                   <a

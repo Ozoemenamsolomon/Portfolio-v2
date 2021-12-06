@@ -1,5 +1,4 @@
 import * as React from "react"
-import PropTypes, { string } from "prop-types"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
@@ -53,9 +52,5 @@ const Logo = styled.div`
   width: 5rem;
   padding: 0.5rem 0;
 `
-const Wrapper = styled.div`
-  margin: 0 auto;
-  max-width: 960;
-  padding: 1.45rem 1.0875rem;
-`
+
 const Nav = styled.nav``

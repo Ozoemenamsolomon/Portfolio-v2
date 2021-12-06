@@ -5,6 +5,7 @@ import { StaticImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import Seo from "../components/seo"
 import Container from "../components/MainWrapper"
+import { SooBtn } from "../components"
 // import ScrollAnimation from "react-animate-on-scroll"
 // import "animate.css/animate.min.css"
 
@@ -56,6 +57,7 @@ const HomeImg = styled.div`
   position: absolute;
   bottom: 0;
   right: 0;
+  pointer-events: none;
   padding-left: 10rem;
   /* @media (max-width: 400px) {
     display: none;
@@ -63,14 +65,4 @@ const HomeImg = styled.div`
   @media (max-width: 900px) and (orientation: landscape) {
     display: none;
   } */
-`
-export const SooBtn = styled.button`
-  border: solid var(--btn-colour) 3px;
-  background: var(--soo-gradient);
-  box-shadow: 1.5px 1.5px 7px rgb(0 0 0 / 25%);
-  color: var(--btn-colour);
-  padding: 0.4rem 1rem;
-  margin-top: 0.5rem;
-  border-radius: 1em;
-  cursor: inherit;
 `

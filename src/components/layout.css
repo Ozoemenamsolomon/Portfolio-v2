@@ -7,6 +7,15 @@
   font-size: 24px;
 }
 
+body main,
+body header,
+body footer {
+  transition: background-color 0.2s cubic-bezier(0.75, -0.03, 1, 1);
+}
+button:disabled {
+  opacity: 40%;
+  cursor: not-allowed;
+}
 /* scrollbar settings start here */
 ::-webkit-scrollbar {
   width: 10px;
@@ -107,6 +116,23 @@ a {
   --secondbg: #e2e2e2;
   --text-colour: #23201f;
   --header-colour: #eaeaea;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 2px 2px 7px #00000034, 0 0 0 0 var(--light-blue);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 2px 2px 7px #00000034, 0 0 0 10px transparent;
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 2px 2px 7px #00000034, 0 0 0 0 transparent;
+  }
 }
 
 [data-reach-skip-nav-link]:focus {

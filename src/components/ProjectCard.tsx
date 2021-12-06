@@ -1,23 +1,19 @@
 import React from "react"
 import styled from "styled-components"
 
-export interface CardType {
-  readtime: number
+interface CardType {
   title: string
   excerpt: string
   date: string
 }
 
-const Card: React.FC<CardType> = props => {
+const ProjectCard: React.FC<CardType> = props => {
   return (
     <>
       <CardDiv>
         <CardTop>
           <CardTitle>
             <CardTitleH3>{props.title}</CardTitleH3>
-            <span>
-              <small>{`${props.readtime} mins read`}</small>
-            </span>
           </CardTitle>
         </CardTop>
         <CardBottom>
@@ -34,7 +30,7 @@ const Card: React.FC<CardType> = props => {
   )
 }
 
-export default Card
+export default ProjectCard
 
 const CardDiv = styled.div`
   width: 17em;

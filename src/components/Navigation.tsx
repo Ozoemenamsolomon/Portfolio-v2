@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import MyNavLink from "./MyNavLink"
@@ -10,14 +10,14 @@ interface NavigationProps {
 }
 
 const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
-  const [langChoice, setLangChoice] = useState("en")
+  // const [langChoice, setLangChoice] = useState("en")
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const langChoice: string | null = window.localStorage.getItem(
-        "langChoice"
-        // TODO: use this value
-      )
+      // const langChoice: string | null = window.localStorage.getItem(
+      //   "langChoice"
+      //   // TODO: use this value
+      // )
       const themeChoice: string | null = window.localStorage.getItem(
         "themeChoice"
       )
@@ -206,6 +206,8 @@ const NavSettings = styled.span`
   display: grid;
   place-content: center;
   justify-self: center;
+  animation: pulse 2s infinite;
+
   & > svg {
     width: 1rem;
     stroke: var(--btn-colour);

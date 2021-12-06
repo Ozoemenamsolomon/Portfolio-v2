@@ -1,7 +1,6 @@
 import { Link, PageProps } from "gatsby"
 import React from "react"
-import { SooBtn } from "."
-import { StyledKBD } from "../components/Footer"
+import { SooBtn } from "../components"
 import Layout from "../components/layout"
 import Container from "../components/MainWrapper"
 
