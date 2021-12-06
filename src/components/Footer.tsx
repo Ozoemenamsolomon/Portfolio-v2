@@ -94,6 +94,7 @@ const FooterP = styled.p`
 `
 
 const FooterNote = styled(SOOHint)`
+  transition: var(--soo-transition);
   @media (max-width: 600px) {
     padding: 0.5rem;
     background-color: var(--firstbg);

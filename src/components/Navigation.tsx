@@ -235,6 +235,7 @@ export const SubNavList = styled.ul`
   gap: 0.5rem;
   flex-direction: column;
   padding: 0.5rem 1rem;
+  transition: var(--soo-transition);
 `
 export const SOOHint = styled.p`
   opacity: 0.5;

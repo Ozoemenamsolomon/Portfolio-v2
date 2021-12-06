@@ -68,6 +68,7 @@ a {
   --soo-gradient: linear-gradient(var(--light-blue), var(--dark-blue));
   /* --soo-gradient: linear-gradient(rgb(63, 115, 167), rgb(35, 62, 99)); */
   --reach-skip-nav: 1;
+  --soo-transition: all 0.5s ease-out;
 }
 ::selection {
   background: var(--dark-blue);
@@ -94,6 +95,11 @@ a {
     --secondbg: rgb(245, 245, 245);
     --text-colour: #23201f;
     --header-colour: #eaeaea;
+  }
+}
+@media (prefers-reduced-motion) {
+  :root {
+    --soo-transition: unset;
   }
 }
 .lightmode {
