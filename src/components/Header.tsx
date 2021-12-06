@@ -58,7 +58,4 @@ const Wrapper = styled.div`
   max-width: 960;
   padding: 1.45rem 1.0875rem;
 `
-const Nav = styled.nav`
-  display: flex;
-  align-items: center;
-`
+const Nav = styled.nav``

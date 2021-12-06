@@ -1,8 +1,10 @@
 import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
+import { SooBtn } from "../pages"
 import Container from "./MainWrapper"
 import { SOOHint } from "./Navigation"
+import { InformationCircleIcon } from "@heroicons/react/outline"
 
 let location: string
 type FooterProp = {
@@ -10,6 +12,17 @@ type FooterProp = {
 }
 
 const Footer: React.FC<FooterProp> = ({ locationPath }) => {
+  const SooHintBtn = styled(SooBtn)`
+    @media (max-width: 600px) {
+      &:hover + p,
+      &:focus + p,
+      & + p:focus-within {
+        height: unset;
+        overflow: unset;
+        padding: 0.5rem;
+      }
+    }
+  `
   return (
     <MyFooter>
       <Container
@@ -24,19 +37,24 @@ const Footer: React.FC<FooterProp> = ({ locationPath }) => {
           Coyright&copy; {new Date().getFullYear()}
           <Link to="/">solozo.page</Link>
         </FooterP>
-        <FooterNote>
-          {" "}
-          Found any bug or improvement suggestion?{" "}
-          <Link
-            style={{ font: "inherit" }}
-            to={`/contact?subject=Problem with your "${locationPath}" page`}
-          >
-            Contact me
-          </Link>
-          . <br />
-          &#42;you can <StyledKBD>tab</StyledKBD> your way through this page as
-          it's designed and created with ❤ by Solozo&#42;
-        </FooterNote>
+        <FooterHintContainer>
+          <SooHintBtn>
+            <InformationCircleIcon height="1rem" />
+          </SooHintBtn>
+          <FooterNote>
+            {" "}
+            Found any bug or improvement suggestion?{" "}
+            <Link
+              style={{ font: "inherit" }}
+              to={`/contact?subject=Problem with your "${locationPath}" page`}
+            >
+              Contact me
+            </Link>
+            . <br />
+            &#42;you can <StyledKBD>tab</StyledKBD> your way through this page,
+            as it's designed and created with ❤ by Solozo&#42;
+          </FooterNote>
+        </FooterHintContainer>
       </Container>
     </MyFooter>
   )
@@ -49,14 +67,41 @@ const MyFooter = styled.footer`
   justify-content: center;
   background-color: var(--firstbg);
   color: var(--text-colour);
+  position: relative;
+`
+const FooterHintContainer = styled.div`
+  position: absolute;
+  max-width: 15rem;
+  right: 3%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  bottom: 20%;
+  & > button {
+    display: none;
+    margin: 0;
+    padding: 0.4rem;
+  }
+  @media (max-width: 600px) {
+    & > button {
+      display: flex;
+    }
+  }
 `
 const FooterP = styled.p`
   text-align: center;
   margin-bottom: 0;
 `
+
 const FooterNote = styled(SOOHint)`
-  @media (min-width: 600px) {
+  @media (max-width: 600px) {
+    padding: 0.5rem;
+    background-color: var(--firstbg);
+    opacity: unset;
     text-align: right;
+    height: 0px;
+    overflow: hidden;
+    padding: 0;
   }
 `
 export const StyledKBD = styled.kbd`
