@@ -4,9 +4,8 @@ import styled from "styled-components"
 import Container from "./MainWrapper"
 import { SOOHint } from "./Navigation"
 import { InformationCircleIcon } from "@heroicons/react/outline"
-import { SooHintBtn } from "."
+import { SooHintBtn } from "./Index"
 
-let location: string
 type FooterProp = {
   locationPath: string
 }
