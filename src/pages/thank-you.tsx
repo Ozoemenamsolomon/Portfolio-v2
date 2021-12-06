@@ -1,6 +1,6 @@
 import { Link, PageProps } from "gatsby"
 import React from "react"
-import { SooBtn } from "../components"
+import { SooBtn } from "../components/Index"
 import Layout from "../components/layout"
 import Container from "../components/MainWrapper"
 

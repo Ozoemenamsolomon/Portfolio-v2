@@ -5,7 +5,7 @@ import { StaticImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import Seo from "../components/seo"
 import Container from "../components/MainWrapper"
-import { SooBtn } from "../components"
+import { SooBtn } from "../components/Index"
 // import ScrollAnimation from "react-animate-on-scroll"
 // import "animate.css/animate.min.css"
 

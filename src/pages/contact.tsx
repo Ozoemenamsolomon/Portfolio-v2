@@ -13,7 +13,7 @@ import Container from "../components/MainWrapper"
 import { SOOHint } from "../components/Navigation"
 import Seo from "../components/seo"
 import { PageTitle } from "./about"
-import { SooBtn } from "../components"
+import { SooBtn } from "../components/Index"
 
 export interface ContactProps {}
 export type FormValueProp = {
