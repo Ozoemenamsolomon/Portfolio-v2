@@ -3,13 +3,14 @@ import { FormValueProp } from "../pages/contact"
 import dotenv from "dotenv"
 dotenv.config()
 
-const axios = require("axios")
+import fetch from "node-fetch"
 
 export default async (
   req: GatsbyFunctionRequest,
   res: GatsbyFunctionResponse
 ) => {
   const formBody: FormValueProp = req.body
+
   if (
     formBody.name === "" ||
     formBody.email === "" ||
@@ -19,10 +20,12 @@ export default async (
     res.status(400).send({ message: "Invalid form body" })
   } else {
     try {
-      const formSubmitResponse = await axios.post(
-        process.env.FORM_SUBMIT_API,
-        formBody,
+      console.log(formBody)
+      const formSubmitResponse = await fetch(
+        process.env.FORM_SUBMIT_API || "",
         {
+          method: "POST",
+          body: JSON.stringify(formBody),
           headers: {
             Accept: "application/json",
           },

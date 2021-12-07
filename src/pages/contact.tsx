@@ -74,27 +74,18 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: myFormData,
+        body: JSON.stringify(myFormData),
       }).then(res => res.json())
       console.log(apiResponse)
-      // if (
-      //   Object.keys(apiResponse).length === 0 &&
-      //   apiResponse.constructor === Object
-      // ) {
+
       setFormvalue(initialFormValue)
       navigate("/thank-you/", { replace: true, state: { ...formValue } })
-      return
-      // }
-      // console.log(apiResponse)
-      // throw new Error(`${apiResponse.message}`)
     } catch (err) {
       console.log(
-        "an error occured, please make sure all field have been field appropriately",
+        "An error occured, please ensure all fields are valid.",
         `${err}`
       )
-      setFormError(
-        "An error occured, please make sure all field have been field appropriately."
-      )
+      setFormError("An error occured, please ensure all fields are valid.")
     } finally {
       setSubmitting(false)
     }
