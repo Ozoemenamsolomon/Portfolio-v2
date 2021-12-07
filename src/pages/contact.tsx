@@ -81,6 +81,9 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
 
         setSubmitting(false)
       })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   return (

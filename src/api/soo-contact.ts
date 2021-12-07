@@ -37,11 +37,11 @@ export default async (
       })
       console.log("Response==========")
       console.dir(formSubmitResponse)
-      res.status(200).send(formSubmitResponse)
+      res.status(200).json(formSubmitResponse)
     } catch (error) {
       console.log("error==========")
       console.log(error)
-      res.status(400).send(error)
+      res.status(400).json(error)
     }
   }
 }
