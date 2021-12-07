@@ -34,7 +34,7 @@ export default async (
     } catch (error) {
       console.log("error==========")
       console.log(error)
-      res.send(error)
+      res.status(200).send(error)
     }
   }
 }
