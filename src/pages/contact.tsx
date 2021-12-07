@@ -16,10 +16,10 @@ import { PageTitle } from "./about"
 import { SooBtn } from "../components/Index"
 
 export interface ContactProps {}
-export type FormValueProp = {
+export interface FormValueProp {
   email: string
   name: string
-  subject?: string
+  subject: string
   message: string
   company: string
 }
@@ -62,13 +62,19 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
     // e.target[0].focus()
     setSubmitting(true)
     setFormError("")
+    const myFormData = new FormData()
+
+    for (var key in formValue) {
+      myFormData.append(key, formValue[key as keyof FormValueProp])
+    }
+
     try {
       const apiResponse = await fetch("/api/soo-contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...formValue }),
+        body: myFormData,
       }).then(res => res.json())
       console.log(apiResponse)
       // if (
@@ -152,7 +158,8 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
                         type="text"
                         id="company"
                         name="company"
-                        placeholder="Company (optional)"
+                        required
+                        placeholder="Company"
                       />
                     </div>
                     <div>
