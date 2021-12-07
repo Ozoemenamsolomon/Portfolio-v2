@@ -63,27 +63,23 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
     setSubmitting(true)
     setFormError("")
 
-    try {
-      const apiResponse = await fetch("/api/soo-contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formValue),
-      }).then(res => res.json())
+    const apiResponse = await fetch("/api/soo-contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formValue),
+    }).then(res => res.json())
+    console.log(apiResponse)
+    if (!apiResponse.ok) {
+      setFormError("An error occured, please ensure all fields are valid.")
       console.log(apiResponse)
-
+    } else {
       setFormvalue(initialFormValue)
       navigate("/thank-you/", { replace: true, state: { ...formValue } })
-    } catch (err) {
-      console.log(
-        "An error occured, please ensure all fields are valid.",
-        `${err}`
-      )
-      setFormError("An error occured, please ensure all fields are valid.")
-    } finally {
-      setSubmitting(false)
     }
+
+    setSubmitting(false)
   }
 
   return (
