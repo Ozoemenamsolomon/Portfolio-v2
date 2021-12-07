@@ -12,15 +12,14 @@ export default async (
   const formBody: FormValueProp = req.body
 
   if (
-    formBody.name === "" ||
-    formBody.email === "" ||
-    formBody.message === "" ||
-    formBody.subject === ""
+    !formBody.name ||
+    !formBody.email ||
+    !formBody.message ||
+    !formBody.subject
   ) {
     res.status(400).send({ message: "Invalid form body" })
   } else {
     try {
-      console.log(formBody)
       const formSubmitResponse = await fetch(
         process.env.FORM_SUBMIT_API || "",
         {
@@ -30,14 +29,19 @@ export default async (
             Accept: "application/json",
           },
         }
-      )
+      ).then(res => {
+        if (!res.ok) {
+          throw new Error("Network res was not OK")
+        }
+        return res.json()
+      })
       console.log("Response==========")
       console.dir(formSubmitResponse)
       res.status(200).send(formSubmitResponse)
     } catch (error) {
       console.log("error==========")
       console.log(error)
-      res.status(200).send(error)
+      res.status(400).send(error)
     }
   }
 }

@@ -62,11 +62,6 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
     // e.target[0].focus()
     setSubmitting(true)
     setFormError("")
-    const myFormData = new FormData()
-
-    for (var key in formValue) {
-      myFormData.append(key, formValue[key as keyof FormValueProp])
-    }
 
     try {
       const apiResponse = await fetch("/api/soo-contact", {
@@ -74,7 +69,7 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(myFormData),
+        body: JSON.stringify(formValue),
       }).then(res => res.json())
       console.log(apiResponse)
 
