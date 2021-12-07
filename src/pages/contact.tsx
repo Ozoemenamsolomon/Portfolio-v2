@@ -54,32 +54,33 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
     setFormvalue({ ...formValue, [inputName]: inputValue })
   }
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = async (
-    e: FormEvent
-  ) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e: FormEvent) => {
     e.preventDefault()
     // TODO the code below works but I still need to sort the type out
     // e.target[0].focus()
     setSubmitting(true)
     setFormError("")
 
-    const apiResponse = await fetch("/api/soo-contact", {
+    fetch("/api/soo-contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formValue),
-    }).then(res => res.json())
-    console.log(apiResponse)
-    if (!apiResponse.ok) {
-      setFormError("An error occured, please ensure all fields are valid.")
-      console.log(apiResponse)
-    } else {
-      setFormvalue(initialFormValue)
-      navigate("/thank-you/", { replace: true, state: { ...formValue } })
-    }
+    })
+      .then(res => res.json())
+      .then(apiResponse => {
+        console.log(apiResponse)
+        if (!apiResponse.ok) {
+          setFormError("An error occured, please ensure all fields are valid.")
+          console.log(apiResponse)
+        } else {
+          setFormvalue(initialFormValue)
+          navigate("/thank-you/", { replace: true, state: { ...formValue } })
+        }
 
-    setSubmitting(false)
+        setSubmitting(false)
+      })
   }
 
   return (
