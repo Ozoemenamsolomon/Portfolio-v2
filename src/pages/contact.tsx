@@ -21,7 +21,7 @@ export interface FormValueProp {
   name: string
   subject: string
   message: string
-  company: string
+  company?: string
 }
 
 const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
@@ -144,8 +144,7 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
                         type="text"
                         id="company"
                         name="company"
-                        required
-                        placeholder="Company"
+                        placeholder="Company (optional)"
                       />
                     </div>
                     <div>

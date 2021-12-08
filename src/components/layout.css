@@ -100,8 +100,8 @@ a {
 
 @media (prefers-color-scheme: light) {
   :root {
-    --firstbg: #e2e2e2;
-    --secondbg: rgb(245, 245, 245);
+    --firstbg: #f5f5f5;
+    --secondbg: #e2e2e2;
     --text-colour: #23201f;
     --header-colour: #eaeaea;
   }

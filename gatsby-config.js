@@ -23,12 +23,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Solomon Obinna Ozoemenam`,
+        short_name: `SOO`,
+        description: `Solomon Obinna Ozoemenam is a 22-year-old frontend developer with a freelance background in Graphics Design, currently studying computer science in the university of Siegen.`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
+        background_color: `#3f73a7`,
+        theme_color: `#233e63`,
+        display: `standalone`,
         icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },

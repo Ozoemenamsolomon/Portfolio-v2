@@ -82,16 +82,16 @@ const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
   ) : (
     <NavList className="no-settings en">
       <NavItem>
-        <MyNavLink to="/about">About</MyNavLink>
+        <MyNavLink to="/about/">About</MyNavLink>
       </NavItem>
       <NavItem>
-        <MyNavLink to="/works">Work</MyNavLink>
+        <MyNavLink to="/works/">Work</MyNavLink>
       </NavItem>
       <NavItem>
-        <MyNavLink to="/blog/posts/process">Process</MyNavLink>
+        <MyNavLink to="/blog/posts/process/">Process</MyNavLink>
       </NavItem>
       <NavItem>
-        <MyNavLink to="/contact">Contact</MyNavLink>
+        <MyNavLink to="/contact/">Contact</MyNavLink>
       </NavItem>
       <NavItem className="material-icons settings">
         <span>
