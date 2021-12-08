@@ -56,8 +56,7 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e: FormEvent) => {
     e.preventDefault()
-    // TODO the code below works but I still need to sort the type out
-    // e.target[0].focus()
+
     setSubmitting(true)
     setFormError("")
 

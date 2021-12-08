@@ -1,9 +1,10 @@
-import React, { useEffect } from "react"
+import React, { useContext, useEffect } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import MyNavLink from "./MyNavLink"
 import { AdjustmentsIcon } from "@heroicons/react/outline"
 import { changeClassBasedOnThemeChoice } from "../utils"
+import { LanguageContext } from "../context"
 
 interface NavigationProps {
   userLang: string
@@ -11,13 +12,10 @@ interface NavigationProps {
 
 const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
   // const [langChoice, setLangChoice] = useState("en")
+  const { setLanguageChoice } = useContext(LanguageContext)
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // const langChoice: string | null = window.localStorage.getItem(
-      //   "langChoice"
-      //   // TODO: use this value
-      // )
       const themeChoice: string | null = window.localStorage.getItem(
         "themeChoice"
       )
@@ -33,8 +31,10 @@ const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
 
       if (langChoice === "de") {
         window.localStorage.setItem("langChoice", "en")
+        setLanguageChoice?.("en")
       } else {
         window.localStorage.setItem("langChoice", "de")
+        setLanguageChoice?.("de")
       }
     }
   }
