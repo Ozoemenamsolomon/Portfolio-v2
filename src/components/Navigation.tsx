@@ -241,6 +241,6 @@ export const SubNavList = styled.ul`
 `
 export const SOOHint = styled.p`
   opacity: 0.5;
-  font: small-caption;
+  font-size: small;
   margin-bottom: 0;
 `

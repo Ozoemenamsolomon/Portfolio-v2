@@ -1,5 +1,4 @@
 import { graphql, PageProps } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import Layout from "../components/layout"
@@ -9,30 +8,20 @@ import TechStack from "../components/TechStack"
 import { myTechStack } from "../definiton"
 
 export interface AboutPageProps {
-  allStrapiTechstack: {
-    nodes: myTechStack[]
-  }
-  strapiAbout: { content: string }
+  strapiAbout: { content: string; techstacks: myTechStack[] }
+  site: { siteMetadata: { description: string } }
 }
 
 const About: React.FC<PageProps<AboutPageProps>> = ({
-  //TODO relationship between about and teckstack
   data: {
-    allStrapiTechstack: { nodes: techStacks },
-    strapiAbout: { content: strapiAboutContent },
+    strapiAbout: { content: strapiAboutContent, techstacks: techStacks },
   },
   location,
 }) => {
   return (
     <Layout location={location}>
       <Container>
-        <Seo
-          title="About"
-          lang="en"
-          description={
-            "Solomon Obinna Ozoemenam is a 22-year-old frontend developer with a freelance background in Graphics Design, currently studying computer science in the university of Siegen."
-          }
-        />
+        <Seo title="About" lang="en" />
 
         <PageTitle>About Me</PageTitle>
         <div>
@@ -94,20 +83,17 @@ export default About
 
 export const pageQuery = graphql`
   {
-    allStrapiTechstack {
-      nodes {
+    strapiAbout {
+      content
+      techstacks {
+        isSoftware
         id
-        imgUrl
         img {
           url
         }
+        imgUrl
         name
-        isSoftware
       }
-    }
-
-    strapiAbout {
-      content
     }
   }
 `
