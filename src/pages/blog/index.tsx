@@ -5,7 +5,6 @@ import Layout from "../../components/layout"
 interface BlogProp {}
 
 const index: React.FC<PageProps<BlogProp>> = ({ location }) => {
-  //TODO make blog image not locale dependent
   return <Layout location={location}>Hello from my blog</Layout>
 }
 
