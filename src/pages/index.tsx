@@ -4,17 +4,18 @@ import { Link, PageProps } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import Seo from "../components/seo"
-import MainWrapper from "../components/MainWrapper"
+import Container from "../components/MainWrapper"
+import { SooBtn } from "../components/Index"
 // import ScrollAnimation from "react-animate-on-scroll"
 // import "animate.css/animate.min.css"
 
 interface IndexProps {}
 
-const Index: React.FC<PageProps<IndexProps>> = ({ location: { search } }) => {
-  console.log(search)
+const Index: React.FC<PageProps<IndexProps>> = ({ location }) => {
+  // console.log(search)
   return (
-    <Layout>
-      <MainWrapper
+    <Layout location={location}>
+      <Container
         style={{
           flex: ".4",
           alignItems: "center",
@@ -31,21 +32,13 @@ const Index: React.FC<PageProps<IndexProps>> = ({ location: { search } }) => {
             </h1>
             <h2>Frontend Developer</h2>
             <Link state={{ from: "home_hero" }} to="/works">
-              <SooBtn>View my portfolio</SooBtn>
+              <SooBtn tabIndex={-1}>View my portfolio</SooBtn>
             </Link>
           </div>
-          <HomeImg
-            style={{
-              position: `absolute`,
-              bottom: 0,
-              right: 0,
-              width: "18rem",
-              // maxHeight: "70%",
-              pointerEvents: "none",
-            }}
-          >
+          <HomeImg>
             <StaticImage
               src="../images/me.png"
+              height={350}
               placeholder="tracedSVG"
               objectFit="contain"
               layout="constrained"
@@ -53,7 +46,7 @@ const Index: React.FC<PageProps<IndexProps>> = ({ location: { search } }) => {
             />
           </HomeImg>
         </section>
-      </MainWrapper>
+      </Container>
     </Layout>
   )
 }
@@ -61,20 +54,15 @@ const Index: React.FC<PageProps<IndexProps>> = ({ location: { search } }) => {
 export default Index
 
 const HomeImg = styled.div`
-  @media (max-width: 400px) {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  pointer-events: none;
+  padding-left: 10rem;
+  /* @media (max-width: 400px) {
     display: none;
   }
   @media (max-width: 900px) and (orientation: landscape) {
     display: none;
-  }
-`
-export const SooBtn = styled.button`
-  border: solid var(--btn-colour) 3px;
-  background: var(--soo-gradient);
-  box-shadow: 1.5px 1.5px 7px rgb(0 0 0 / 25%);
-  color: var(--btn-colour);
-  padding: 0.4rem 1rem;
-  margin-top: 0.5rem;
-  border-radius: 1em;
-  cursor: inherit;
+  } */
 `

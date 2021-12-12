@@ -1,73 +1,93 @@
-import { PageProps } from "gatsby"
+import { PageProps, navigate } from "gatsby"
 import React, {
   ChangeEvent,
   ChangeEventHandler,
   FormEvent,
   FormEventHandler,
+  useEffect,
   useState,
 } from "react"
-import { SooBtn } from "."
+import styled from "styled-components"
 import Layout from "../components/layout"
-import MainWrapper from "../components/MainWrapper"
+import Container from "../components/MainWrapper"
+import { SOOHint } from "../components/Navigation"
 import Seo from "../components/seo"
 import { PageTitle } from "./about"
+import { SooBtn } from "../components/Index"
 
 export interface ContactProps {}
+export interface FormValueProp {
+  email: string
+  name: string
+  subject: string
+  message: string
+  company?: string
+}
 
-const Contact: React.FC<PageProps<ContactProps>> = () => {
-  const [formValue, setFormvalue] = useState({
+const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
+  const initialFormValue = {
     email: "",
     name: "",
     subject: "",
     message: "",
     company: "",
-  })
+  }
+  // console.log("params=" )
+  useEffect(() => {
+    const newURL = new URLSearchParams(location.search)
+    setFormvalue({
+      ...formValue,
+      subject: newURL.get("subject") === null ? "" : `${newURL.get("subject")}`,
+    })
+    return () => {
+      setFormvalue(initialFormValue)
+    }
+  }, [])
+  const [formValue, setFormvalue] = useState<FormValueProp>(initialFormValue)
+  const [submitting, setSubmitting] = useState(false)
+  const [formError, setFormError] = useState("")
   const handleChange: ChangeEventHandler = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
   ) => {
     const inputName = e.target.name
     const inputValue = e.target.value
-
-    switch (inputName) {
-      case "email":
-        setFormvalue({ ...formValue, email: inputValue })
-        break
-      case "name":
-        setFormvalue({ ...formValue, name: inputValue })
-        break
-      case "subject":
-        setFormvalue({ ...formValue, subject: inputValue })
-        break
-      case "message":
-        setFormvalue({ ...formValue, message: inputValue })
-        break
-      case "company":
-        setFormvalue({ ...formValue, company: inputValue })
-        break
-      default:
-        break
-    }
+    setFormvalue({ ...formValue, [inputName]: inputValue })
   }
 
-  const handleSubmit: FormEventHandler = async (e: FormEvent) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e: FormEvent) => {
     e.preventDefault()
-    // TODO the code below works but I still need to sort the type out
-    // e.target[0].focus()
-    const apiResponse = await fetch("/api/soo-contact", {
+
+    setSubmitting(true)
+    setFormError("")
+
+    fetch("/api/soo-contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...formValue }),
-    }).then(res => res.json())
-    console.log(formValue)
-    console.log(apiResponse)
-    // TODO: redirect to thank you page
+      body: JSON.stringify(formValue),
+    })
+      .then(res => res.json())
+      .then(apiResponse => {
+        console.log(apiResponse)
+        if (!apiResponse.ok) {
+          setFormError("An error occured, please ensure all fields are valid.")
+          console.log(apiResponse)
+        } else {
+          setFormvalue(initialFormValue)
+          navigate("/thank-you/", { replace: true, state: { ...formValue } })
+        }
+
+        setSubmitting(false)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   return (
-    <Layout>
-      <MainWrapper>
+    <Layout location={location}>
+      <Container>
         <Seo title="Contact" lang="en" />
 
         <PageTitle>Contact Me</PageTitle>
@@ -76,19 +96,22 @@ const Contact: React.FC<PageProps<ContactProps>> = () => {
             <div className="contact-content">
               <div className="form-findme">
                 <div className="contact-form">
-                  <form onSubmit={handleSubmit}>
-                    {/* method="POST"
-                    data-netlify="true" */}
-                    <div className="form1">
+                  <ContactForm onSubmit={handleSubmit}>
+                    <div>
+                      <label htmlFor="name">Name</label>
                       <input
                         onChange={handleChange}
                         value={formValue.name}
                         type="text"
+                        id="name"
                         name="name"
                         autoComplete="name"
                         placeholder="Name"
                         required
                       />
+                    </div>
+                    <div>
+                      <label htmlFor="email">E-mail</label>
                       <input
                         onChange={handleChange}
                         value={formValue.email}
@@ -98,27 +121,33 @@ const Contact: React.FC<PageProps<ContactProps>> = () => {
                         placeholder="Email"
                         required
                       />
+                    </div>
+                    <div>
+                      <label htmlFor="subject">Subject</label>
                       <input
                         onChange={handleChange}
                         value={formValue.subject}
                         type="text"
                         name="subject"
+                        id="subject"
                         required
                         placeholder="Subject"
                       />
-                      <div
-                        className="recaptcha"
-                        data-netlify-recaptcha="true"
-                      ></div>
                     </div>
-                    <div className="form2">
+
+                    <div>
+                      <label htmlFor="company">Company</label>
                       <input
                         onChange={handleChange}
                         value={formValue.company}
                         type="text"
+                        id="company"
                         name="company"
                         placeholder="Company (optional)"
                       />
+                    </div>
+                    <div>
+                      <label htmlFor="message">Message</label>
                       <textarea
                         onChange={handleChange}
                         value={formValue.message}
@@ -126,12 +155,63 @@ const Contact: React.FC<PageProps<ContactProps>> = () => {
                         required
                         placeholder="Message..."
                         cols={30}
-                        rows={10}
+                        rows={7}
                       ></textarea>
-                      <SooBtn type="submit">Send</SooBtn>
-                      {/* <!-- <input type="submit" value=""> --> */}
                     </div>
-                  </form>
+                    <div>
+                      <SOOHint style={{ marginBottom: "1rem", opacity: 1 }}>
+                        Red outline means invalid field, make sure all field are
+                        valid. <br />
+                        {formError !== "" && (
+                          <span style={{ color: "red" }}>{formError}</span>
+                        )}
+                      </SOOHint>
+                      <SooBtn
+                        style={{ display: "flex", alignItems: "center" }}
+                        type="submit"
+                        disabled={submitting}
+                      >
+                        Send{submitting && "ing"}
+                        {submitting && (
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlnsXlink="http://www.w3.org/1999/xlink"
+                            style={{
+                              margin: "auto",
+                              background: "transparent",
+                              display: "inline",
+                            }}
+                            width="23px"
+                            height="23px"
+                            viewBox="0 0 100 100"
+                            preserveAspectRatio="xMidYMid"
+                          >
+                            <path
+                              fill="none"
+                              stroke="#ffffff"
+                              strokeWidth="8"
+                              stroke-dasharray="42.76482137044271 42.76482137044271"
+                              d="M24.3 30C11.4 30 5 43.3 5 50s6.4 20 19.3 20c19.3 0 32.1-40 51.4-40 C88.6 30 95 43.3 95 50s-6.4 20-19.3 20C56.4 70 43.6 30 24.3 30z"
+                              strokeLinecap="round"
+                              style={{
+                                transform: "scale(0.79)",
+                                transformOrigin: "50px 50px",
+                              }}
+                            >
+                              <animate
+                                attributeName="stroke-dashoffset"
+                                repeatCount="indefinite"
+                                dur="1.6666666666666667s"
+                                keyTimes="0;1"
+                                values="0;256.58892822265625"
+                              ></animate>
+                            </path>
+                          </svg>
+                        )}
+                      </SooBtn>
+                    </div>
+                    {/* <!-- <input type="submit" value=""> --> */}
+                  </ContactForm>
                 </div>
                 <div className="contact-findme">
                   <p>Find me on:</p>
@@ -173,9 +253,41 @@ const Contact: React.FC<PageProps<ContactProps>> = () => {
             </div>
           </section>
         </div>
-      </MainWrapper>
+      </Container>
     </Layout>
   )
 }
 
 export default Contact
+
+const ContactForm = styled.form`
+  display: grid;
+  gap: 0.51rem;
+  @media (min-width: 600px) {
+    & {
+      grid-template-columns: 1fr 1fr;
+    }
+    & > *:nth-last-child(2) {
+      grid-column: span 2;
+    }
+  }
+  & button {
+    margin-top: 0;
+  }
+
+  & textarea:invalid,
+  & input:invalid {
+    border-color: red;
+  }
+
+  & textarea,
+  & input {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    resize: vertical;
+
+    border: 2px solid var(--light-blue);
+    box-shadow: 2px 3px 5px #00000033;
+  }
+`

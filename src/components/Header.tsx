@@ -1,15 +1,21 @@
 import * as React from "react"
-import PropTypes, { string } from "prop-types"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import Navigation from "./Navigation"
-import MainWrapper from "./MainWrapper"
+import Container from "./MainWrapper"
+import { useContext } from "react"
+import { LanguageContext, ThemeContext } from "../context"
 
 const Header: React.FC = () => {
+  const languageChoice = useContext(LanguageContext)
+  console.log(languageChoice)
+
+  const themeChoice = useContext(ThemeContext)
+  console.log("theme", themeChoice)
   return (
     <MyHeader>
-      <MainWrapper style={{ display: `flex`, justifyContent: `space-between` }}>
+      <Container style={{ display: `flex`, justifyContent: `space-between` }}>
         <Logo>
           <Link to="/">
             <StaticImage
@@ -25,7 +31,7 @@ const Header: React.FC = () => {
         <Nav>
           <Navigation userLang="en" />
         </Nav>{" "}
-      </MainWrapper>
+      </Container>
     </MyHeader>
   )
 }
@@ -53,12 +59,5 @@ const Logo = styled.div`
   width: 5rem;
   padding: 0.5rem 0;
 `
-const Wrapper = styled.div`
-  margin: 0 auto;
-  max-width: 960;
-  padding: 1.45rem 1.0875rem;
-`
-const Nav = styled.nav`
-  display: flex;
-  align-items: center;
-`
+
+const Nav = styled.nav``

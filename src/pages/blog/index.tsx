@@ -1,8 +1,12 @@
+import { PageProps } from "gatsby"
 import React from "react"
 import Layout from "../../components/layout"
 
-const index = () => {
-  return <Layout>Hello from my blog</Layout>
+interface BlogProp {}
+
+const index: React.FC<PageProps<BlogProp>> = ({ location }) => {
+  //TODO make blog image not locale dependent
+  return <Layout location={location}>Hello from my blog</Layout>
 }
 
 export default index

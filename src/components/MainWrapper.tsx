@@ -1,17 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-export interface MainWrapperProps {
-  style?: object
-}
-
-const MainWrapper: React.FC<MainWrapperProps> = ({ children, style }) => {
-  return <MainWrapperDiv style={style}>{children}</MainWrapperDiv>
-}
-
-export default MainWrapper
-
-const MainWrapperDiv = styled.div`
+const Container = styled.div`
   padding: 0px 1.5em;
   width: 90%;
   height: 100%;
@@ -26,3 +16,5 @@ const MainWrapperDiv = styled.div`
   min-width: 74%;*/
   /* background-color: aliceblue; */
 `
+
+export default Container

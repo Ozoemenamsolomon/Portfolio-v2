@@ -1,5 +1,5 @@
 import { Link } from "gatsby"
-import React, { Children } from "react"
+import React from "react"
 import styled from "styled-components"
 
 export interface MyNavLinkProps {
@@ -8,7 +8,7 @@ export interface MyNavLinkProps {
 }
 
 const MyNavLink: React.FC<MyNavLinkProps> = props => {
-  const { children, to, activeStyle } = props
+  const { children } = props
   return (
     <MyLink
       activeStyle={{ borderBottom: `inset`, color: `var(--light-blue)` }}

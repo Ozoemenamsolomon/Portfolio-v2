@@ -3,7 +3,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import Layout from "../components/layout"
-import MainWrapper from "../components/MainWrapper"
+import Container from "../components/MainWrapper"
 import Seo from "../components/seo"
 import TechStack from "../components/TechStack"
 import { myTechStack } from "../definiton"
@@ -21,10 +21,11 @@ const About: React.FC<PageProps<AboutPageProps>> = ({
     allStrapiTechstack: { nodes: techStacks },
     strapiAbout: { content: strapiAboutContent },
   },
+  location,
 }) => {
   return (
-    <Layout>
-      <MainWrapper>
+    <Layout location={location}>
+      <Container>
         <Seo
           title="About"
           lang="en"
@@ -62,21 +63,21 @@ const About: React.FC<PageProps<AboutPageProps>> = ({
               </div>
               <div className="about-language">
                 <h3>Languages</h3>
-                <ul>
+                <AboutList>
                   <li>German</li>
                   <li>English</li>
                   <li>Igbo</li>
                   <li>Yoruba</li>
-                </ul>
+                </AboutList>
               </div>
               <div className="about-softskills">
                 <h3>Softskills</h3>
-                <ul>
+                <AboutList>
                   <li>Attention to detail</li>
                   <li>Teamwork</li>
                   <li>Goal oriented</li>
                   <li>Ready to learn</li>
-                </ul>
+                </AboutList>
               </div>
             </AboutContent>
             <div className="about-img">
@@ -84,7 +85,7 @@ const About: React.FC<PageProps<AboutPageProps>> = ({
             </div>
           </section>
         </div>
-      </MainWrapper>
+      </Container>
     </Layout>
   )
 }
@@ -130,4 +131,7 @@ const AboutContent = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
+`
+const AboutList = styled.ul`
+  margin-left: 1.5rem;
 `
