@@ -2,11 +2,13 @@ import { PageProps } from "gatsby"
 import React from "react"
 import Layout from "../../../components/layout"
 import Container from "../../../components/MainWrapper"
+import Seo from "../../../components/seo"
 import { PageTitle } from "../../about"
 
 const Process: React.FC<PageProps> = ({ location }) => {
   return (
     <Layout location={location}>
+      <Seo title="Typical Design Process" lang="en" />
       <Container>
         <PageTitle>Typical Design Process</PageTitle>
         <div>

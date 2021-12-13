@@ -3,21 +3,14 @@ import React from "react"
 import { SooBtn } from "../../components/Index"
 import Layout from "../../components/layout"
 import Container from "../../components/MainWrapper"
-import ProjectCard from "../../components/ProjectCard"
+import ProjectCard, { ProjectProp } from "../../components/ProjectCard"
+import Seo from "../../components/seo"
 import { PageTitle } from "../about"
 
 interface WorkProp {
   allStrapiProject: {
-    nodes: projectProp[]
+    nodes: ProjectProp[]
   }
-}
-
-type projectProp = {
-  id: string
-  codeUrl: string
-  projectUrl: string
-  title: string
-  img: { url: string }
 }
 
 const Work: React.FC<PageProps<WorkProp>> = ({
@@ -30,6 +23,7 @@ const Work: React.FC<PageProps<WorkProp>> = ({
   return (
     <Layout location={location}>
       <Container>
+        <Seo title="Portfolio" lang="en" />
         <PageTitle>Portfolio</PageTitle>
         <div>
           <section className="work" id="work">
@@ -45,8 +39,24 @@ const Work: React.FC<PageProps<WorkProp>> = ({
                   <SooBtn tabIndex={-1}>Design Process</SooBtn>
                 </Link>
               </div>
-              {/* <pre>{JSON.stringify(projects, null, 2)}</pre> */}
-              <ProjectCard title={""} excerpt={""} date={""} />
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fill, minmax(270px, 1fr))",
+                  gap: "1rem",
+                  padding: 0,
+                  margin: " 2rem auto",
+                  justifyContent: "space-around",
+                }}
+              >
+                {projects.map(project => {
+                  return <ProjectCard project={project} />
+                })}
+                {projects.map(project => {
+                  return <ProjectCard project={project} />
+                })}
+              </div>
+              {/* <ProjectCard  title={""} excerpt={""} date={""} /> */}
               {/* <div className="work1" data-description="coming soon">
                 <div className="card-hover">
                   <a

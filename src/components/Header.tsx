@@ -4,14 +4,14 @@ import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import Navigation from "./Navigation"
 import Container from "./MainWrapper"
-import { useContext } from "react"
-import { LanguageContext, ThemeContext } from "../context"
+// import { useContext } from "react"
+// import { LanguageContext, ThemeContext } from "../context"
 
 const Header: React.FC = () => {
-  const languageChoice = useContext(LanguageContext)
-  // console.log(languageChoice)
+  // const languageChoice = useContext(LanguageContext)
+  // // console.log(languageChoice)
 
-  const themeChoice = useContext(ThemeContext)
+  // const themeChoice = useContext(ThemeContext)
   // console.log("theme", themeChoice)
   return (
     <MyHeader>

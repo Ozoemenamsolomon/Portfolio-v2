@@ -19,7 +19,7 @@ export interface AboutPageProps {
   }
 }
 
-type xType = keyof AboutPageProps["strapiAbout"]["softskill"]
+// type xType = keyof AboutPageProps["strapiAbout"]["softskill"]
 
 const About: React.FC<PageProps<AboutPageProps>> = ({
   data: {
@@ -104,7 +104,7 @@ export const pageQuery = graphql`
     strapiAbout {
       content
       softskill {
-        Softskills
+        softskills
         softskills
         languages
         sprachen
