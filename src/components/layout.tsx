@@ -16,15 +16,6 @@ export interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, location }) => {
-  // const data = useStaticQuery(graphql`
-  //   query SiteTitleQuery {
-  //     site {
-  //       siteMetadata {
-  //         title
-  //       }
-  //     }
-  //   }
-  // `)
   // TODO set classname here based on context className={"darkmode"}
   return (
     <ContextProvider>

@@ -9,10 +9,10 @@ import { LanguageContext, ThemeContext } from "../context"
 
 const Header: React.FC = () => {
   const languageChoice = useContext(LanguageContext)
-  console.log(languageChoice)
+  // console.log(languageChoice)
 
   const themeChoice = useContext(ThemeContext)
-  console.log("theme", themeChoice)
+  // console.log("theme", themeChoice)
   return (
     <MyHeader>
       <Container style={{ display: `flex`, justifyContent: `space-between` }}>

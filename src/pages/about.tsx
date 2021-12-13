@@ -8,16 +8,33 @@ import TechStack from "../components/TechStack"
 import { myTechStack } from "../definiton"
 
 export interface AboutPageProps {
-  strapiAbout: { content: string; techstacks: myTechStack[] }
-  site: { siteMetadata: { description: string } }
+  strapiAbout: {
+    content: string
+    techstacks: myTechStack[]
+    softskill: {
+      softskills: string[] | null
+      languages: string[] | null
+      sprachen: string[] | null
+    }
+  }
 }
+
+type xType = keyof AboutPageProps["strapiAbout"]["softskill"]
 
 const About: React.FC<PageProps<AboutPageProps>> = ({
   data: {
-    strapiAbout: { content: strapiAboutContent, techstacks: techStacks },
+    strapiAbout: {
+      content: strapiAboutContent,
+      techstacks: techStacks,
+      softskill,
+    },
   },
   location,
 }) => {
+  for (const x in softskill) {
+    //@ts-ignore
+    softskill[x] && console.log(x)
+  }
   return (
     <Layout location={location}>
       <Container>
@@ -50,6 +67,7 @@ const About: React.FC<PageProps<AboutPageProps>> = ({
                     ))}
                 </DevToolsImages>
               </div>
+              {/* <pre>{JSON.stringify(softskill, null, 2)}</pre> */}
               <div className="about-language">
                 <h3>Languages</h3>
                 <AboutList>
@@ -85,6 +103,12 @@ export const pageQuery = graphql`
   {
     strapiAbout {
       content
+      softskill {
+        Softskills
+        softskills
+        languages
+        sprachen
+      }
       techstacks {
         isSoftware
         id

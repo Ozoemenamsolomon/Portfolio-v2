@@ -1,4 +1,4 @@
-import { Link, PageProps } from "gatsby"
+import { graphql, Link, PageProps } from "gatsby"
 import React from "react"
 import { SooBtn } from "../../components/Index"
 import Layout from "../../components/layout"
@@ -6,9 +6,27 @@ import Container from "../../components/MainWrapper"
 import ProjectCard from "../../components/ProjectCard"
 import { PageTitle } from "../about"
 
-interface WorkProp {}
+interface WorkProp {
+  allStrapiProject: {
+    nodes: projectProp[]
+  }
+}
 
-const Work: React.FC<PageProps<WorkProp>> = ({ location }) => {
+type projectProp = {
+  id: string
+  codeUrl: string
+  projectUrl: string
+  title: string
+  img: { url: string }
+}
+
+const Work: React.FC<PageProps<WorkProp>> = ({
+  location,
+  data: {
+    allStrapiProject: { nodes: projects },
+  },
+}) => {
+  // TODO remove constraint in project's exerpt on BE
   return (
     <Layout location={location}>
       <Container>
@@ -27,8 +45,9 @@ const Work: React.FC<PageProps<WorkProp>> = ({ location }) => {
                   <SooBtn tabIndex={-1}>Design Process</SooBtn>
                 </Link>
               </div>
+              {/* <pre>{JSON.stringify(projects, null, 2)}</pre> */}
               <ProjectCard title={""} excerpt={""} date={""} />
-              <div className="work1" data-description="coming soon">
+              {/* <div className="work1" data-description="coming soon">
                 <div className="card-hover">
                   <a
                     href="#livedemo"
@@ -107,7 +126,7 @@ const Work: React.FC<PageProps<WorkProp>> = ({ location }) => {
                     <i className="fa fa-code" aria-hidden="true"></i>
                   </a>
                 </div>
-              </div>
+              </div> */}
             </div>
           </section>
         </div>
@@ -117,3 +136,19 @@ const Work: React.FC<PageProps<WorkProp>> = ({ location }) => {
 }
 
 export default Work
+
+export const query = graphql`
+  query($lang: String) {
+    allStrapiProject(filter: { locale: { eq: $lang } }) {
+      nodes {
+        id
+        codeUrl
+        projectUrl
+        title
+        img {
+          url
+        }
+      }
+    }
+  }
+`
