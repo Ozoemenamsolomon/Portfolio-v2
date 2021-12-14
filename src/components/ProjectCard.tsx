@@ -32,7 +32,7 @@ const ProjectCard: React.FC<CardType> = ({
       <CardBottom>
         <CardBottomContent>
           <CardTitleH3>{title}</CardTitleH3>
-          <p>{title + title + title}</p>
+          <CardExcerpt>{title + title + title}</CardExcerpt>
           <CTAs>
             <a href={codeUrl} target="_blank">
               <SooBtn
@@ -125,8 +125,13 @@ const CardTitleH3 = styled.h3`
   max-width: 100%;
 `
 
+const CardExcerpt = styled.p`
+  flex: 1;
+`
+
 const CardBottom = styled.div`
   padding: 0.8em;
+  flex-grow: 1;
 `
 
 const CardBottomContent = styled.div`

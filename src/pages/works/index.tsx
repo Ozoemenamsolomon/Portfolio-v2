@@ -42,18 +42,18 @@ const Work: React.FC<PageProps<WorkProp>> = ({
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "repeat(auto-fill, minmax(270px, 1fr))",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))",
                   gap: "1rem",
                   padding: 0,
                   margin: " 2rem auto",
                   justifyContent: "space-around",
                 }}
               >
-                {projects.map(project => {
-                  return <ProjectCard project={project} />
+                {projects.map((project, id) => {
+                  return <ProjectCard key={id} project={project} />
                 })}
-                {projects.map(project => {
-                  return <ProjectCard project={project} />
+                {projects.map((project, id) => {
+                  return <ProjectCard key={id} project={project} />
                 })}
               </div>
               {/* <ProjectCard  title={""} excerpt={""} date={""} /> */}
