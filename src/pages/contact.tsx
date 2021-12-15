@@ -10,7 +10,6 @@ import React, {
 import styled from "styled-components"
 import Layout from "../components/layout"
 import { SOOHint } from "../components/Navigation"
-import { PageTitle } from "./about"
 import { SooBtn } from "../components/Index"
 import { LoadingSVG } from "../components/SVGs"
 
@@ -84,8 +83,13 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
   }
 
   return (
-    <Layout container location={location} pageTitle="Contact" lang="en">
-      <PageTitle>Contact Me</PageTitle>
+    <Layout
+      container
+      location={location}
+      pageTitle="Contact"
+      titleVisible="Contact Me"
+      lang="en"
+    >
       <section className="contact" id="contact">
         <div className="contact-form">
           <ContactForm onSubmit={handleSubmit}>

@@ -10,7 +10,13 @@ interface IndexProps {}
 
 const Index: React.FC<PageProps<IndexProps>> = ({ location }) => {
   return (
-    <Layout container={false} location={location} pageTitle="Home of" lang="en">
+    <Layout
+      container={false}
+      location={location}
+      pageTitle="Home of"
+      titleVisible={false}
+      lang="en"
+    >
       <IndexContainer>
         <section>
           <div className="hello">

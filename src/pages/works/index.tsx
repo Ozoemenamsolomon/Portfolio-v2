@@ -4,7 +4,6 @@ import styled from "styled-components"
 import { SooBtn } from "../../components/Index"
 import Layout from "../../components/layout"
 import ProjectCard, { ProjectProp } from "../../components/ProjectCard"
-import { PageTitle } from "../about"
 
 interface WorkProp {
   allStrapiProject: {
@@ -21,7 +20,6 @@ const Work: React.FC<PageProps<WorkProp>> = ({
   // TODO remove constraint in project's exerpt on BE
   return (
     <Layout container location={location} pageTitle="Portfolio" lang="en">
-      <PageTitle>Portfolio</PageTitle>
       <section className="work" id="work">
         <div className="work-text">
           <p>

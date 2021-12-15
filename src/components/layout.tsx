@@ -12,12 +12,14 @@ import "./layout.css"
 import ContextProvider from "../context/ContextProvider"
 import Seo from "./seo"
 import Container from "./MainWrapper"
+import { PageTitle } from "./Index"
 
 export interface LayoutProps {
   location: WindowLocation
   pageTitle: string
   lang: string
   container: boolean
+  titleVisible?: string | false
 }
 
 const Layout: React.FC<LayoutProps> = ({
@@ -26,6 +28,7 @@ const Layout: React.FC<LayoutProps> = ({
   lang,
   pageTitle,
   container = true,
+  titleVisible = true,
 }) => {
   // TODO set classname here based on context className={"darkmode"}
   return (
@@ -37,7 +40,29 @@ const Layout: React.FC<LayoutProps> = ({
           <Header />
           <SkipNavContent />
           <Main>
-            {container ? <Container> {children}</Container> : children}
+            {container ? (
+              <Container>
+                {titleVisible && (
+                  <PageTitle>
+                    {typeof titleVisible === "string"
+                      ? titleVisible
+                      : pageTitle}
+                  </PageTitle>
+                )}{" "}
+                {children}
+              </Container>
+            ) : (
+              <>
+                {titleVisible && (
+                  <PageTitle>
+                    {typeof titleVisible === "string"
+                      ? titleVisible
+                      : pageTitle}
+                  </PageTitle>
+                )}
+                {children}
+              </>
+            )}
           </Main>
           <Footer locationPath={location?.pathname} />
         </LayoutDiv>

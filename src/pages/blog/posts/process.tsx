@@ -1,7 +1,6 @@
 import { PageProps } from "gatsby"
 import React from "react"
 import Layout from "../../../components/layout"
-import { PageTitle } from "../../about"
 
 const Process: React.FC<PageProps> = ({ location }) => {
   return (
@@ -11,7 +10,6 @@ const Process: React.FC<PageProps> = ({ location }) => {
       pageTitle="Typical Design Process"
       lang="en"
     >
-      <PageTitle>Typical Design Process</PageTitle>
       <section className="process" id="process">
         <div className="process-text">
           <p>

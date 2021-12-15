@@ -1,4 +1,4 @@
-import React from "react"
+import React, { ReactNode } from "react"
 import styled from "styled-components"
 
 const Components = () => {
@@ -38,6 +38,14 @@ export const SooHintBtn = styled(SooBtn)`
       padding: 0.5rem;
     }
   }
+`
+
+export const PageTitle = styled.h1<{ children: ReactNode }>`
+  background: var(--soo-gradient);
+  -webkit-text-stroke: 0.021rem var(--text-colour);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 `
 
 export default Components

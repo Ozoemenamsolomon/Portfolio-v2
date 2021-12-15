@@ -28,8 +28,13 @@ const About: React.FC<PageProps<AboutPageProps>> = ({
   location,
 }) => {
   return (
-    <Layout container location={location} pageTitle="About" lang="en">
-      <PageTitle>About Me</PageTitle>
+    <Layout
+      container
+      location={location}
+      pageTitle="About"
+      titleVisible="About Me"
+      lang="en"
+    >
       <section className="about" id="about">
         <div className="about-text">
           <p>{strapiAboutContent}</p>
@@ -104,13 +109,7 @@ export const pageQuery = graphql`
     }
   }
 `
-export const PageTitle = styled.h1`
-  background: var(--soo-gradient);
-  -webkit-text-stroke: 0.021rem var(--text-colour);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-`
+
 const DevToolsImages = styled.div`
   display: flex;
   flex-wrap: wrap;
