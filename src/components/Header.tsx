@@ -21,7 +21,7 @@ const Header: React.FC = () => {
             <StaticImage
               width={1800}
               loading="eager"
-              alt="Solozo´s Logo"
+              alt="Solozo's Logo"
               placeholder="tracedSVG"
               src="../images/soo-logo/soo_logo-blue.svg"
               layout="constrained"
