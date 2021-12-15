@@ -96,7 +96,7 @@ const CardDiv = styled.div`
   background-color: var(--firstbg);
   color: var(--text-colour);
 
-  box-shadow: -9px -7px 15px rgba(0, 0, 0, 0.11);
+  box-shadow: 3px 6px 7px rgb(0 0 0 / 20%);
   border-radius: 15px;
   display: flex;
   flex-direction: column;

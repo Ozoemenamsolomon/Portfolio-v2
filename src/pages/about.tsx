@@ -17,8 +17,6 @@ export interface AboutPageProps {
   }
 }
 
-// type xType = keyof AboutPageProps["strapiAbout"]["softskill"]
-
 const About: React.FC<PageProps<AboutPageProps>> = ({
   data: {
     strapiAbout: {
@@ -29,10 +27,6 @@ const About: React.FC<PageProps<AboutPageProps>> = ({
   },
   location,
 }) => {
-  for (const x in softskill) {
-    //@ts-ignore
-    softskill[x] && console.log(x)
-  }
   return (
     <Layout container location={location} pageTitle="About" lang="en">
       <PageTitle>About Me</PageTitle>
@@ -61,23 +55,20 @@ const About: React.FC<PageProps<AboutPageProps>> = ({
                 ))}
             </DevToolsImages>
           </div>
-          {/* <pre>{JSON.stringify(softskill, null, 2)}</pre> */}
           <div className="about-language">
             <h3>Languages</h3>
             <AboutList>
-              <li>German</li>
-              <li>English</li>
-              <li>Igbo</li>
-              <li>Yoruba</li>
+              {softskill.languages?.map(skill => (
+                <li>{skill}</li>
+              ))}
             </AboutList>
           </div>
           <div className="about-softskills">
             <h3>Softskills</h3>
             <AboutList>
-              <li>Attention to detail</li>
-              <li>Teamwork</li>
-              <li>Goal oriented</li>
-              <li>Ready to learn</li>
+              {softskill.softskills?.map(skill => (
+                <li>{skill}</li>
+              ))}
             </AboutList>
           </div>
         </AboutContent>
@@ -136,4 +127,7 @@ const AboutContent = styled.div`
 `
 const AboutList = styled.ul`
   margin-left: 1.5rem;
+  & > li {
+    text-transform: capitalize;
+  }
 `

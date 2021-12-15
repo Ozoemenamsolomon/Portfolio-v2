@@ -42,7 +42,7 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
     }
   }, [])
   const [formValue, setFormvalue] = useState<FormValueProp>(initialFormValue)
-  const [submitting, setSubmitting] = useState(true)
+  const [submitting, setSubmitting] = useState(false)
   const [formError, setFormError] = useState("")
   const handleChange: ChangeEventHandler = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
