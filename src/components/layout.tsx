@@ -10,22 +10,35 @@ import { WindowLocation } from "@reach/router"
 
 import "./layout.css"
 import ContextProvider from "../context/ContextProvider"
+import Seo from "./seo"
+import Container from "./MainWrapper"
 
 export interface LayoutProps {
   location: WindowLocation
+  pageTitle: string
+  lang: string
+  container: boolean
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, location }) => {
+const Layout: React.FC<LayoutProps> = ({
+  children,
+  location,
+  lang,
+  pageTitle,
+  container = true,
+}) => {
   // TODO set classname here based on context className={"darkmode"}
   return (
     <ContextProvider>
       <React.Fragment>
         <LayoutDiv>
+          <Seo title={pageTitle} lang={lang} />
           <SkipNavLink>Skip to content</SkipNavLink>
           <Header />
-
           <SkipNavContent />
-          <Main>{children}</Main>
+          <Main>
+            {container ? <Container> {children}</Container> : children}
+          </Main>
           <Footer locationPath={location?.pathname} />
         </LayoutDiv>
       </React.Fragment>

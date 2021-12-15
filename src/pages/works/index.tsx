@@ -2,9 +2,7 @@ import { graphql, Link, PageProps } from "gatsby"
 import React from "react"
 import { SooBtn } from "../../components/Index"
 import Layout from "../../components/layout"
-import Container from "../../components/MainWrapper"
 import ProjectCard, { ProjectProp } from "../../components/ProjectCard"
-import Seo from "../../components/seo"
 import { PageTitle } from "../about"
 
 interface WorkProp {
@@ -21,43 +19,41 @@ const Work: React.FC<PageProps<WorkProp>> = ({
 }) => {
   // TODO remove constraint in project's exerpt on BE
   return (
-    <Layout location={location}>
-      <Container>
-        <Seo title="Portfolio" lang="en" />
-        <PageTitle>Portfolio</PageTitle>
-        <div>
-          <section className="work" id="work">
-            <div className="work-content">
-              <div className="work-text">
-                <p>
-                  Here are a few of my finest Projects.
-                  <br />
-                  To learn more about my design process using my website as a
-                  case study please click on the button below.
-                </p>
-                <Link to="/blog/posts/process">
-                  <SooBtn tabIndex={-1}>Design Process</SooBtn>
-                </Link>
-              </div>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))",
-                  gap: "1rem",
-                  padding: 0,
-                  margin: " 2rem auto",
-                  justifyContent: "space-around",
-                }}
-              >
-                {projects.map((project, id) => {
-                  return <ProjectCard key={id} project={project} />
-                })}
-                {projects.map((project, id) => {
-                  return <ProjectCard key={id} project={project} />
-                })}
-              </div>
-              {/* <ProjectCard  title={""} excerpt={""} date={""} /> */}
-              {/* <div className="work1" data-description="coming soon">
+    <Layout container location={location} pageTitle="Portfolio" lang="en">
+      <PageTitle>Portfolio</PageTitle>
+      <div>
+        <section className="work" id="work">
+          <div className="work-content">
+            <div className="work-text">
+              <p>
+                Here are a few of my finest Projects.
+                <br />
+                To learn more about my design process using my website as a case
+                study please click on the button below.
+              </p>
+              <Link to="/blog/posts/process">
+                <SooBtn tabIndex={-1}>Design Process</SooBtn>
+              </Link>
+            </div>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))",
+                gap: "1rem",
+                padding: 0,
+                margin: " 2rem auto",
+                justifyContent: "space-around",
+              }}
+            >
+              {projects.map((project, id) => {
+                return <ProjectCard key={id} project={project} />
+              })}
+              {projects.map((project, id) => {
+                return <ProjectCard key={id} project={project} />
+              })}
+            </div>
+            {/* <ProjectCard  title={""} excerpt={""} date={""} /> */}
+            {/* TODO repliacate in CMS <div className="work1" data-description="coming soon">
                 <div className="card-hover">
                   <a
                     href="#livedemo"
@@ -137,10 +133,9 @@ const Work: React.FC<PageProps<WorkProp>> = ({
                   </a>
                 </div>
               </div> */}
-            </div>
-          </section>
-        </div>
-      </Container>
+          </div>
+        </section>
+      </div>
     </Layout>
   )
 }

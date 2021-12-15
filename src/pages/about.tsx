@@ -2,8 +2,6 @@ import { graphql, PageProps } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import Layout from "../components/layout"
-import Container from "../components/MainWrapper"
-import Seo from "../components/seo"
 import TechStack from "../components/TechStack"
 import { myTechStack } from "../definiton"
 
@@ -36,63 +34,57 @@ const About: React.FC<PageProps<AboutPageProps>> = ({
     softskill[x] && console.log(x)
   }
   return (
-    <Layout location={location}>
-      <Container>
-        <Seo title="About" lang="en" />
-
-        <PageTitle>About Me</PageTitle>
-        <div>
-          <section className="about" id="about">
-            <div className="about-text">
-              <p>{strapiAboutContent}</p>
-            </div>
-            <AboutContent style={{}} className="about-content">
-              <div className="about-devtools">
-                <h2>Devtools</h2>
-                <DevToolsImages>
-                  {techStacks
-                    .filter(techStack => !techStack.isSoftware)
-                    .map(techStack => (
-                      <TechStack key={techStack.id} techStack={techStack} />
-                    ))}
-                </DevToolsImages>
-              </div>
-              <div className="about-software">
-                <h3>Softwares</h3>
-                <DevToolsImages>
-                  {techStacks
-                    .filter(techStack => techStack.isSoftware)
-                    .map(techStack => (
-                      <TechStack key={techStack.id} techStack={techStack} />
-                    ))}
-                </DevToolsImages>
-              </div>
-              {/* <pre>{JSON.stringify(softskill, null, 2)}</pre> */}
-              <div className="about-language">
-                <h3>Languages</h3>
-                <AboutList>
-                  <li>German</li>
-                  <li>English</li>
-                  <li>Igbo</li>
-                  <li>Yoruba</li>
-                </AboutList>
-              </div>
-              <div className="about-softskills">
-                <h3>Softskills</h3>
-                <AboutList>
-                  <li>Attention to detail</li>
-                  <li>Teamwork</li>
-                  <li>Goal oriented</li>
-                  <li>Ready to learn</li>
-                </AboutList>
-              </div>
-            </AboutContent>
-            <div className="about-img">
-              <img src="./Images/AboutMe_Char.png" alt="" />
-            </div>
-          </section>
+    <Layout container location={location} pageTitle="About" lang="en">
+      <PageTitle>About Me</PageTitle>
+      <section className="about" id="about">
+        <div className="about-text">
+          <p>{strapiAboutContent}</p>
         </div>
-      </Container>
+        <AboutContent style={{}} className="about-content">
+          <div className="about-devtools">
+            <h2>Devtools</h2>
+            <DevToolsImages>
+              {techStacks
+                .filter(techStack => !techStack.isSoftware)
+                .map(techStack => (
+                  <TechStack key={techStack.id} techStack={techStack} />
+                ))}
+            </DevToolsImages>
+          </div>
+          <div className="about-software">
+            <h3>Softwares</h3>
+            <DevToolsImages>
+              {techStacks
+                .filter(techStack => techStack.isSoftware)
+                .map(techStack => (
+                  <TechStack key={techStack.id} techStack={techStack} />
+                ))}
+            </DevToolsImages>
+          </div>
+          {/* <pre>{JSON.stringify(softskill, null, 2)}</pre> */}
+          <div className="about-language">
+            <h3>Languages</h3>
+            <AboutList>
+              <li>German</li>
+              <li>English</li>
+              <li>Igbo</li>
+              <li>Yoruba</li>
+            </AboutList>
+          </div>
+          <div className="about-softskills">
+            <h3>Softskills</h3>
+            <AboutList>
+              <li>Attention to detail</li>
+              <li>Teamwork</li>
+              <li>Goal oriented</li>
+              <li>Ready to learn</li>
+            </AboutList>
+          </div>
+        </AboutContent>
+        <div className="about-img">
+          <img src="./Images/AboutMe_Char.png" alt="" />
+        </div>
+      </section>
     </Layout>
   )
 }

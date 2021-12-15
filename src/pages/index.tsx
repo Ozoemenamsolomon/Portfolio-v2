@@ -3,31 +3,21 @@ import Layout from "../components/layout"
 import { Link, PageProps } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import styled from "styled-components"
-import Seo from "../components/seo"
 import Container from "../components/MainWrapper"
 import { SooBtn } from "../components/Index"
-// import ScrollAnimation from "react-animate-on-scroll"
-// import "animate.css/animate.min.css"
 
 interface IndexProps {}
 
 const Index: React.FC<PageProps<IndexProps>> = ({ location }) => {
   return (
-    <Layout location={location}>
-      <Container
-        style={{
-          flex: ".4",
-          alignItems: "center",
-          display: "flex",
-        }}
-      >
-        <Seo title="Home of" lang="en" />
+    <Layout container={false} location={location} pageTitle="Home of" lang="en">
+      <IndexContainer>
         <section>
           <div className="hello">
             <h1>
               Hello,
               <br />
-              I´m Solomon.
+              I'm Solomon.
             </h1>
             <h2>Frontend Developer</h2>
             <Link state={{ from: "home_hero" }} to="/works">
@@ -45,12 +35,18 @@ const Index: React.FC<PageProps<IndexProps>> = ({ location }) => {
             />
           </HomeImg>
         </section>
-      </Container>
+      </IndexContainer>
     </Layout>
   )
 }
 
 export default Index
+
+const IndexContainer = styled(Container)`
+  flex: 0.4;
+  align-items: center;
+  display: flex;
+`
 
 const HomeImg = styled.div`
   position: absolute;
