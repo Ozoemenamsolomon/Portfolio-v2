@@ -1,5 +1,5 @@
 import { graphql, PageProps } from "gatsby"
-import React from "react"
+import React, { ReactNode } from "react"
 import styled from "styled-components"
 import Layout from "../components/layout"
 import TechStack from "../components/TechStack"
@@ -104,7 +104,7 @@ export const pageQuery = graphql`
     }
   }
 `
-export const PageTitle = styled.h1`
+export const PageTitle = styled.h1<{ children: ReactNode }>`
   background: var(--soo-gradient);
   -webkit-text-stroke: 0.021rem var(--text-colour);
   -webkit-background-clip: text;

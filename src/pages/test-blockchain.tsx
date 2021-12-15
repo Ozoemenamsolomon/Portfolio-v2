@@ -2,15 +2,41 @@ import { PageProps } from "gatsby"
 import React, { MouseEventHandler } from "react"
 import { SooBtn } from "../components/Index"
 import Layout from "../components/layout"
-
+import { providers } from "ethers"
+import { ExternalProvider } from "@ethersproject/providers"
+import { PageTitle } from "./about"
 interface TestBlockchainProps {}
+
+declare global {
+  interface Window {
+    ethereum: ExternalProvider
+  }
+}
 
 const TestBlochchain: React.FC<PageProps<TestBlockchainProps>> = ({
   location,
 }) => {
-  const connectAccount: MouseEventHandler = e => {
+  const connectAccount: MouseEventHandler = async e => {
     if (typeof window !== "undefined") {
-      console.dir(!!window.ethereum)
+      try {
+        const address = await window.ethereum.request?.({
+          method: "eth_requestAccounts",
+        })
+        console.clear()
+        console.log("address", address[0])
+
+        const provider = new providers.Web3Provider(window.ethereum)
+        const signer = provider.getSigner()
+        const balance = await signer.getBalance()
+        const signature = await signer.signMessage("solozo")
+        console.log("balance", balance)
+        console.log("signature", signature)
+        console.log("signer", signer)
+        console.log("provider", provider)
+      } catch (error) {
+        console.log(error)
+      }
+      console.log(window.ethereum.host)
     }
   }
   return (
@@ -20,10 +46,11 @@ const TestBlochchain: React.FC<PageProps<TestBlockchainProps>> = ({
       location={location}
       pageTitle="Test Blockchain!"
     >
-      Hello to my block chain page!
+      <PageTitle>Hey,</PageTitle>
+      welcome to my block chain page!
       <div>Im gonna build something great!</div>
       <SooBtn onClick={connectAccount}>
-        Click to Connect your blockchain account
+        Click to connect your blockchain account
       </SooBtn>
     </Layout>
   )
