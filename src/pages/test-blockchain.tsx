@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import { providers } from "ethers"
 import { ExternalProvider } from "@ethersproject/providers"
 import { PageTitle } from "./about"
+
 interface TestBlockchainProps {}
 
 declare global {
@@ -36,7 +37,6 @@ const TestBlochchain: React.FC<PageProps<TestBlockchainProps>> = ({
       } catch (error) {
         console.log(error)
       }
-      console.log(window.ethereum.host)
     }
   }
   return (
