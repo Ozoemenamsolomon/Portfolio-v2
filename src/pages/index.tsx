@@ -12,7 +12,6 @@ import { SooBtn } from "../components/Index"
 interface IndexProps {}
 
 const Index: React.FC<PageProps<IndexProps>> = ({ location }) => {
-  // console.log(search)
   return (
     <Layout location={location}>
       <Container

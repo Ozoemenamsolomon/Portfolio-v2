@@ -32,7 +32,6 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
     message: "",
     company: "",
   }
-  // console.log("params=" )
   useEffect(() => {
     const newURL = new URLSearchParams(location.search)
     setFormvalue({

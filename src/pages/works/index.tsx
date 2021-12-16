@@ -1,17 +1,29 @@
-import { Link, PageProps } from "gatsby"
+import { graphql, Link, PageProps } from "gatsby"
 import React from "react"
 import { SooBtn } from "../../components/Index"
 import Layout from "../../components/layout"
 import Container from "../../components/MainWrapper"
-import ProjectCard from "../../components/ProjectCard"
+import ProjectCard, { ProjectProp } from "../../components/ProjectCard"
+import Seo from "../../components/seo"
 import { PageTitle } from "../about"
 
-interface WorkProp {}
+interface WorkProp {
+  allStrapiProject: {
+    nodes: ProjectProp[]
+  }
+}
 
-const Work: React.FC<PageProps<WorkProp>> = ({ location }) => {
+const Work: React.FC<PageProps<WorkProp>> = ({
+  location,
+  data: {
+    allStrapiProject: { nodes: projects },
+  },
+}) => {
+  // TODO remove constraint in project's exerpt on BE
   return (
     <Layout location={location}>
       <Container>
+        <Seo title="Portfolio" lang="en" />
         <PageTitle>Portfolio</PageTitle>
         <div>
           <section className="work" id="work">
@@ -27,8 +39,25 @@ const Work: React.FC<PageProps<WorkProp>> = ({ location }) => {
                   <SooBtn tabIndex={-1}>Design Process</SooBtn>
                 </Link>
               </div>
-              <ProjectCard title={""} excerpt={""} date={""} />
-              <div className="work1" data-description="coming soon">
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fill, minmax(270px, 1fr))",
+                  gap: "1rem",
+                  padding: 0,
+                  margin: " 2rem auto",
+                  justifyContent: "space-around",
+                }}
+              >
+                {projects.map(project => {
+                  return <ProjectCard project={project} />
+                })}
+                {projects.map(project => {
+                  return <ProjectCard project={project} />
+                })}
+              </div>
+              {/* <ProjectCard  title={""} excerpt={""} date={""} /> */}
+              {/* <div className="work1" data-description="coming soon">
                 <div className="card-hover">
                   <a
                     href="#livedemo"
@@ -107,7 +136,7 @@ const Work: React.FC<PageProps<WorkProp>> = ({ location }) => {
                     <i className="fa fa-code" aria-hidden="true"></i>
                   </a>
                 </div>
-              </div>
+              </div> */}
             </div>
           </section>
         </div>
@@ -117,3 +146,19 @@ const Work: React.FC<PageProps<WorkProp>> = ({ location }) => {
 }
 
 export default Work
+
+export const query = graphql`
+  query($lang: String) {
+    allStrapiProject(filter: { locale: { eq: $lang } }) {
+      nodes {
+        id
+        codeUrl
+        projectUrl
+        title
+        img {
+          url
+        }
+      }
+    }
+  }
+`

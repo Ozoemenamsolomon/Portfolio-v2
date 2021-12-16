@@ -1,10 +1,9 @@
-import React from "react"
 import styled from "styled-components"
 
 const Container = styled.div`
   padding: 0px 1.5em;
   width: 90%;
-  height: 100%;
+  min-height: 100%;
   @media (max-width: 600px) {
     & {
       width: 100%;

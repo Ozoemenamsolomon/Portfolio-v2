@@ -2,34 +2,45 @@ import React from "react"
 import styled from "styled-components"
 import { SooBtn } from "./Index"
 
-interface CardType {
+export interface ProjectProp {
+  id: string
+  codeUrl: string
+  projectUrl: string
   title: string
-  excerpt: string
-  date: string
+  img: { url: string }
+}
+interface CardType {
+  // title: string
+  // excerpt: string
+  // date: string
+  project: ProjectProp
 }
 
-const ProjectCard: React.FC<CardType> = props => {
+const ProjectCard: React.FC<CardType> = ({
+  project: {
+    title,
+    img: { url: imgURL },
+    codeUrl,
+    projectUrl,
+  },
+}) => {
   return (
-    <>
-      <CardDiv>
-        <CardTop>
-          <CardTitle>
-            <CardTitleH3>{props.title}</CardTitleH3>
-          </CardTitle>
-        </CardTop>
-        <CardBottom>
-          <CardBottomContent>
-            <p>{props.excerpt}</p>
-            <DateButton
-              style={{
-                justifyContent: "space-between",
-              }}
-            >
-              {/* <Date>{props.date}</Date> */}
+    <CardDiv>
+      <CardTop>
+        <img src={imgURL} alt={`Photo of ${title.toLowerCase()} project`} />
+      </CardTop>
+      <CardBottom>
+        <CardBottomContent>
+          <CardTitleH3>{title}</CardTitleH3>
+          <p>{title + title + title}</p>
+          <CTAs>
+            <a href={codeUrl} target="_blank">
               <SooBtn
+                tabIndex={-1}
                 style={{
                   padding: "0.4rem",
                   display: "flex",
+                  marginTop: "0",
                 }}
               >
                 <svg
@@ -46,10 +57,14 @@ const ProjectCard: React.FC<CardType> = props => {
                   />
                 </svg>
               </SooBtn>
+            </a>
+            <a target="_blank" href={projectUrl}>
               <SooBtn
+                tabIndex={-1}
                 style={{
                   padding: "0.4rem",
                   display: "flex",
+                  marginTop: "0",
                 }}
               >
                 <svg
@@ -67,21 +82,21 @@ const ProjectCard: React.FC<CardType> = props => {
                   />
                 </svg>
               </SooBtn>
-            </DateButton>
-          </CardBottomContent>
-        </CardBottom>
-      </CardDiv>
-    </>
+            </a>
+          </CTAs>
+        </CardBottomContent>
+      </CardBottom>
+    </CardDiv>
   )
 }
 
 export default ProjectCard
 
 const CardDiv = styled.div`
-  width: 17em;
-  background-color: #fff;
+  background-color: var(--firstbg);
+  color: var(--text-colour);
+
   box-shadow: -9px -7px 15px rgba(0, 0, 0, 0.11);
-  height: 22em;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -89,22 +104,21 @@ const CardDiv = styled.div`
 `
 const CardTop = styled.div`
   border-radius: 10px;
-  flex: 1;
-  background: url(https://images.unsplash.com/photo-1621275155732-2bff82c64fd2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  aspect-ratio: 16/9;
+  max-width: 100%;
   overflow: hidden;
+  & > img {
+    width: 100%;
+  }
 `
-const CardTitle = styled.div`
-  height: 100%;
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  background: rgba(0, 0, 0, 0.192);
-  padding: 0.8em;
-`
+// const CardTitle = styled.div`
+//   height: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: flex-end;
+//   background: rgba(0, 0, 0, 0.192);
+//   padding: 0.8em;
+// `
 
 const CardTitleH3 = styled.h3`
   text-transform: uppercase;
@@ -112,7 +126,6 @@ const CardTitleH3 = styled.h3`
 `
 
 const CardBottom = styled.div`
-  flex: 1;
   padding: 0.8em;
 `
 
@@ -124,9 +137,7 @@ const CardBottomContent = styled.div`
   padding: 0.5em 0em;
 `
 
-const DateButton = styled.div`
+const CTAs = styled.div`
   display: flex;
+  justify-content: space-between;
 `
-/* const Date = styled.small`
-  text-transform: capitalize;
-` */
