@@ -4,6 +4,7 @@ import styled from "styled-components"
 import Layout from "../components/layout"
 import TechStack from "../components/TechStack"
 import { myTechStack } from "../definiton"
+import ReactMarkdown from "react-markdown"
 
 export interface AboutPageProps {
   strapiAbout: {
@@ -37,7 +38,7 @@ const About: React.FC<PageProps<AboutPageProps>> = ({
     >
       <section className="about" id="about">
         <div className="about-text">
-          <p>{strapiAboutContent}</p>
+          <ReactMarkdown>{strapiAboutContent}</ReactMarkdown>
         </div>
         <AboutContent style={{}} className="about-content">
           <div className="about-devtools">
