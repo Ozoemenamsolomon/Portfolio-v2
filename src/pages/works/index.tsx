@@ -19,7 +19,6 @@ const Work: React.FC<PageProps<WorkProp>> = ({
     allStrapiProject: { nodes: projects },
   },
 }) => {
-  // TODO remove constraint in project's exerpt on BE
   return (
     <Layout location={location}>
       <Container>
