@@ -40,9 +40,8 @@ const ProjectCard: React.FC<CardType> = ({
               <StyledKBD
                 style={{
                   background: `hsl(${(Math.random() * 360).toFixed(0)}, ${(
-                    Math.random() * 50 +
-                    50
-                  ).toFixed(0)}%, 30%)`,
+                    Math.random() * 50
+                  ).toFixed(0)}%, ${(Math.random()*50).toFixed(0)}%)`,
                   fontSize: "small",
                   color:"var(--btn-colour)"
 
