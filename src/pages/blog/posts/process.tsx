@@ -1,39 +1,86 @@
-import { PageProps } from "gatsby"
+import { graphql, PageProps } from "gatsby"
 import React from "react"
+import ReactMarkdown from "react-markdown"
+import styled from "styled-components"
 import Layout from "../../../components/layout"
+import Container from "../../../components/MainWrapper"
+import { SOOHint } from "../../../components/Navigation"
 
-const Process: React.FC<PageProps> = ({ location }) => {
+interface BlogPostProps {
+  strapiBlogArticle: {
+    title: string
+    readDuration: number
+    content: string
+    img: {
+      url: string
+    }
+    published_at: string
+  }
+}
+
+const Process: React.FC<PageProps<BlogPostProps>> = ({
+  location,
+  data: {
+    strapiBlogArticle: {
+      content,
+      title,
+      readDuration,
+      img: { url: imgURL },
+      published_at,
+    },
+  },
+}) => {
   return (
     <Layout
-      container
+      container={false}
       location={location}
-      pageTitle="Typical Design Process"
+      pageTitle={title}
+      titleVisible={false}
       lang="en"
     >
-      <section className="process" id="process">
-        <div className="process-text">
-          <p>
-            The plan to document my process was initially not considered. I was
-            however inspired to include this process in this project by the
-            social media challenge “How it started vs How it's going”. So the
-            pictures below should give you an insight of how the project all
-            started and the fact that you're reading this here is a result of
-            how it's going. “How it's going” because I believe there is still a
-            lot of room for improvement.
-          </p>
-        </div>
-        <div className="process1" data-description="">
-          <div className="card-hover"></div>
-        </div>
-        <div className="process2" data-description="">
-          <div className="card-hover"></div>
-        </div>
-        <div className="process3" data-description="">
-          <div className="card-hover"></div>
-        </div>
-      </section>
+      <BlogPostHero bg={imgURL}>
+        <h1>{title}</h1>
+      </BlogPostHero>
+      <Container style={{ maxWidth: "1200px" }}>
+        <section style={{ margin: "2rem 0" }} className="process" id="process">
+          <SOOHint>
+            Published: {new Date(published_at).toLocaleDateString()} &nbsp;
+            &#8226; &nbsp; Read time: {readDuration}min{readDuration > 1 && "s"}
+          </SOOHint>
+          <div style={{ marginTop: "1rem " }} className="process-text">
+            <ReactMarkdown>{content}</ReactMarkdown>
+          </div>
+          {/* TODO update the pprocess blog to include images  */}
+        </section>
+      </Container>
     </Layout>
   )
 }
 
 export default Process
+
+export const query = graphql`
+  {
+    strapiBlogArticle {
+      title
+      readDuration
+      content
+      img {
+        url
+      }
+      published_at
+    }
+  }
+`
+const BlogPostHero = styled.div<{ bg: string }>`
+  padding: 3rem 1rem;
+  width: 100%;
+  margin-top: -1rem;
+  background-image: url(${({ bg }) => bg});
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  text-align: center;
+  background-color: var(--light-blue);
+  background-blend-mode: multiply;
+`

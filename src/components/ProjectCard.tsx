@@ -33,8 +33,13 @@ const ProjectCard: React.FC<CardType> = ({
     <CardDiv>
       <CardTop>
         {/* TODO animate on hover : scale */}
-        <a href={imgURL} style={{cursor: 'zoom-in'}} title="view image in new tab" target="_blank">
-        <img src={imgURL} alt={`Photo of ${title.toLowerCase()} project`} />
+        <a
+          href={imgURL}
+          style={{ cursor: "zoom-in" }}
+          title="view image in new tab"
+          target="_blank"
+        >
+          <img src={imgURL} alt={`Photo of ${title.toLowerCase()} project`} />
         </a>
         <TechTags className="tech-tag">
           {
@@ -44,10 +49,9 @@ const ProjectCard: React.FC<CardType> = ({
                 style={{
                   background: `hsl(${(Math.random() * 360).toFixed(0)}, ${(
                     Math.random() * 50
-                  ).toFixed(0)}%, ${((Math.random()*40)+10).toFixed(0)}%)`,
+                  ).toFixed(0)}%, ${(Math.random() * 30 + 10).toFixed(0)}%)`,
                   fontSize: "small",
-                  color:"var(--btn-colour)"
-
+                  color: "var(--btn-colour)",
                 }}
               >
                 {"#" + name}

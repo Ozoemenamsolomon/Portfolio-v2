@@ -52,7 +52,7 @@ const About: React.FC<PageProps<AboutPageProps>> = ({
             </DevToolsImages>
           </div>
           <div className="about-software">
-            <h3>Softwares</h3>
+            <h2>Softwares</h2>
             <DevToolsImages>
               {techStacks
                 .filter(techStack => techStack.isSoftware)
@@ -62,7 +62,7 @@ const About: React.FC<PageProps<AboutPageProps>> = ({
             </DevToolsImages>
           </div>
           <div className="about-language">
-            <h3>Languages</h3>
+            <h2>Languages</h2>
             <AboutList>
               {softskill.languages?.map(skill => (
                 <li>{skill}</li>
@@ -70,7 +70,7 @@ const About: React.FC<PageProps<AboutPageProps>> = ({
             </AboutList>
           </div>
           <div className="about-softskills">
-            <h3>Softskills</h3>
+            <h2>Softskills</h2>
             <AboutList>
               {softskill.softskills?.map(skill => (
                 <li>{skill}</li>
@@ -90,7 +90,7 @@ export default About
 
 export const pageQuery = graphql`
   {
-    strapiAbout {
+    strapiAbout(locale: { eq: "en" }) {
       content
       softskill {
         softskills
