@@ -42,7 +42,7 @@ export const SooHintBtn = styled(SooBtn)`
 
 export const PageTitle = styled.h1<{ children: ReactNode }>`
   background: var(--soo-gradient);
-  -webkit-text-stroke: 0.021rem var(--text-colour);
+  -webkit-text-stroke: 0.05rem var(--text-colour);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

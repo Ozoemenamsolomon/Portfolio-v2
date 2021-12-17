@@ -32,7 +32,10 @@ const ProjectCard: React.FC<CardType> = ({
   return (
     <CardDiv>
       <CardTop>
+        {/* TODO animate on hover : scale */}
+        <a href={imgURL} style={{cursor: 'zoom-in'}} title="view image in new tab" target="_blank">
         <img src={imgURL} alt={`Photo of ${title.toLowerCase()} project`} />
+        </a>
         <TechTags className="tech-tag">
           {
             //TODO select colours for tags, must always be compatible with white
@@ -41,7 +44,7 @@ const ProjectCard: React.FC<CardType> = ({
                 style={{
                   background: `hsl(${(Math.random() * 360).toFixed(0)}, ${(
                     Math.random() * 50
-                  ).toFixed(0)}%, ${(Math.random()*50).toFixed(0)}%)`,
+                  ).toFixed(0)}%, ${((Math.random()*40)+10).toFixed(0)}%)`,
                   fontSize: "small",
                   color:"var(--btn-colour)"
 
@@ -59,7 +62,7 @@ const ProjectCard: React.FC<CardType> = ({
           <CardExcerpt>{excerpt}</CardExcerpt>
 
           <CTAs>
-            <a href={codeUrl} target="_blank">
+            <a href={codeUrl} title="View source code" target="_blank">
               <SooBtn
                 tabIndex={-1}
                 style={{
@@ -71,7 +74,7 @@ const ProjectCard: React.FC<CardType> = ({
                 <CodeSVG />
               </SooBtn>
             </a>
-            <a target="_blank" href={projectUrl}>
+            <a target="_blank" title="View live demo" href={projectUrl}>
               <SooBtn
                 tabIndex={-1}
                 style={{

@@ -11,33 +11,18 @@ const imgStyles = {
 }
 
 const TechStack: React.FC<TechStackProps> = ({ techStack }) => {
-  const titleAndAlt: string = `Logo of ${techStack.name} ${
+  const title: string = `Logo of ${techStack.name} ${
     techStack.imgUrl ? "from - " + techStack.imgUrl : ""
   }`
+  const alt =`Logo of ${techStack.name}`
   return (
     <TechStackDiv>
       <img
         style={imgStyles}
         src={techStack.img.url}
-        alt={titleAndAlt}
-        title={titleAndAlt}
+        alt={alt}
+        title={title}
       />
-      {/* ) : (
-        <div
-          style={{
-            height: "3rem",
-            aspectRatio: "1/1",
-          }}
-        >
-          <GatsbyImage
-            style={imgStyles}
-            image={techStack.img.childImageSharp.gatsbyImageData}
-            alt={titleAndAlt}
-            title={titleAndAlt}
-          />
-        </div>
-      )} */}
-
       <p>{techStack.name}</p>
     </TechStackDiv>
   )
