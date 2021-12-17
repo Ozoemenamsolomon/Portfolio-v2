@@ -44,6 +44,8 @@ const ProjectCard: React.FC<CardType> = ({
                     50
                   ).toFixed(0)}%, 30%)`,
                   fontSize: "small",
+                  color:"var(--btn-colour)"
+
                 }}
               >
                 {"#" + name}
@@ -136,7 +138,7 @@ const CardExcerpt = styled.p`
   display: -webkit-box;
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
-  max-height: 12ch;
+  max-height: 13ch;
 `
 
 const CardBottom = styled.div`
