@@ -1,6 +1,8 @@
 import React from "react"
 import styled from "styled-components"
+import { StyledKBD } from "./Footer"
 import { SooBtn } from "./Index"
+import { CodeSVG, ViewSVG } from "./SVGs"
 
 export interface ProjectProp {
   id: string
@@ -8,31 +10,53 @@ export interface ProjectProp {
   projectUrl: string
   title: string
   img: { url: string }
+  techstacks: {
+    name: string
+  }[]
+  excerpt: string
 }
 interface CardType {
-  // title: string
-  // excerpt: string
-  // date: string
   project: ProjectProp
 }
 
 const ProjectCard: React.FC<CardType> = ({
   project: {
-    title,
-    img: { url: imgURL },
     codeUrl,
     projectUrl,
+    title,
+    img: { url: imgURL },
+    techstacks,
+    excerpt,
   },
 }) => {
   return (
     <CardDiv>
       <CardTop>
         <img src={imgURL} alt={`Photo of ${title.toLowerCase()} project`} />
+        <TechTags className="tech-tag">
+          {
+            //TODO select colours for tags, must always be compatible with white
+            techstacks.map(({ name }) => (
+              <StyledKBD
+                style={{
+                  background: `hsl(${(Math.random() * 360).toFixed(0)}, ${(
+                    Math.random() * 50 +
+                    50
+                  ).toFixed(0)}%, 30%)`,
+                  fontSize: "small",
+                }}
+              >
+                {"#" + name}
+              </StyledKBD>
+            ))
+          }
+        </TechTags>
       </CardTop>
       <CardBottom>
         <CardBottomContent>
           <CardTitleH3>{title}</CardTitleH3>
-          <CardExcerpt>{title + title + title}</CardExcerpt>
+          <CardExcerpt>{excerpt}</CardExcerpt>
+
           <CTAs>
             <a href={codeUrl} target="_blank">
               <SooBtn
@@ -43,19 +67,7 @@ const ProjectCard: React.FC<CardType> = ({
                   marginTop: "0",
                 }}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  height={24}
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+                <CodeSVG />
               </SooBtn>
             </a>
             <a target="_blank" href={projectUrl}>
@@ -67,20 +79,7 @@ const ProjectCard: React.FC<CardType> = ({
                   marginTop: "0",
                 }}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  height={24}
-                >
-                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                  <path
-                    fillRule="evenodd"
-                    d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+                <ViewSVG />
               </SooBtn>
             </a>
           </CTAs>
@@ -97,14 +96,15 @@ const CardDiv = styled.div`
   color: var(--text-colour);
 
   box-shadow: 3px 6px 7px rgb(0 0 0 / 20%);
-  border-radius: 15px;
+  border-radius: 1rem;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 `
 const CardTop = styled.div`
-  border-radius: 10px;
+  border-radius: 0.6rem;
   aspect-ratio: 16/9;
+  position: relative;
   max-width: 100%;
   overflow: hidden;
   & > img {
@@ -127,6 +127,16 @@ const CardTitleH3 = styled.h3`
 
 const CardExcerpt = styled.p`
   flex: 1;
+
+  //TODO does it fit so far?
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 5;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  max-height: 12ch;
 `
 
 const CardBottom = styled.div`
@@ -140,6 +150,30 @@ const CardBottomContent = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 0.5em 0em;
+`
+const TechTags = styled.div`
+  display: flex;
+  gap: 0.41rem;
+  flex-wrap: wrap;
+  padding: 0.8rem;
+  position: absolute;
+  isolation: isolate;
+
+  &,
+  &::before {
+    top: 0;
+    right: 0;
+  }
+  &::before {
+    height: 100%;
+    z-index: -1;
+    width: 100%;
+    content: " ";
+    position: absolute;
+    filter: blur(20px);
+    border-radius: 1rem;
+    background-color: #0000005c;
+  }
 `
 
 const CTAs = styled.div`

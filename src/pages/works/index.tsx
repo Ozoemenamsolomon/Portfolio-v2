@@ -17,7 +17,6 @@ const Work: React.FC<PageProps<WorkProp>> = ({
     allStrapiProject: { nodes: projects },
   },
 }) => {
-  // TODO remove constraint in project's exerpt on BE
   return (
     <Layout container location={location} pageTitle="Portfolio" lang="en">
       <section className="work" id="work">
@@ -99,6 +98,10 @@ export const query = graphql`
         img {
           url
         }
+        techstacks {
+          name
+        }
+        excerpt
       }
     }
   }
