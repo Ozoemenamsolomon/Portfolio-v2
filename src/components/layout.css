@@ -66,7 +66,7 @@ button:disabled {
     font-size: 12px;
   }
 }
-a {
+main a {
   color: var(--text-colour);
 }
 :root {

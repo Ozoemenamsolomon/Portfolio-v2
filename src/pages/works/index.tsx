@@ -91,7 +91,6 @@ export const query = graphql`
   query {
     allStrapiProject(filter: { locale: { eq: "en" } }) {
       nodes {
-        id
         codeUrl
         projectUrl
         title

@@ -5,7 +5,6 @@ import { SooBtn } from "./Index"
 import { CodeSVG, ViewSVG } from "./SVGs"
 
 export interface ProjectProp {
-  id: string
   codeUrl: string
   projectUrl: string
   title: string
@@ -39,7 +38,10 @@ const ProjectCard: React.FC<CardType> = ({
           title="view image in new tab"
           target="_blank"
         >
-          <img src={imgURL} alt={`Photo of ${title.toLowerCase()} project`} />
+          <Thumbnail
+            src={imgURL}
+            alt={`Photo of ${title.toLowerCase()} project`}
+          />
         </a>
         <TechTags className="tech-tag">
           {
@@ -69,6 +71,7 @@ const ProjectCard: React.FC<CardType> = ({
             <a href={codeUrl} title="View source code" target="_blank">
               <SooBtn
                 tabIndex={-1}
+                title="View source code"
                 style={{
                   padding: "0.4rem",
                   display: "flex",
@@ -81,6 +84,7 @@ const ProjectCard: React.FC<CardType> = ({
             <a target="_blank" title="View live demo" href={projectUrl}>
               <SooBtn
                 tabIndex={-1}
+                title="View live demo"
                 style={{
                   padding: "0.4rem",
                   display: "flex",
@@ -115,9 +119,10 @@ const CardTop = styled.div`
   position: relative;
   max-width: 100%;
   overflow: hidden;
-  & > img {
-    width: 100%;
-  }
+`
+
+const Thumbnail = styled.img`
+  width: 100%;
 `
 // const CardTitle = styled.div`
 //   height: 100%;

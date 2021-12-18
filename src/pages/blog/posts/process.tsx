@@ -82,5 +82,6 @@ const BlogPostHero = styled.div<{ bg: string }>`
   background-position: center center;
   text-align: center;
   background-color: var(--light-blue);
+  color: var(--btn-colour);
   background-blend-mode: multiply;
 `
