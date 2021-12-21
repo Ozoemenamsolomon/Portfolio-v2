@@ -1,5 +1,5 @@
 import { graphql, PageProps } from "gatsby"
-import React from "react"
+import React, { ReactNode } from "react"
 import styled from "styled-components"
 import Layout from "../components/layout"
 import TechStack from "../components/TechStack"
@@ -110,7 +110,6 @@ export const pageQuery = graphql`
     }
   }
 `
-
 const DevToolsImages = styled.div`
   display: flex;
   flex-wrap: wrap;

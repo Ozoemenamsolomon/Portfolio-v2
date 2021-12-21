@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Solomon Obinna Ozoemenam <ozoemenamsolomon@yahoo.com>",
   "dependencies": {
+    "@ethersproject/providers": "^5.5.1",
     "@heroicons/react": "^1.0.3",
     "@reach/skip-nav": "^0.16.0",
     "@styled-icons/bootstrap": "^10.34.0",
