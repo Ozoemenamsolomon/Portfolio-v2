@@ -114,7 +114,7 @@ const IndexPage: React.FC<IndexPageProps> = ({}) => {
                 <a
                   href="#livedemo"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="nofollow noopener noreferrer"
                   title="Live-Demo"
                 >
                   <i className="fa fa-eye" aria-hidden="true"></i>
@@ -122,7 +122,7 @@ const IndexPage: React.FC<IndexPageProps> = ({}) => {
                 <a
                   href="#github"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="nofollow noopener noreferrer"
                   title="Code ansehen"
                 >
                   <i className="fa fa-code" aria-hidden="true"></i>
@@ -137,7 +137,7 @@ const IndexPage: React.FC<IndexPageProps> = ({}) => {
                 <a
                   href="https://ozoemenamsolomon.github.io/creative-agency/"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="nofollow noopener noreferrer"
                   title="Live-Demo"
                 >
                   <i className="fa fa-eye" aria-hidden="true"></i>
@@ -145,7 +145,7 @@ const IndexPage: React.FC<IndexPageProps> = ({}) => {
                 <a
                   href="https://github.com/Ozoemenamsolomon/creative-agency"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="nofollow noopener noreferrer"
                   title="Code ansehen"
                 >
                   <i className="fa fa-code" aria-hidden="true"></i>
@@ -160,7 +160,7 @@ const IndexPage: React.FC<IndexPageProps> = ({}) => {
                 <a
                   href="https://ozoemenamsolomon.github.io/Ola-portfolio/"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="nofollow noopener noreferrer"
                   title="Live-Demo"
                 >
                   <i className="fa fa-eye" aria-hidden="true"></i>
@@ -168,7 +168,7 @@ const IndexPage: React.FC<IndexPageProps> = ({}) => {
                 <a
                   href="https://github.com/Ozoemenamsolomon/Ola-portfolio"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="nofollow noopener noreferrer"
                   title="Code ansehen"
                 >
                   <i className="fa fa-code" aria-hidden="true"></i>
@@ -183,7 +183,7 @@ const IndexPage: React.FC<IndexPageProps> = ({}) => {
                 <a
                   href="https://ozoemenamsolomon.github.io/Todo-App/"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="nofollow noopener noreferrer"
                   title="Live-Demo"
                 >
                   <i className="fa fa-eye" aria-hidden="true"></i>
@@ -191,7 +191,7 @@ const IndexPage: React.FC<IndexPageProps> = ({}) => {
                 <a
                   href="https://github.com/Ozoemenamsolomon/Todo-App"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="nofollow noopener noreferrer"
                   title="Code ansehen"
                 >
                   <i className="fa fa-code" aria-hidden="true"></i>
@@ -284,28 +284,28 @@ const IndexPage: React.FC<IndexPageProps> = ({}) => {
                   <a
                     href="https://www.linkedin.com/in/solomon-obinna-ozoemenam-6a3440155/"
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="nofollow noopener noreferrer"
                   >
                     <img src="./Images/LinkedIn.png" alt="" />
                   </a>
                   <a
                     href="https://www.xing.com/profile/SolomonObinna_Ozoemenam/cv"
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="nofollow noopener noreferrer"
                   >
                     <img src="./Images/Xing.png" alt="" />
                   </a>
                   <a
                     href="https://github.com/Ozoemenamsolomon"
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="nofollow noopener noreferrer"
                   >
                     <img src="./Images/github.png" alt="" />
                   </a>
                   <a
                     href="https://www.youtube.com/channel/UCpoLzjknNT6PNbJ9yX4RUng"
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="nofollow noopener noreferrer"
                   >
                     <img src="./Images/YouTube.png" alt="" />
                   </a>

@@ -37,6 +37,7 @@ const ProjectCard: React.FC<CardType> = ({
           style={{ cursor: "zoom-in" }}
           title="view image in new tab"
           target="_blank"
+          rel="nofollow noopener noreferrer"
         >
           <Thumbnail
             src={imgURL}
@@ -68,7 +69,12 @@ const ProjectCard: React.FC<CardType> = ({
           <CardExcerpt>{excerpt}</CardExcerpt>
 
           <CTAs>
-            <a href={codeUrl} title="View source code" target="_blank">
+            <a
+              href={codeUrl}
+              title="View source code"
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+            >
               <SooBtn
                 tabIndex={-1}
                 title="View source code"
@@ -81,7 +87,12 @@ const ProjectCard: React.FC<CardType> = ({
                 <CodeSVG />
               </SooBtn>
             </a>
-            <a target="_blank" title="View live demo" href={projectUrl}>
+            <a
+              target="_blank"
+              title="View live demo"
+              rel="nofollow noopener noreferrer"
+              href={projectUrl}
+            >
               <SooBtn
                 tabIndex={-1}
                 title="View live demo"

@@ -45,7 +45,7 @@ const Work: React.FC<PageProps<WorkProp>> = ({
                   <a
                     href="https://ozoemenamsolomon.github.io/Ola-portfolio/"
                     target="_blank"
-                    rel="noreferrer"
+              rel="nofollow noopener noreferrer"
                     title="Live demo"
                   >
                     <i className="fa fa-eye" aria-hidden="true"></i>
@@ -53,7 +53,7 @@ const Work: React.FC<PageProps<WorkProp>> = ({
                   <a
                     href="https://github.com/Ozoemenamsolomon/Ola-portfolio"
                     target="_blank"
-                    rel="noreferrer"
+              rel="nofollow noopener noreferrer"
                     title="source code"
                   >
                     <i className="fa fa-code" aria-hidden="true"></i>
@@ -65,7 +65,7 @@ const Work: React.FC<PageProps<WorkProp>> = ({
                   <a
                     href="https://ozoemenamsolomon.github.io/Todo-App/"
                     target="_blank"
-                    rel="noreferrer"
+              rel="nofollow noopener noreferrer"
                     title="Live demo"
                   >
                     <i className="fa fa-eye" aria-hidden="true"></i>
@@ -73,7 +73,7 @@ const Work: React.FC<PageProps<WorkProp>> = ({
                   <a
                     href="https://github.com/Ozoemenamsolomon/Todo-App"
                     target="_blank"
-                    rel="noreferrer"
+              rel="nofollow noopener noreferrer"
                     title="source code"
                   >
                     <i className="fa fa-code" aria-hidden="true"></i>
