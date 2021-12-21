@@ -1,5 +1,5 @@
 import { PageProps } from "gatsby"
-import React, { MouseEventHandler } from "react"
+import React, { MouseEventHandler, useState } from "react"
 import { SooBtn } from "../components/Index"
 import Layout from "../components/layout"
 import { providers } from "ethers"
@@ -17,6 +17,7 @@ declare global {
 const TestBlochchain: React.FC<PageProps<TestBlockchainProps>> = ({
   location,
 }) => {
+  const [error, setError] = useState("")
   const connectAccount: MouseEventHandler = async e => {
     if (typeof window !== "undefined") {
       try {
@@ -52,6 +53,7 @@ const TestBlochchain: React.FC<PageProps<TestBlockchainProps>> = ({
       <SooBtn onClick={connectAccount}>
         Click to connect your blockchain account
       </SooBtn>
+      {error && <p>{error}</p>}
     </Layout>
   )
 }
