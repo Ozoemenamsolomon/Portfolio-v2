@@ -26,6 +26,7 @@ const Seo: React.FC<SeoProps> = ({ description, lang, meta, title }) => {
             title
             description
             author
+            baseURL
           }
         }
       }
@@ -52,6 +53,10 @@ const Seo: React.FC<SeoProps> = ({ description, lang, meta, title }) => {
         {
           property: `og:title`,
           content: title,
+        },
+        {
+          property: `og:url`,
+          content: site.siteMetadata?.baseURL,
         },
         {
           property: `og:description`,

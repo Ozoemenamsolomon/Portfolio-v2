@@ -33,40 +33,34 @@ const Layout: React.FC<LayoutProps> = ({
   // TODO set classname here based on context className={"darkmode"}
   return (
     <ContextProvider>
-      <React.Fragment>
-        <LayoutDiv>
-          <Seo title={pageTitle} lang={lang} />
-          <SkipNavLink>Skip to content</SkipNavLink>
-          <Header />
-          <SkipNavContent />
-          <Main>
-            {container ? (
-              <Container>
-                {titleVisible && (
-                  <PageTitle>
-                    {typeof titleVisible === "string"
-                      ? titleVisible
-                      : pageTitle}
-                  </PageTitle>
-                )}{" "}
-                {children}
-              </Container>
-            ) : (
-              <>
-                {titleVisible && (
-                  <PageTitle>
-                    {typeof titleVisible === "string"
-                      ? titleVisible
-                      : pageTitle}
-                  </PageTitle>
-                )}
-                {children}
-              </>
-            )}
-          </Main>
-          <Footer locationPath={location?.pathname} />
-        </LayoutDiv>
-      </React.Fragment>
+      <LayoutDiv>
+        <Seo title={pageTitle} lang={lang} />
+        <SkipNavLink>Skip to content</SkipNavLink>
+        <Header />
+        <SkipNavContent />
+        <Main>
+          {container ? (
+            <Container>
+              {titleVisible && (
+                <PageTitle>
+                  {typeof titleVisible === "string" ? titleVisible : pageTitle}
+                </PageTitle>
+              )}{" "}
+              {children}
+            </Container>
+          ) : (
+            <>
+              {titleVisible && (
+                <PageTitle>
+                  {typeof titleVisible === "string" ? titleVisible : pageTitle}
+                </PageTitle>
+              )}
+              {children}
+            </>
+          )}
+        </Main>
+        <Footer locationPath={location?.pathname} />
+      </LayoutDiv>
     </ContextProvider>
   )
 }
@@ -77,6 +71,9 @@ const LayoutDiv = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  & a {
+    color: var(--text-colour);
+  }
 `
 
 const Main = styled.main`
@@ -88,5 +85,4 @@ const Main = styled.main`
   background-color: var(--secondbg);
   color: var(--text-colour);
   flex: 1;
-  /* min-height: 100vh; */
 `

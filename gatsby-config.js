@@ -4,6 +4,9 @@ module.exports = {
     title: `Solomon Obinna Ozoemenam on the Internet`,
     description: `Solomon Obinna Ozoemenam is a 22-year-old frontend developer with a freelance background in Graphics Design, currently studying computer science in the university of Siegen.`,
     author: `Solomon Obinna Ozoemenam <ozoemenamsolomo@yahoo.com>`,
+    // baseURL: "https://www.solozo.page"
+    // TODO use for canonical and stuff
+    baseURL: "https://test.solozo.page",
   },
   flags: {
     DEV_SSR: true,

@@ -12,6 +12,7 @@ import Layout from "../components/layout"
 import { SOOHint } from "../components/Navigation"
 import { SooBtn } from "../components/Index"
 import { LoadingSVG } from "../components/SVGs"
+import { Linkedin, Youtube, Github } from "@styled-icons/bootstrap"
 
 export interface ContactProps {}
 export interface FormValueProp {
@@ -173,43 +174,44 @@ const Contact: React.FC<PageProps<ContactProps>> = ({ location }) => {
             {/* <!-- <input type="submit" value=""> --> */}
           </ContactForm>
         </div>
-        <div className="contact-findme">
-          <p>Find me on:</p>
-          <div className="socials">
+        <div
+          style={{ display: "flex", gap: "1rem", margin: "1rem 0" }}
+          className="contact-findme"
+        >
+          <span>You could also find me on:</span>
+          <div
+            style={{
+              display: "flex",
+              gap: "0.5rem",
+            }}
+            className="socials"
+          >
             <a
               href="https://www.linkedin.com/in/solomon-obinna-ozoemenam-6a3440155/"
               target="_blank"
               rel="noopener noreferrer"
+              title="Linkedin"
             >
-              <img src="./Images/LinkedIn.png" alt="" />
-            </a>
-            <a
-              href="https://www.xing.com/profile/SolomonObinna_Ozoemenam/cv"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src="./Images/Xing.png" alt="" />
+              <Linkedin width={24} fill="var(--text-colour)"></Linkedin>
             </a>
             <a
               href="https://github.com/Ozoemenamsolomon"
               target="_blank"
               rel="noopener noreferrer"
+              title="github"
             >
-              <img src="./Images/github.png" alt="" />
+              <Github width={24}></Github>
             </a>
             <a
               href="https://www.youtube.com/channel/UCpoLzjknNT6PNbJ9yX4RUng"
               target="_blank"
+              title="youtube"
               rel="noopener noreferrer"
             >
-              <img src="./Images/YouTube.png" alt="" />
+              <Youtube width={24} />
             </a>
           </div>
         </div>
-        {/* TODO needed 
-        <div className="contact-img">
-          <img src="./Images/ContactMe_Char.png" alt="" />
-        </div> */}
       </section>
     </Layout>
   )
