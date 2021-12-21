@@ -8,9 +8,7 @@ module.exports = {
     // TODO use for canonical and stuff
     baseURL: "https://test.solozo.page",
   },
-  flags: {
-    DEV_SSR: true,
-  },
+  flags: {},
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
@@ -43,7 +41,7 @@ module.exports = {
         queryLimit: 1000, // Defaults to 100
         loginData: {
           identifier: process.env.LOGIN_IDENTIFIER,
-          password: process.env.LOGIN_PASSWORD, //if by chance you dirty hackers see the password from my previous commit, just not that I´ve changed it!😉
+          password: process.env.LOGIN_PASSWORD,
         },
         collectionTypes: [
           {
@@ -78,6 +76,15 @@ module.exports = {
       },
     },
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-gatsby-cloud`,
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [process.env.GTAG_TRACKING_ID],
+        pluginConfig: {
+          head: false,
+          respectDNT: true,
+        },
+      },
+    },
   ],
 }

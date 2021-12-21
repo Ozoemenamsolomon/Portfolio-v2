@@ -31,7 +31,6 @@ const ProjectCard: React.FC<CardType> = ({
   return (
     <CardDiv>
       <CardTop>
-        {/* TODO animate on hover : scale */}
         <a
           href={imgURL}
           style={{ cursor: "zoom-in" }}
@@ -134,6 +133,11 @@ const CardTop = styled.div`
 
 const Thumbnail = styled.img`
   width: 100%;
+  transition: transform 0.5s ease-out;
+  &:hover {
+    transform: scale(1.1);
+    transition-duration: 3s;
+  }
 `
 // const CardTitle = styled.div`
 //   height: 100%;
@@ -151,9 +155,6 @@ const CardTitleH3 = styled.h3`
 
 const CardExcerpt = styled.p`
   flex: 1;
-
-  //TODO does it fit so far?
-
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 5;

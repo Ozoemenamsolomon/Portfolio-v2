@@ -50,7 +50,7 @@ const Process: React.FC<PageProps<BlogPostProps>> = ({
           <div style={{ marginTop: "1rem " }} className="process-text">
             <ReactMarkdown>{content}</ReactMarkdown>
           </div>
-          {/* TODO update the pprocess blog to include images  */}
+          {/* TODO update the process blog to include images  */}
         </section>
       </Container>
     </Layout>
