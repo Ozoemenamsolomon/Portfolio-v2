@@ -5,7 +5,6 @@ My Personal website version 2 made with [GatsbyJS](https://www.gatsbyjs.com) for
 Projects final destination is [solozo.page](https://www.solozo.page) but it currently hosted [here](https://test.solozo.page).
 
 <br/>
-<br/>
 
 ## File structure
 
