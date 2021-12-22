@@ -1,5 +1,5 @@
 import { graphql, PageProps } from "gatsby"
-import React, { ReactNode } from "react"
+import React from "react"
 import styled from "styled-components"
 import Layout from "../components/layout"
 import TechStack from "../components/TechStack"
