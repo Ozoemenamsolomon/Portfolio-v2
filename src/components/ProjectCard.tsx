@@ -46,8 +46,9 @@ const ProjectCard: React.FC<CardType> = ({
         <TechTags className="tech-tag">
           {
             //TODO select colours for tags, must always be compatible with white
-            techstacks.map(({ name }) => (
+            techstacks.map(({ name }, id) => (
               <StyledKBD
+                key={id}
                 style={{
                   background: `hsl(${(Math.random() * 360).toFixed(0)}, ${(
                     Math.random() * 50
