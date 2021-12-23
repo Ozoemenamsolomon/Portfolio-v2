@@ -18,15 +18,16 @@ interface BlogPostProps {
   }
 }
 
-const Process: React.FC<PageProps<BlogPostProps>> = ({
+const BlogPost: React.FC<PageProps<BlogPostProps>> = ({
+  pageContext,
   location,
   data: {
     strapiBlogArticle: {
-      content,
       title,
-      readDuration,
       img: { url: imgURL },
       published_at,
+      readDuration,
+      content,
     },
   },
 }) => {
@@ -47,21 +48,18 @@ const Process: React.FC<PageProps<BlogPostProps>> = ({
             Published: {new Date(published_at).toLocaleDateString()} &nbsp;
             &#8226; &nbsp; Read time: {readDuration}min{readDuration > 1 && "s"}
           </SOOHint>
-          <div style={{ marginTop: "1rem " }} className="process-text">
+          <MarkdownContainer className="process-text">
             <ReactMarkdown>{content}</ReactMarkdown>
-          </div>
-          {/* TODO update the process blog to include images  */}
+          </MarkdownContainer>
         </section>
       </Container>
     </Layout>
   )
 }
 
-export default Process
-
 export const query = graphql`
-  {
-    strapiBlogArticle {
+  query($id: String, $slug: String) {
+    strapiBlogArticle(id: { eq: $id }, slug: { eq: $slug }) {
       title
       readDuration
       content
@@ -72,6 +70,8 @@ export const query = graphql`
     }
   }
 `
+
+export default BlogPost
 const BlogPostHero = styled.div<{ bg: string }>`
   padding: 3rem 1rem;
   width: 100%;
@@ -84,4 +84,10 @@ const BlogPostHero = styled.div<{ bg: string }>`
   background-color: var(--light-blue);
   color: var(--btn-colour);
   background-blend-mode: multiply;
+`
+const MarkdownContainer = styled.div`
+  margin-top: 1rem;
+  & * {
+    all: revert;
+  }
 `

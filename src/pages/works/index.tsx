@@ -27,7 +27,7 @@ const Work: React.FC<PageProps<WorkProp>> = ({
             To learn more about my design process using my website as a case
             study please click on the button below.
           </p>
-          <Link to="/blog/posts/process">
+          <Link to="/blog/posts/typical-design-process/">
             <SooBtn tabIndex={-1}>Design Process</SooBtn>
           </Link>
         </div>
