@@ -20,6 +20,7 @@ export interface LayoutProps {
   lang: string
   container: boolean
   titleVisible?: string | false
+  description?: string
 }
 
 const Layout: React.FC<LayoutProps> = ({
@@ -29,12 +30,13 @@ const Layout: React.FC<LayoutProps> = ({
   pageTitle,
   container = true,
   titleVisible = true,
+  description,
 }) => {
   // TODO set classname here based on context className={"darkmode"}
   return (
     <ContextProvider>
       <LayoutDiv>
-        <Seo title={pageTitle} lang={lang} />
+        <Seo description={description} title={pageTitle} lang={lang} />
         <SkipNavLink>Skip to content</SkipNavLink>
         <Header />
         <SkipNavContent />

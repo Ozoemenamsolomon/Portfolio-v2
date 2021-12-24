@@ -6,7 +6,6 @@
  */
 
 import * as React from "react"
-import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
@@ -36,8 +35,6 @@ const Seo: React.FC<SeoProps> = ({ description, lang, meta, title }) => {
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
 
-  // TODO design and upload og:image
-
   return (
     <Helmet
       htmlAttributes={{
@@ -65,6 +62,10 @@ const Seo: React.FC<SeoProps> = ({ description, lang, meta, title }) => {
         {
           property: `og:type`,
           content: `website`,
+        },
+        {
+          property: "og:image",
+          content: `${site.siteMetadata.baseURL}/og-image.jpg`,
         },
         {
           name: `twitter:card`,

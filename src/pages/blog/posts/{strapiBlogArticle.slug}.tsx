@@ -15,6 +15,7 @@ interface BlogPostProps {
       url: string
     }
     published_at: string
+    excerpt: string
   }
 }
 
@@ -28,6 +29,7 @@ const BlogPost: React.FC<PageProps<BlogPostProps>> = ({
       published_at,
       readDuration,
       content,
+      excerpt,
     },
   },
 }) => {
@@ -38,6 +40,7 @@ const BlogPost: React.FC<PageProps<BlogPostProps>> = ({
       pageTitle={title}
       titleVisible={false}
       lang="en"
+      description={excerpt}
     >
       <BlogPostHero bg={imgURL}>
         <h1>{title}</h1>
@@ -62,6 +65,7 @@ export const query = graphql`
     strapiBlogArticle(id: { eq: $id }, slug: { eq: $slug }) {
       title
       readDuration
+      excerpt
       content
       img {
         url
