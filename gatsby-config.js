@@ -35,7 +35,7 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: `https://soo-portfolio-api.herokuapp.com`,
+        apiURL: process.env.API_URL,
         queryLimit: 1000, // Defaults to 100
         loginData: {
           identifier: process.env.LOGIN_IDENTIFIER,

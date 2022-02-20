@@ -5,6 +5,7 @@ import styled from "styled-components"
 import Layout from "../../../components/layout"
 import Container from "../../../components/MainWrapper"
 import { SOOHint } from "../../../components/Navigation"
+import { markdownStyle } from "../../../components/styled"
 
 interface BlogPostProps {
   strapiBlogArticle: {
@@ -92,6 +93,8 @@ const BlogPostHero = styled.div<{ bg: string }>`
 const MarkdownContainer = styled.div`
   margin-top: 1rem;
   & * {
-    all: revert;
+    margin: revert;
+    padding: revert;
   }
+  ${markdownStyle}
 `

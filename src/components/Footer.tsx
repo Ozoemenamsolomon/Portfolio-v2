@@ -22,7 +22,7 @@ const Footer: React.FC<FooterProp> = ({ locationPath }) => {
         }}
       >
         <FooterP>
-          Coyright&copy; {new Date().getFullYear()}
+          Coyright&copy; {new Date().getFullYear()}{" "}
           <Link to="/">solozo.page</Link>
         </FooterP>
         <FooterHintContainer>
