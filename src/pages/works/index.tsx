@@ -99,6 +99,7 @@ export const query = graphql`
         }
         techstacks {
           name
+          backgroundColour
         }
         excerpt
       }

@@ -11,6 +11,7 @@ export interface ProjectProp {
   img: { url: string }
   techstacks: {
     name: string
+    backgroundColour: string
   }[]
   excerpt: string
 }
@@ -44,23 +45,18 @@ const ProjectCard: React.FC<CardType> = ({
           />
         </a>
         <TechTags className="tech-tag">
-          {
-            //TODO select colours for tags, must always be compatible with white
-            techstacks.map(({ name }, id) => (
-              <StyledKBD
-                key={id}
-                style={{
-                  background: `hsl(${(Math.random() * 360).toFixed(0)}, ${(
-                    Math.random() * 50
-                  ).toFixed(0)}%, ${(Math.random() * 30 + 10).toFixed(0)}%)`,
-                  fontSize: "small",
-                  color: "var(--btn-colour)",
-                }}
-              >
-                {"#" + name}
-              </StyledKBD>
-            ))
-          }
+          {techstacks.map(({ name, backgroundColour }, id) => (
+            <StyledKBD
+              key={id}
+              style={{
+                background: backgroundColour,
+                fontSize: "small",
+                color: "var(--btn-colour)",
+              }}
+            >
+              {"#" + name}
+            </StyledKBD>
+          ))}
         </TechTags>
       </CardTop>
       <CardBottom>
