@@ -81,10 +81,10 @@ const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
         <MyNavLink to="/about/">About</MyNavLink>
       </NavItem>
       <NavItem>
-        <MyNavLink to="/works/">Work</MyNavLink>
+        <MyNavLink to="/blog/">Blog</MyNavLink>
       </NavItem>
       <NavItem>
-        <MyNavLink to="/blog/">Blog</MyNavLink>
+        <MyNavLink to="/works/">Work</MyNavLink>
       </NavItem>
       <NavItem>
         <MyNavLink to="/contact/">Contact</MyNavLink>
