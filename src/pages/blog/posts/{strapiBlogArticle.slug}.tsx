@@ -1,7 +1,8 @@
-import { graphql, PageProps } from "gatsby"
+import { graphql, Link, PageProps } from "gatsby"
 import React from "react"
 import ReactMarkdown from "react-markdown"
 import styled from "styled-components"
+import BlogCard, { BlogPostCard } from "../../../components/BlogCard"
 import Layout from "../../../components/layout"
 import Container from "../../../components/MainWrapper"
 import { SOOHint } from "../../../components/Navigation"
@@ -18,6 +19,9 @@ interface BlogPostProps {
     published_at: string
     excerpt: string
   }
+  allStrapiBlogArticle: {
+    nodes: BlogPostCard[]
+  }
 }
 
 const BlogPost: React.FC<PageProps<BlogPostProps>> = ({
@@ -32,6 +36,7 @@ const BlogPost: React.FC<PageProps<BlogPostProps>> = ({
       content,
       excerpt,
     },
+    allStrapiBlogArticle: { nodes: otherBlogPosts },
   },
 }) => {
   return (
@@ -47,7 +52,7 @@ const BlogPost: React.FC<PageProps<BlogPostProps>> = ({
         <h1>{title}</h1>
       </BlogPostHero>
       <Container style={{ maxWidth: "1200px" }}>
-        <section style={{ margin: "2rem 0" }} className="process" id="process">
+        <section aria-label={`post content`} style={{ margin: "2rem 0" }}>
           <SOOHint>
             Published: {new Date(published_at).toLocaleDateString()} &nbsp;
             &#8226; &nbsp; Read time: {readDuration}min{readDuration > 1 && "s"}
@@ -55,7 +60,16 @@ const BlogPost: React.FC<PageProps<BlogPostProps>> = ({
           <MarkdownContainer className="process-text">
             <ReactMarkdown>{content}</ReactMarkdown>
           </MarkdownContainer>
+          <ReturnLinkContainer>
+            <Link to="/blog/">&larr; Back to blogs</Link>
+          </ReturnLinkContainer>
         </section>
+        <OtherBlogPostsSection aria-label="other blog posts">
+          <h2>Check out my other articles</h2>
+          {otherBlogPosts.map(otherBlogPost => (
+            <BlogCard blogPost={otherBlogPost} />
+          ))}
+        </OtherBlogPostsSection>
       </Container>
     </Layout>
   )
@@ -72,6 +86,20 @@ export const query = graphql`
         url
       }
       published_at
+    }
+    allStrapiBlogArticle(
+      filter: { id: { ne: $id }, slug: { ne: $slug }, locale: { eq: "en" } }
+      limit: 3
+    ) {
+      nodes {
+        slug
+        title
+        img {
+          url
+        }
+        readDuration
+        excerpt
+      }
     }
   }
 `
@@ -90,6 +118,13 @@ const BlogPostHero = styled.div<{ bg: string }>`
   color: var(--btn-colour);
   background-blend-mode: multiply;
 `
+
+const ReturnLinkContainer = styled.p`
+  a {
+    text-decoration: none;
+  }
+`
+
 const MarkdownContainer = styled.div`
   margin-top: 1rem;
   & * {
@@ -98,3 +133,4 @@ const MarkdownContainer = styled.div`
   }
   ${markdownStyle}
 `
+const OtherBlogPostsSection = styled.section``
