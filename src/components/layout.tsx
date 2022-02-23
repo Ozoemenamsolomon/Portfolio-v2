@@ -32,7 +32,6 @@ const Layout: React.FC<LayoutProps> = ({
   titleVisible = true,
   description,
 }) => {
-  // TODO set classname here based on context className={"darkmode"}
   return (
     <ContextProvider>
       <LayoutDiv>

@@ -16,18 +16,14 @@ const Navigation: React.FC<NavigationProps> = ({ userLang }) => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const themeChoice: string | null = window.localStorage.getItem(
-        "themeChoice"
-      )
+      const themeChoice = window.localStorage.getItem("themeChoice")
       changeClassBasedOnThemeChoice(themeChoice)
     }
   }, [])
 
   const handleLanguageChoice = () => {
     if (typeof window !== "undefined") {
-      const langChoice: string | null = window.localStorage.getItem(
-        "langChoice"
-      )
+      const langChoice = window.localStorage.getItem("langChoice")
 
       if (langChoice === "de") {
         window.localStorage.setItem("langChoice", "en")

@@ -26,7 +26,6 @@ const TestBlochchain: React.FC<PageProps<TestBlockchainProps>> = ({
         setLoading(true)
         setError("")
         setAddress("")
-        //TODO check for desktop
         if (!window.ethereum)
           throw new Error(
             "You need the metamask extension to continue. Download it on your computer from <a target='_blank' href='https://metamask.io'>metamask.io</a>"

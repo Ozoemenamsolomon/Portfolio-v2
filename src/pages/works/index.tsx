@@ -37,7 +37,7 @@ const Work: React.FC<PageProps<WorkProp>> = ({
             return <ProjectCard key={id} project={project} />
           })}
         </ProjectCardSection>
-        {/* TODO repliacate in CMS 
+        {/* TODO replicate in CMS 
         <div className="work1" data-description="coming soon">
                 
               <div className="work3" data-description="">
