@@ -3,8 +3,13 @@ import React from "react"
 import ReactMarkdown from "react-markdown"
 import styled from "styled-components"
 import BlogCard, { BlogPostCard } from "../../../components/BlogCard"
+import { StyledKBD } from "../../../components/Footer"
 import Layout from "../../../components/layout"
 import Container from "../../../components/MainWrapper"
+import {
+  H2WithContentId,
+  SyntaxHiglightedCode,
+} from "../../../components/MarkdownMods"
 import { SOOHint } from "../../../components/Navigation"
 import { markdownStyle } from "../../../components/styled"
 
@@ -25,7 +30,6 @@ interface BlogPostProps {
 }
 
 const BlogPost: React.FC<PageProps<BlogPostProps>> = ({
-  pageContext,
   location,
   data: {
     strapiBlogArticle: {
@@ -45,7 +49,6 @@ const BlogPost: React.FC<PageProps<BlogPostProps>> = ({
       location={location}
       pageTitle={title}
       titleVisible={false}
-      lang="en"
       description={excerpt}
     >
       <BlogPostHero bg={imgURL}>
@@ -58,7 +61,14 @@ const BlogPost: React.FC<PageProps<BlogPostProps>> = ({
             &#8226; &nbsp; Read time: {readDuration}min{readDuration > 1 && "s"}
           </SOOHint>
           <MarkdownContainer className="process-text">
-            <ReactMarkdown>{content}</ReactMarkdown>
+            <ReactMarkdown
+              components={{
+                code: SyntaxHiglightedCode,
+                h2: H2WithContentId,
+              }}
+            >
+              {content}
+            </ReactMarkdown>
           </MarkdownContainer>
           <ReturnLinkContainer>
             <Link to="/blog/">&larr; Back to blogs</Link>
@@ -119,8 +129,11 @@ const BlogPostHero = styled.div<{ bg: string }>`
   background-blend-mode: multiply;
 `
 
-const ReturnLinkContainer = styled.p`
+const ReturnLinkContainer = styled(StyledKBD)`
+  background: var(--soo-gradient);
   a {
+    padding: 0.2rem 0.5rem;
+    color: var(--btn-colour);
     text-decoration: none;
   }
 `

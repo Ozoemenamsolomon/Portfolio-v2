@@ -57,7 +57,7 @@ export const markdownStyle = css`
   pre {
     padding: 0.5rem;
     line-height: 1.25;
-    overflow-x: scroll;
+    overflow-x: auto;
   }
   a,
   a:visited {
@@ -166,9 +166,5 @@ export const markdownStyle = css`
   blockquote {
     border-left: 8px solid var(--text-colour);
     padding: 1rem;
-  }
-  pre,
-  code {
-    background-color: var(--text-colour);
   }
 `

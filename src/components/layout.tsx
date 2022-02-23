@@ -17,7 +17,7 @@ import { PageTitle } from "./Index"
 export interface LayoutProps {
   location: WindowLocation
   pageTitle: string
-  lang: string
+  lang?: "en" | "de"
   container: boolean
   titleVisible?: string | false
   description?: string
@@ -26,7 +26,7 @@ export interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({
   children,
   location,
-  lang,
+  lang = "en",
   pageTitle,
   container = true,
   titleVisible = true,
