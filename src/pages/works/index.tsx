@@ -31,55 +31,11 @@ const Work: React.FC<PageProps<WorkProp>> = ({
             <SooBtn tabIndex={-1}>Design Process</SooBtn>
           </Link>
         </div>
-        <h4>NB: Still in progress...</h4>
         <ProjectCardSection>
           {projects.map((project, id) => {
             return <ProjectCard key={id} project={project} />
           })}
         </ProjectCardSection>
-        {/* TODO replicate in CMS 
-        <div className="work1" data-description="coming soon">
-                
-              <div className="work3" data-description="">
-                <div className="card-hover">
-                  <a
-                    href="https://ozoemenamsolomon.github.io/Ola-portfolio/"
-                    target="_blank"
-              rel="nofollow noopener noreferrer"
-                    title="Live demo"
-                  >
-                    <i className="fa fa-eye" aria-hidden="true"></i>
-                  </a>
-                  <a
-                    href="https://github.com/Ozoemenamsolomon/Ola-portfolio"
-                    target="_blank"
-              rel="nofollow noopener noreferrer"
-                    title="source code"
-                  >
-                    <i className="fa fa-code" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div>
-              <div className="work4" data-description="">
-                <div className="card-hover">
-                  <a
-                    href="https://ozoemenamsolomon.github.io/Todo-App/"
-                    target="_blank"
-              rel="nofollow noopener noreferrer"
-                    title="Live demo"
-                  >
-                    <i className="fa fa-eye" aria-hidden="true"></i>
-                  </a>
-                  <a
-                    href="https://github.com/Ozoemenamsolomon/Todo-App"
-                    target="_blank"
-              rel="nofollow noopener noreferrer"
-                    title="source code"
-                  >
-                    <i className="fa fa-code" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div> */}
       </section>
     </Layout>
   )
