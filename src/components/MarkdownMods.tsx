@@ -30,15 +30,16 @@ export const SyntaxHiglightedCode: CodeComponent = ({
   )
 }
 
-export const H2WithContentId: HeadingComponent = ({
-  level,
-  children,
-  ...props
-}) => {
-  const contentAsId = children[0]?.toString().toLowerCase().replace(/ /g, "-")
-  return (
-    <h2 id={contentAsId} {...props}>
-      {children}
-    </h2>
-  )
+export const H2WithContentId: HeadingComponent = ({ level, children }) => {
+  children = React.Children.toArray(children)
+  var text = children.reduce(flatten, "")
+  var slug = text.toLowerCase().replace(/\W/g, "-")
+
+  return React.createElement("h" + level, { id: slug }, children)
+}
+
+const flatten: (text: any, child: any) => any = (text, child) => {
+  return typeof child === "string"
+    ? text + child
+    : React.Children.toArray(child.props.children).reduce(flatten, text)
 }

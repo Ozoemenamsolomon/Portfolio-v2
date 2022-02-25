@@ -1,7 +1,23 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/node-apis/
- */
+const crypto = require(`crypto`)
 
-// You can delete this file if you're not using it
+const digest = data => {
+  return crypto.createHash(`md5`).update(JSON.stringify(data)).digest(`hex`)
+}
+
+exports.onCreateNode = ({ node, actions }) => {
+  const { createNode } = actions
+  if (node.internal.type === "StrapiBlogArticle") {
+    createNode({
+      ...node,
+      id: node.id + "-markdown",
+      parent: node.id,
+      children: [],
+      internal: {
+        type: "Article",
+        mediaType: "text/markdown",
+        content: node.content,
+        contentDigest: digest(node),
+      },
+    })
+  }
+}

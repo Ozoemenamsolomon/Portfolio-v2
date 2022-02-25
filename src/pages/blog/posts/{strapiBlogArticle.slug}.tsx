@@ -1,15 +1,10 @@
 import { graphql, Link, PageProps } from "gatsby"
 import React from "react"
-import ReactMarkdown from "react-markdown"
 import styled from "styled-components"
 import BlogCard, { BlogPostCard } from "../../../components/BlogCard"
 import { StyledKBD } from "../../../components/Footer"
 import Layout from "../../../components/layout"
 import Container from "../../../components/MainWrapper"
-import {
-  H2WithContentId,
-  SyntaxHiglightedCode,
-} from "../../../components/MarkdownMods"
 import { SOOHint } from "../../../components/Navigation"
 import { markdownStyle } from "../../../components/styled"
 
@@ -17,12 +12,16 @@ interface BlogPostProps {
   strapiBlogArticle: {
     title: string
     readDuration: number
-    content: string
     img: {
       url: string
     }
     published_at: string
     excerpt: string
+  }
+  article: {
+    childMarkdownRemark: {
+      html: string
+    }
   }
   allStrapiBlogArticle: {
     nodes: BlogPostCard[]
@@ -37,8 +36,10 @@ const BlogPost: React.FC<PageProps<BlogPostProps>> = ({
       img: { url: imgURL },
       published_at,
       readDuration,
-      content,
       excerpt,
+    },
+    article: {
+      childMarkdownRemark: { html: content },
     },
     allStrapiBlogArticle: { nodes: otherBlogPosts },
   },
@@ -60,16 +61,10 @@ const BlogPost: React.FC<PageProps<BlogPostProps>> = ({
             Published: {new Date(published_at).toLocaleDateString()} &nbsp;
             &#8226; &nbsp; Read time: {readDuration}min{readDuration > 1 && "s"}
           </SOOHint>
-          <MarkdownContainer className="process-text">
-            <ReactMarkdown
-              components={{
-                code: SyntaxHiglightedCode,
-                h2: H2WithContentId,
-              }}
-            >
-              {content}
-            </ReactMarkdown>
-          </MarkdownContainer>
+          <MarkdownContainer
+            dangerouslySetInnerHTML={{ __html: content }}
+            className="process-text"
+          ></MarkdownContainer>
           <ReturnLinkContainer>
             <Link to="/blog/">&larr; Back to blogs</Link>
           </ReturnLinkContainer>
@@ -91,11 +86,15 @@ export const query = graphql`
       title
       readDuration
       excerpt
-      content
       img {
         url
       }
       published_at
+    }
+    article(slug: { eq: $slug }) {
+      childMarkdownRemark {
+        html
+      }
     }
     allStrapiBlogArticle(
       filter: { id: { ne: $id }, slug: { ne: $slug }, locale: { eq: "en" } }
