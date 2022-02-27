@@ -36,11 +36,6 @@ const Header: React.FC = () => {
   )
 }
 
-/* <div className="logo logo-de">
-<Link to="#home_de">
-  <h1>Solozo</h1>
-</Link>
-</div>{" "} */
 export default Header
 
 Header.defaultProps = {

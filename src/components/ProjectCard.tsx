@@ -1,3 +1,4 @@
+import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import { StyledKBD } from "./Footer"
@@ -14,6 +15,8 @@ export interface ProjectProp {
     backgroundColour: string
   }[]
   excerpt: string
+  slug: string
+  description?: string
 }
 interface CardType {
   project: ProjectProp
@@ -27,15 +30,19 @@ const ProjectCard: React.FC<CardType> = ({
     img: { url: imgURL },
     techstacks,
     excerpt,
+    slug,
+    description,
   },
 }) => {
+  const showReadMore = description && description !== excerpt
+
   return (
     <CardDiv>
       <CardTop>
         <a
-          href={imgURL}
+          href={projectUrl}
           style={{ cursor: "zoom-in" }}
-          title="view image in new tab"
+          title="view live project"
           target="_blank"
           rel="nofollow noopener noreferrer"
         >
@@ -62,7 +69,10 @@ const ProjectCard: React.FC<CardType> = ({
       <CardBottom>
         <CardBottomContent>
           <CardTitleH3>{title}</CardTitleH3>
-          <CardExcerpt>{excerpt}</CardExcerpt>
+          <CardExcerpt>
+            {excerpt}{" "}
+            {showReadMore && <Link to={`/works/${slug}`}>Read more</Link>}
+          </CardExcerpt>
 
           <CTAs>
             <a

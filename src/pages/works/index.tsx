@@ -58,6 +58,8 @@ export const query = graphql`
           backgroundColour
         }
         excerpt
+        slug
+        description
       }
     }
   }
@@ -71,6 +73,11 @@ const ProjectCardSection = styled.section`
   margin: 2rem auto;
   justify-content: space-around;
 
+  @media (min-width: 600px) {
+    & {
+      --max-card-size: 350px;
+    }
+  }
   @media (min-width: 2000px) {
     & {
       --max-card-size: 550px;

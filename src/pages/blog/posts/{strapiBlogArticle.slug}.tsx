@@ -64,7 +64,7 @@ const BlogPost: React.FC<PageProps<BlogPostProps>> = ({
           <MarkdownContainer
             dangerouslySetInnerHTML={{ __html: content }}
             className="process-text"
-          ></MarkdownContainer>
+          />
           <ReturnLinkContainer>
             <Link to="/blog/">&larr; Back to blogs</Link>
           </ReturnLinkContainer>
@@ -138,11 +138,13 @@ const ReturnLinkContainer = styled(StyledKBD)`
 `
 
 const MarkdownContainer = styled.div`
-  margin-top: 1rem;
+  margin: 1rem 0;
   & * {
     margin: revert;
     padding: revert;
   }
   ${markdownStyle}
 `
-const OtherBlogPostsSection = styled.section``
+const OtherBlogPostsSection = styled.section`
+  margin: 1rem 0;
+`

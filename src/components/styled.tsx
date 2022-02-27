@@ -91,6 +91,7 @@ export const markdownStyle = css`
   .modest-p {
     font-size: 1rem;
     margin-bottom: 1.3rem;
+    margin-top: 0.2rem;
   }
   h1,
   .modest-h1,
@@ -159,9 +160,8 @@ export const markdownStyle = css`
   h2,
   h3 {
     border-bottom: 2px solid var(--text-colour);
-    margin-bottom: 1.15rem;
+    margin-bottom: 0.1rem;
     font-weight: bolder;
-    /* padding-bottom: 0.5rem; */
   }
   blockquote {
     border-left: 8px solid var(--text-colour);

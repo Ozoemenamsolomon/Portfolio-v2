@@ -79,6 +79,7 @@ const FooterHintContainer = styled.div`
 const FooterP = styled.p`
   text-align: center;
   margin-bottom: 0;
+  z-index: 2;
 `
 
 const FooterNote = styled(SOOHint)`
