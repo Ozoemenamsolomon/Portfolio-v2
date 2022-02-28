@@ -167,4 +167,12 @@ export const markdownStyle = css`
     border-left: 8px solid var(--text-colour);
     padding: 1rem;
   }
+  table {
+    display: grid;
+    margin-bottom: 1.3rem;
+    margin-top: 0.2rem;
+    & > * {
+      border: 1px solid #dddfe1;
+    }
+  }
 `
