@@ -41,7 +41,6 @@ const ProjectCard: React.FC<CardType> = ({
       <CardTop>
         <a
           href={projectUrl}
-          style={{ cursor: "zoom-in" }}
           title="view live project"
           target="_blank"
           rel="nofollow noopener noreferrer"
@@ -56,12 +55,12 @@ const ProjectCard: React.FC<CardType> = ({
             <StyledKBD
               key={id}
               style={{
-                background: backgroundColour,
+                background: "var(--firstbg)",
                 fontSize: "small",
-                color: "var(--btn-colour)",
+                borderLeft: `4px solid ${backgroundColour}`,
               }}
             >
-              {"#" + name}
+              {"#" + name.toLowerCase().replace(/\s/g, "_")}
             </StyledKBD>
           ))}
         </TechTags>
@@ -146,14 +145,6 @@ const Thumbnail = styled.img`
     transition-duration: 3s;
   }
 `
-// const CardTitle = styled.div`
-//   height: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: flex-end;
-//   background: rgba(0, 0, 0, 0.192);
-//   padding: 0.8em;
-// `
 
 const CardTitleH3 = styled.h3`
   text-transform: uppercase;
@@ -190,6 +181,7 @@ const TechTags = styled.div`
   padding: 0.8rem;
   position: absolute;
   isolation: isolate;
+  justify-content: flex-end;
 
   &,
   &::before {

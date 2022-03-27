@@ -1,10 +1,3 @@
-/**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
-
 import * as React from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
@@ -35,6 +28,9 @@ const Seo: React.FC<SeoProps> = ({ description, lang, meta, title }) => {
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
 
+  const url = site.siteMetadata?.baseURL
+  const ogImage = `${site.siteMetadata.baseURL}/og-image.jpg`
+
   return (
     <Helmet
       htmlAttributes={{
@@ -48,12 +44,20 @@ const Seo: React.FC<SeoProps> = ({ description, lang, meta, title }) => {
           content: metaDescription,
         },
         {
+          name: `title`,
+          content: title,
+        },
+        {
+          name: `image`,
+          content: ogImage,
+        },
+        {
           property: `og:title`,
           content: title,
         },
         {
           property: `og:url`,
-          content: site.siteMetadata?.baseURL,
+          content: url,
         },
         {
           property: `og:description`,
@@ -65,7 +69,7 @@ const Seo: React.FC<SeoProps> = ({ description, lang, meta, title }) => {
         },
         {
           property: "og:image",
-          content: `${site.siteMetadata.baseURL}/og-image.jpg`,
+          content: ogImage,
         },
         {
           name: `twitter:card`,
@@ -82,6 +86,14 @@ const Seo: React.FC<SeoProps> = ({ description, lang, meta, title }) => {
         {
           name: `twitter:description`,
           content: metaDescription,
+        },
+        {
+          name: `twitter:url`,
+          content: url,
+        },
+        {
+          name: `twitter:image`,
+          content: ogImage,
         },
       ].concat((meta = []))}
     />

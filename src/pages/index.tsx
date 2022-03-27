@@ -26,7 +26,7 @@ const Index: React.FC<PageProps<IndexProps>> = ({ location }) => {
               I'm Solomon.
             </h1>
             <h2>Software Developer</h2>
-            <Link state={{ from: "home_hero" }} to="/works">
+            <Link state={{ from: "home_hero" }} to="/works/">
               <SooBtn tabIndex={-1}>View my portfolio</SooBtn>
             </Link>
           </div>
