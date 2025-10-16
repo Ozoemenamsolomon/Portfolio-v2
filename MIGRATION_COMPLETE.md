@@ -62,10 +62,12 @@ Your portfolio website has been successfully migrated from Gatsby + Strapi to Ne
 
 You need to move your data from Strapi to Supabase. Options:
 
-**Option A: Use the migration script** (Recommended)
-1. Edit `scripts/migrate-strapi-to-supabase.js`
+**Option A: Use the migration script template**
+1. Review `scripts/migrate-strapi-to-supabase.js` (it's a template)
 2. Update the `STRAPI_API_URL` with your Strapi instance
-3. Run: `node scripts/migrate-strapi-to-supabase.js`
+3. Customize the data transformation logic for your schema
+4. Run: `node scripts/migrate-strapi-to-supabase.js`
+5. Note: You'll need Node.js 18+ or install node-fetch
 
 **Option B: Manual migration**
 1. Export data from Strapi

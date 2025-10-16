@@ -113,9 +113,9 @@ Example using Supabase Dashboard:
 **A:** The contact form UI is built, but you need to implement the backend:
 
 Options:
-1. **Formspree/EmailJS** - Add NEXT_PUBLIC_CONTACT_FORM_ENDPOINT to env vars
+1. **Formspree/EmailJS** - Add `NEXT_PUBLIC_CONTACT_FORM_ENDPOINT` to .env.local and update the form submission logic in `src/app/contact/page.tsx`
 2. **Supabase Edge Function** - Create a function to send emails
-3. **Netlify Forms** - Use Netlify's built-in form handling
+3. **Netlify Forms** - Use Netlify's built-in form handling (recommended for simplicity)
 4. **API Route** - Create an API route in Next.js with nodemailer
 
 Example for Netlify Forms - update the form in `src/app/contact/page.tsx`:
