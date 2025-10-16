@@ -1,206 +1,79 @@
-import { Link } from "gatsby"
-import React from "react"
-import styled from "styled-components"
-import { StyledKBD } from "./Footer"
-import { SooBtn } from "./Index"
-import { CodeSVG, ViewSVG } from "./SVGs"
+import Link from 'next/link'
+import Image from 'next/image'
 
-export interface ProjectProp {
-  codeUrl: string
-  projectUrl: string
-  title: string
-  img: { url: string }
-  techstacks: {
-    name: string
-    backgroundColour: string
-  }[]
-  excerpt: string
-  slug: string
-  description?: string
-}
-interface CardType {
-  project: ProjectProp
+interface TechStack {
+  id: string
+  name: string
+  background_colour?: string | null
 }
 
-const ProjectCard: React.FC<CardType> = ({
+interface ProjectCardProps {
   project: {
-    codeUrl,
-    projectUrl,
-    title,
-    img: { url: imgURL },
-    techstacks,
-    excerpt,
-    slug,
-    description,
-  },
-}) => {
-  const showReadMore = description && description !== excerpt
+    title: string
+    slug: string
+    excerpt: string | null
+    img_url: string | null
+    code_url?: string | null
+    project_url?: string | null
+    techstacks?: any
+  }
+}
+
+export default function ProjectCard({ project }: ProjectCardProps) {
+  const { title, slug, excerpt, img_url, code_url, project_url, techstacks } = project
+
+  // Extract techstacks array from the nested structure
+  const techStackList = techstacks?.map((ts: any) => ts.techstack || ts) || []
 
   return (
-    <CardDiv>
-      <CardTop>
-        <a
-          href={projectUrl}
-          title="view live project"
-          target="_blank"
-          rel="nofollow noopener noreferrer"
-        >
-          <Thumbnail
-            src={imgURL}
-            alt={`Photo of ${title.toLowerCase()} project`}
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+      {img_url && (
+        <div className="relative h-48 w-full">
+          <Image
+            src={img_url}
+            alt={title}
+            fill
+            className="object-cover"
           />
-        </a>
-        <TechTags className="tech-tag">
-          {techstacks.map(({ name, backgroundColour }, id) => (
-            <StyledKBD
-              key={id}
-              style={{
-                background: "var(--firstbg)",
-                fontSize: "small",
-                borderLeft: `4px solid ${backgroundColour}`,
-              }}
-            >
-              {"#" + name.toLowerCase().replace(/\s/g, "_")}
-            </StyledKBD>
-          ))}
-        </TechTags>
-      </CardTop>
-      <CardBottom>
-        <CardBottomContent>
-          <CardTitleH3>{title}</CardTitleH3>
-          <CardExcerpt>
-            {excerpt}{" "}
-            {showReadMore && <Link to={`/works/${slug}`}>Read more</Link>}
-          </CardExcerpt>
+        </div>
+      )}
+      <div className="p-6">
+        <h3 className="text-xl font-bold mb-2">{title}</h3>
+        {excerpt && <p className="text-gray-600 dark:text-gray-300 mb-4">{excerpt}</p>}
+        
+        {techStackList.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-4">
+            {techStackList.map((tech: TechStack) => (
+              <span
+                key={tech.id}
+                className="px-3 py-1 text-sm rounded-full"
+                style={{
+                  backgroundColor: tech.background_colour || '#3f73a7',
+                  color: '#ffffff',
+                }}
+              >
+                {tech.name}
+              </span>
+            ))}
+          </div>
+        )}
 
-          <CTAs>
+        <div className="flex gap-4">
+          <Link href={`/works/${slug}`} className="soo-btn flex-1 text-center">
+            View Details
+          </Link>
+          {code_url && (
             <a
-              href={codeUrl}
-              title="View source code"
+              href={code_url}
               target="_blank"
-              rel="nofollow noopener noreferrer"
+              rel="noopener noreferrer"
+              className="px-4 py-2 border-2 border-soo-blue text-soo-blue rounded-md hover:bg-soo-blue hover:text-white transition-colors text-center"
             >
-              <SooBtn
-                tabIndex={-1}
-                title="View source code"
-                style={{
-                  padding: "0.4rem",
-                  display: "flex",
-                  marginTop: "0",
-                }}
-              >
-                <CodeSVG />
-              </SooBtn>
+              Code
             </a>
-            <a
-              target="_blank"
-              title="View live demo"
-              rel="nofollow noopener noreferrer"
-              href={projectUrl}
-            >
-              <SooBtn
-                tabIndex={-1}
-                title="View live demo"
-                style={{
-                  padding: "0.4rem",
-                  display: "flex",
-                  marginTop: "0",
-                }}
-              >
-                <ViewSVG />
-              </SooBtn>
-            </a>
-          </CTAs>
-        </CardBottomContent>
-      </CardBottom>
-    </CardDiv>
+          )}
+        </div>
+      </div>
+    </div>
   )
 }
-
-export default ProjectCard
-
-const CardDiv = styled.div`
-  background-color: var(--firstbg);
-  color: var(--text-colour);
-
-  box-shadow: 3px 6px 7px rgb(0 0 0 / 20%);
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-`
-const CardTop = styled.div`
-  border-radius: 0.6rem;
-  aspect-ratio: 16/9;
-  position: relative;
-  max-width: 100%;
-  overflow: hidden;
-`
-
-const Thumbnail = styled.img`
-  width: 100%;
-  transition: transform 0.5s ease-out;
-  &:hover {
-    transform: scale(1.1);
-    transition-duration: 3s;
-  }
-`
-
-const CardTitleH3 = styled.h3`
-  text-transform: uppercase;
-  max-width: 100%;
-`
-
-const CardExcerpt = styled.p`
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 5;
-  display: -webkit-box;
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical;
-  max-height: 13ch;
-`
-
-const CardBottom = styled.div`
-  padding: 0.8em;
-  flex-grow: 1;
-`
-
-const CardBottomContent = styled.div`
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 0.5em 0em;
-`
-const TechTags = styled.div`
-  display: flex;
-  gap: 0.41rem;
-  flex-wrap: wrap;
-  padding: 0.8rem;
-  position: absolute;
-  isolation: isolate;
-  justify-content: flex-end;
-
-  &,
-  &::before {
-    top: 0;
-    right: 0;
-  }
-  &::before {
-    height: 100%;
-    z-index: -1;
-    width: 100%;
-    content: " ";
-    position: absolute;
-    filter: blur(20px);
-    border-radius: 1rem;
-    background-color: #0000005c;
-  }
-`
-
-const CTAs = styled.div`
-  display: flex;
-  justify-content: space-between;
-`

@@ -1,58 +1,49 @@
-import * as React from "react"
-import styled from "styled-components"
-import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
-import Navigation from "./Navigation"
-import Container from "./MainWrapper"
-// import { useContext } from "react"
-// import { LanguageContext, ThemeContext } from "../context"
+'use client'
 
-const Header: React.FC = () => {
-  // const languageChoice = useContext(LanguageContext)
-  // // console.log(languageChoice)
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
-  // const themeChoice = useContext(ThemeContext)
-  // console.log("theme", themeChoice)
+export default function Header() {
+  const pathname = usePathname()
+
+  const navLinks = [
+    { href: '/', label: 'Home' },
+    { href: '/works', label: 'Portfolio' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/about', label: 'About' },
+    { href: '/contact', label: 'Contact' },
+  ]
+
+  const isActive = (href: string) => {
+    if (href === '/') {
+      return pathname === '/'
+    }
+    return pathname.startsWith(href)
+  }
+
   return (
-    <MyHeader>
-      <Container style={{ display: `flex`, justifyContent: `space-between` }}>
-        <Logo>
-          <Link to="/">
-            <StaticImage
-              width={1800}
-              loading="eager"
-              alt="Solozo's Logo"
-              placeholder="tracedSVG"
-              src="../images/soo-logo/soo_logo-blue.svg"
-              layout="constrained"
-            />
+    <header className="bg-gradient-to-r from-soo-blue to-soo-dark-blue text-white shadow-lg">
+      <div className="container-custom">
+        <nav className="flex items-center justify-between py-4">
+          <Link href="/" className="text-2xl font-bold hover:opacity-90 transition-opacity">
+            SOO
           </Link>
-        </Logo>
-        <Nav>
-          <Navigation userLang="en" />
-        </Nav>{" "}
-      </Container>
-    </MyHeader>
+          <ul className="flex gap-6">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`hover:opacity-80 transition-opacity ${
+                    isActive(link.href) ? 'border-b-2 border-white' : ''
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </header>
   )
 }
-
-export default Header
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
-
-const MyHeader = styled.header`
-  background-color: var(--firstbg);
-  display: flex;
-  justify-content: center;
-  z-index: 5;
-`
-
-const Logo = styled.div`
-  min-width: 4rem;
-  width: 5rem;
-  padding: 0.5rem 0;
-`
-
-const Nav = styled.nav``
