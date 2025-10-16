@@ -1,64 +1,50 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "portfolio-nextjs",
+  "version": "2.0.0",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
+  "description": "Solomon Obinna Ozoemenam's portfolio website built with Next.js, Supabase, and Tailwind CSS",
   "author": "Solomon Obinna Ozoemenam <ozoemenamsolomon@yahoo.com>",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
+  },
   "dependencies": {
-    "@ethersproject/providers": "^5.5.1",
-    "@heroicons/react": "^1.0.3",
-    "@reach/skip-nav": "^0.16.0",
-    "@styled-icons/bootstrap": "^10.34.0",
-    "@types/react": "^17.0.17",
-    "babel-plugin-styled-components": "^1.13.1",
-    "ethers": "^5.5.2",
-    "gatsby": "^4.4.0",
-    "gatsby-plugin-google-gtag": "^4.4.0",
-    "gatsby-plugin-image": "^2.4.0",
-    "gatsby-plugin-manifest": "^4.4.0",
-    "gatsby-plugin-offline": "^5.4.0",
-    "gatsby-plugin-react-helmet": "^5.4.0",
-    "gatsby-plugin-sharp": "^4.4.0",
-    "gatsby-plugin-styled-components": "^5.4.0",
-    "gatsby-source-filesystem": "^4.4.0",
-    "gatsby-source-strapi": "^1.0.2",
-    "gatsby-transformer-remark": "^5.8.1",
-    "gatsby-transformer-sharp": "^4.4.0",
-    "node-fetch": "^2.6.1",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0",
-    "react-markdown": "^6.0.3",
-    "react-syntax-highlighter": "^15.4.5",
-    "styled-components": "^5.3.0",
-    "typescript": "^4.3.5"
+    "@heroicons/react": "^2.1.1",
+    "@supabase/supabase-js": "^2.39.3",
+    "next": "^14.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-markdown": "^9.0.1",
+    "react-syntax-highlighter": "^15.5.0",
+    "cloudinary": "^2.0.1"
   },
   "devDependencies": {
-    "@netlify/plugin-gatsby": "^1.0.3",
-    "@types/react-helmet": "^6.1.2",
-    "@types/react-syntax-highlighter": "^13.5.2",
-    "@types/styled-components": "^5.1.12",
-    "prettier": "2.2.1"
+    "@netlify/plugin-nextjs": "^5.0.0",
+    "@types/node": "^20.11.5",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "@types/react-syntax-highlighter": "^15.5.11",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.1.0",
+    "postcss": "^8.4.33",
+    "prettier": "^3.2.4",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3"
   },
   "keywords": [
-    "gatsby"
+    "nextjs",
+    "portfolio",
+    "supabase",
+    "tailwindcss"
   ],
   "license": "0BSD",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/Ozoemenamsolomon/Portfolio-v2"
   }
 }

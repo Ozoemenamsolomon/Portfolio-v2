@@ -1,83 +1,55 @@
-import { Link } from "gatsby"
-import React, { FC } from "react"
-import styled from "styled-components"
-import { SOOHint } from "./Navigation"
+import Link from 'next/link'
+import Image from 'next/image'
 
-export type BlogPostCard = {
-  title: string
-  readDuration: number
-  img: {
-    url: string
+interface BlogCardProps {
+  article: {
+    title: string
+    slug: string
+    excerpt: string | null
+    img_url: string | null
+    read_duration: number
+    published_at: string
   }
-  slug: string
-  excerpt: string
 }
 
-const BlogCard: FC<{
-  blogPost: BlogPostCard
-}> = ({
-  blogPost: {
-    title,
-    readDuration,
-    slug,
-    img: { url: imgURL },
-    excerpt,
-  },
-}) => {
+export default function BlogCard({ article }: BlogCardProps) {
+  const { title, slug, excerpt, img_url, read_duration, published_at } = article
+
+  const formattedDate = new Date(published_at).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+
   return (
-    <BlogContainer className="blog-container">
-      <Link
-        style={{ display: "flex", alignSelf: "stretch" }}
-        to={`/blog/posts/${slug}`}
-      >
-        <BlogCardImage src={imgURL} alt="Post thumbnail" />
-      </Link>
-      <div style={{ margin: ".5rem" }}>
-        <Link to={`/blog/posts/${slug}`}>
-          <h2>{title}</h2>
-        </Link>
-        <SOOHint>
-          Read time: {readDuration}min{readDuration > 1 && "s"}
-        </SOOHint>
-        <Excerpt>{excerpt}</Excerpt>
-      </div>
-    </BlogContainer>
+    <Link href={`/blog/${slug}`}>
+      <article className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer">
+        {img_url && (
+          <div className="relative h-48 w-full">
+            <Image
+              src={img_url}
+              alt={title}
+              fill
+              className="object-cover"
+            />
+          </div>
+        )}
+        <div className="p-6">
+          <h3 className="text-xl font-bold mb-2 hover:text-soo-blue transition-colors">
+            {title}
+          </h3>
+          {excerpt && (
+            <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+              {excerpt}
+            </p>
+          )}
+          <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+            <span>{formattedDate}</span>
+            <span>•</span>
+            <span>{read_duration} min read</span>
+          </div>
+        </div>
+      </article>
+    </Link>
   )
 }
-
-export default BlogCard
-
-const BlogContainer = styled.div`
-  border-bottom: 2px solid var(--text-colour);
-  margin-bottom: 1rem;
-  p {
-    margin-bottom: 0;
-  }
-  &:last-child {
-    border-bottom: none;
-  }
-  @media (min-width: 600px) {
-    display: flex;
-    align-items: center;
-    & img,
-    & a {
-      min-height: 100%;
-    }
-  }
-`
-const BlogCardImage = styled.img`
-  max-width: 100%;
-  padding-block: 12px;
-  height: 100%;
-  @media (min-width: 600px) {
-    max-width: 250px;
-    object-fit: cover;
-  }
-`
-const Excerpt = styled.p`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-`

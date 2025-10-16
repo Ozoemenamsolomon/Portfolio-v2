@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --text-colour: #333333;
+  --light-blue: #5a8fc2;
+  --soo-blue: #3f73a7;
+  --dark-blue: #233e63;
+  --btn-colour: #ffffff;
+  --soo-gradient: linear-gradient(135deg, #3f73a7 0%, #233e63 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-colour: #e5e5e5;
+  }
+}
+
+body {
+  color: var(--text-colour);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  h1 {
+    @apply text-4xl font-bold mb-4;
+  }
+  h2 {
+    @apply text-3xl font-bold mb-3;
+  }
+  h3 {
+    @apply text-2xl font-semibold mb-2;
+  }
+  p {
+    @apply mb-4 leading-relaxed;
+  }
+  a {
+    @apply text-soo-light-blue hover:text-soo-blue transition-colors;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .soo-btn {
+    @apply inline-block px-6 py-3 bg-gradient-to-br from-soo-blue to-soo-dark-blue text-btn-colour font-semibold rounded-md hover:opacity-90 transition-opacity;
+  }
+}
