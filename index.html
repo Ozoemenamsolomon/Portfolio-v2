@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Solomon Obinna Ozoemenam | DevOps & Automation Engineer</title>
+		<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+		<style>
+			@theme {
+			            --color-dark-bg: #030712;
+			            --color-accent:#22d3ee;
+			            --animate-blink: blink 1s step-end infinite
+
+			            @keyframes blink {
+			                50%{
+			                    opacity:0;
+			                }
+			            }
+			}
+		</style>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
+			rel="stylesheet" />
+
+		<style>
+			/* Custom styles for scrollbar and focus states */
+			::-webkit-scrollbar { width: 8px; }
+			::-webkit-scrollbar-track { background: #1f2937; }
+			::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+			::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+
+			.focus-visible:focus-visible {
+			    outline: 2px solid #22d3ee;
+			    outline-offset: 2px;
+			    border-radius: 4px;
+			}
+		</style>
+	</head>
+	<body
+		class="bg-dark-bg text-gray-300 font-mono selection:bg-accent selection:text-dark-bg">
+		<!-- Language Switcher -->
+		<header
+			class="fixed top-0 w-full bg-dark-bg/90 backdrop-blur-sm z-50 border-b border-gray-800">
+			<nav
+				class="container mx-auto px-6 py-4 flex justify-end items-center space-x-4">
+				<button
+					id="lang-en"
+					class="text-sm px-3 py-1 rounded transition-colors hover:bg-gray-800 focus-visible"
+					aria-label="Switch to English">
+					EN
+				</button>
+				<button
+					id="lang-de"
+					class="text-sm px-3 py-1 rounded transition-colors hover:bg-gray-800 focus-visible"
+					aria-label="Zu Deutsch wechseln">
+					DE
+				</button>
+			</nav>
+		</header>
+
+		<main class="pt-16">
+			<!-- Hero Section -->
+			<section
+				id="hero"
+				class="min-h-screen flex items-center justify-center text-center px-6">
+				<div>
+					<p
+						class="text-accent text-sm md:text-base uppercase tracking-widest mb-2"
+						data-i18n="hero.greeting">
+						Hello, World. I'm
+					</p>
+					<h1 class="text-5xl md:text-7xl font-bold text-white mb-4">
+						Solomon Obinna Ozoemenam.
+					</h1>
+					<p
+						class="text-xl md:text-3xl text-gray-400 mb-8"
+						data-i18n="hero.title">
+						I build resilient systems.
+					</p>
+					<p
+						class="text-lg md:text-xl max-w-2xl mx-auto"
+						data-i18n="hero.subtitle">
+						A Frankfurt-based Computer Scientist specializing in DevOps and
+						automation. I face challenges head-on and learn fast.
+					</p>
+					<div class="mt-8">
+						<a
+							href="#contact"
+							class="inline-block bg-accent text-dark-bg font-bold px-8 py-3 rounded hover:bg-white transition-colors focus-visible"
+							data-i18n="hero.cta"
+							>Challenge Accepted</a
+						>
+					</div>
+				</div>
+			</section>
+
+			<!-- About Section -->
+			<section id="about" class="py-20 px-6 border-t border-gray-800">
+				<div class="container mx-auto max-w-4xl">
+					<h2
+						class="text-3xl md:text-4xl font-bold text-white mb-6"
+						data-i18n="about.title">
+						About Me
+					</h2>
+					<p class="text-lg leading-relaxed mb-4" data-i18n="about.text1">
+						My journey began with a Computer Science degree in the tech hub of
+						Frankfurt, where I developed a deep appreciation for elegant code
+						and robust architecture. I don't just write scripts; I engineer
+						solutions.
+					</p>
+					<p class="text-lg leading-relaxed" data-i18n="about.text2">
+						I am passionate about the open web and believe in building software
+						that is not only powerful and efficient but also accessible to
+						everyone. Automating myself out of a job is the goal, so I can move
+						on to the next bigger problem.
+					</p>
+				</div>
+			</section>
+
+			<!-- Skills Section -->
+			<section id="skills" class="py-20 px-6 bg-gray-900/50">
+				<div class="container mx-auto max-w-6xl">
+					<h2
+						class="text-3xl md:text-4xl font-bold text-white mb-12 text-center"
+						data-i18n="skills.title">
+						Core Arsenal
+					</h2>
+					<div
+						class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 text-center">
+						<!-- Skill items -->
+						<div class="group">
+							<p
+								class="text-2xl mb-2 group-hover:text-accent transition-colors">
+								⚙️
+							</p>
+							<p class="text-sm">DevOps</p>
+						</div>
+						<div class="group">
+							<p
+								class="text-2xl mb-2 group-hover:text-accent transition-colors">
+								🤖
+							</p>
+							<p class="text-sm">Automation</p>
+						</div>
+						<div class="group">
+							<p
+								class="text-2xl mb-2 group-hover:text-accent transition-colors">
+								🐳
+							</p>
+							<p class="text-sm">Docker</p>
+						</div>
+						<div class="group">
+							<p
+								class="text-2xl mb-2 group-hover:text-accent transition-colors">
+								☸️
+							</p>
+							<p class="text-sm">Kubernetes</p>
+						</div>
+						<div class="group">
+							<p
+								class="text-2xl mb-2 group-hover:text-accent transition-colors">
+								🔧
+							</p>
+							<p class="text-sm">CI/CD</p>
+						</div>
+						<div class="group">
+							<p
+								class="text-2xl mb-2 group-hover:text-accent transition-colors">
+								📜
+							</p>
+							<p class="text-sm">Terraform</p>
+						</div>
+						<div class="group">
+							<p
+								class="text-2xl mb-2 group-hover:text-accent transition-colors">
+								🐧
+							</p>
+							<p class="text-sm">Linux</p>
+						</div>
+						<div class="group">
+							<p
+								class="text-2xl mb-2 group-hover:text-accent transition-colors">
+								🔒
+							</p>
+							<p class="text-sm">Security</p>
+						</div>
+						<div class="group">
+							<p
+								class="text-2xl mb-2 group-hover:text-accent transition-colors">
+								📊
+							</p>
+							<p class="text-sm">Monitoring</p>
+						</div>
+						<div class="group">
+							<p
+								class="text-2xl mb-2 group-hover:text-accent transition-colors">
+								🐍
+							</p>
+							<p class="text-sm">Python</p>
+						</div>
+						<div class="group">
+							<p
+								class="text-2xl mb-2 group-hover:text-accent transition-colors">
+								🟨
+							</p>
+							<p class="text-sm">JS/TS</p>
+						</div>
+						<div class="group">
+							<p
+								class="text-2xl mb-2 group-hover:text-accent transition-colors">
+								🌐
+							</p>
+							<p class="text-sm">a11y</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Philosophy Section -->
+			<section id="philosophy" class="py-20 px-6">
+				<div class="container mx-auto max-w-4xl text-center">
+					<h2
+						class="text-3xl md:text-4xl font-bold text-white mb-6"
+						data-i18n="philosophy.title">
+						My Philosophy
+					</h2>
+					<p class="text-lg md:text-xl text-gray-400 leading-relaxed">
+						<span class="text-accent font-bold"
+							>"Automate the boring stuff. Master the complex stuff. Own the
+							result."</span
+						>
+					</p>
+				</div>
+			</section>
+
+			<!-- Contact Section -->
+			<section id="contact" class="py-20 px-6 border-t border-gray-800">
+				<div class="container mx-auto max-w-4xl text-center">
+					<h2
+						class="text-3xl md:text-4xl font-bold text-white mb-6"
+						data-i18n="contact.title">
+						Let's Connect
+					</h2>
+					<p class="text-lg mb-8" data-i18n="contact.text">
+						Have a challenging project in mind? Or just want to talk about web
+						standards and the future of DevOps? My inbox is open.
+					</p>
+					<a
+						href="mailto:ozoemenamsolomon@yahoo.com"
+						class="inline-block bg-transparent border-2 border-accent text-accent font-bold px-8 py-3 rounded hover:bg-accent hover:text-dark-bg transition-all focus-visible">
+						<span data-i18n="contact.email">Email Me</span>
+					</a>
+				</div>
+			</section>
+		</main>
+
+		<footer
+			class="py-8 text-center text-gray-500 text-sm border-t border-gray-800">
+			<p data-i18n="footer.copyright">
+				&copy; 2024 Solomon Obinna Ozoemenam. Built with passion and a keyboard.
+			</p>
+		</footer>
+
+		<script>
+			// i18n translations
+			const translations = {
+				en: {
+					'hero.greeting': "Hello, World. I'm",
+					'hero.title': 'I build resilient systems.',
+					'hero.subtitle':
+						'A Frankfurt-based Computer Scientist specializing in DevOps and automation. I face challenges head-on and learn fast.',
+					'hero.cta': 'Challenge Accepted',
+					'about.title': 'About Me',
+					'about.text1':
+						"My journey began with a Computer Science degree in the tech hub of Frankfurt, where I developed a deep appreciation for elegant code and robust architecture. I don't just write scripts; I engineer solutions.",
+					'about.text2':
+						'I am passionate about the open web and believe in building software that is not only powerful and efficient but also accessible to everyone. Automating myself out of a job is the goal, so I can move on to the next bigger problem.',
+					'skills.title': 'Core Arsenal',
+					'philosophy.title': 'My Philosophy',
+					'contact.title': "Let's Connect",
+					'contact.text':
+						'Have a challenging project in mind? Or just want to talk about web standards and the future of DevOps? My inbox is open.',
+					'contact.email': 'Email Me',
+					'footer.copyright':
+						'© 2024 Solomon Obinna Ozoemenam. Built with passion and a keyboard.',
+				},
+				de: {
+					'hero.greeting': 'Hallo, Welt. Ich bin',
+					'hero.title': 'Ich baue resiliente Systeme.',
+					'hero.subtitle':
+						'Ein Informatiker aus Frankfurt, spezialisiert auf DevOps und Automatisierung. Ich stelle mich Herausforderungen und lerne schnell.',
+					'hero.cta': 'Herausforderung Angenommen',
+					'about.title': 'Über Mich',
+					'about.text1':
+						'Meine Reise begann mit einem Informatikstudium im Tech-Hub Frankfurt, wo ich eine tiefe Wertschätzung für eleganten Code und robuste Architektur entwickelte. Ich schreibe nicht nur Skripte; ich konzipiere Lösungen.',
+					'about.text2':
+						'Ich brenne für ein offenes Web und glaube daran, Software zu bauen, die nicht nur leistungsstark und effizient, sondern auch für jeden zugänglich ist. Das Ziel ist, mich selbst aus dem Job zu automatisieren, um mich der nächsten, größeren Herausforderung zu widmen.',
+					'skills.title': 'Kern-Arsenal',
+					'philosophy.title': 'Meine Philosophie',
+					'contact.title': 'Lass Uns Reden',
+					'contact.text':
+						'Hast du ein herausforderndes Projekt im Kopf? Oder möchtest du einfach über Web-Standards und die Zukunft von DevOps sprechen? Mein Posteingang ist offen.',
+					'contact.email': 'E-Mail Schreiben',
+					'footer.copyright':
+						'© 2024 Solomon Obinna Ozoemenam. Gebaut mit Leidenschaft und einer Tastatur.',
+				},
+			};
+
+			const langButtons = document.querySelectorAll('[id^="lang-"]');
+			const htmlEl = document.documentElement;
+			const elementsToTranslate = document.querySelectorAll('[data-i18n]');
+
+			function setLanguage(lang) {
+				localStorage.setItem('preferred-lang', lang);
+				htmlEl.setAttribute('lang', lang);
+
+				elementsToTranslate.forEach((el) => {
+					const key = el.getAttribute('data-i18n');
+					if (translations[lang][key]) {
+						el.textContent = translations[lang][key];
+					}
+				});
+
+				// Update button styles
+				langButtons.forEach((btn) => {
+					if (btn.id === `lang-${lang}`) {
+						btn.classList.add('bg-accent', 'text-dark-bg');
+						btn.classList.remove('text-gray-400');
+					} else {
+						btn.classList.remove('bg-accent', 'text-dark-bg');
+						btn.classList.add('text-gray-400');
+					}
+				});
+			}
+
+			// Event listeners for language switcher
+			langButtons.forEach((btn) => {
+				btn.addEventListener('click', () => {
+					const lang = btn.id.split('-')[1];
+					setLanguage(lang);
+				});
+			});
+
+			// Set initial language from localStorage or default to 'en'
+			const savedLang = localStorage.getItem('preferred-lang') || 'en';
+			setLanguage(savedLang);
+
+			// Smooth scrolling for anchor links
+			document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+				anchor.addEventListener('click', function (e) {
+					e.preventDefault();
+					const target = document.querySelector(this.getAttribute('href'));
+					if (target) {
+						target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
