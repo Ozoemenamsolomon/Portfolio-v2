@@ -37,6 +37,7 @@
 			    outline-offset: 2px;
 			    border-radius: 4px;
 			}
+
 		</style>
 	</head>
 	<body
@@ -86,12 +87,20 @@
 						A Frankfurt-based Computer Scientist specializing in DevOps and
 						automation. I face challenges head-on and learn fast.
 					</p>
-					<div class="mt-8">
+					<div class="mt-8 flex flex-wrap gap-4 justify-center">
 						<a
 							href="#contact"
 							class="inline-block bg-accent text-dark-bg font-bold px-8 py-3 rounded hover:bg-white transition-colors focus-visible"
 							data-i18n="hero.cta"
 							>Challenge Accepted</a
+						>
+						<a
+							href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3pg1YXQcWOZ6lPDAuxfpmvF4aFYW5DLnOu5qRXONzgYG8488VOpU_B0R5ZZvDTVHttagZ9cGm9?gv=true"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-block bg-transparent border-2 border-accent text-accent font-bold px-8 py-3 rounded hover:bg-accent hover:text-dark-bg transition-all focus-visible"
+							data-i18n="hero.bookCta"
+							>Book a Consultation</a
 						>
 					</div>
 				</div>
@@ -236,23 +245,23 @@
 				</div>
 			</section>
 
-			<!-- Contact Section -->
-			<section id="contact" class="py-20 px-6 border-t border-gray-800">
-				<div class="container mx-auto max-w-4xl text-center">
+			<!-- Booking Section -->
+			<section id="booking" class="py-20 px-6 bg-gray-900/50 border-t border-gray-800">
+				<div class="container mx-auto max-w-4xl">
 					<h2
-						class="text-3xl md:text-4xl font-bold text-white mb-6"
-						data-i18n="contact.title">
-						Let's Connect
+						class="text-3xl md:text-4xl font-bold text-white mb-4 text-center"
+						data-i18n="booking.title">
+						Book a Consultation
 					</h2>
-					<p class="text-lg mb-8" data-i18n="contact.text">
-						Have a challenging project in mind? Or just want to talk about web
-						standards and the future of DevOps? My inbox is open.
+					<p class="text-lg text-center mb-10" data-i18n="booking.text">
+						Ready to tackle your next challenge together? Pick a time that works for you.
 					</p>
-					<a
-						href="mailto:ozoemenamsolomon@yahoo.com"
-						class="inline-block bg-transparent border-2 border-accent text-accent font-bold px-8 py-3 rounded hover:bg-accent hover:text-dark-bg transition-all focus-visible">
-						<span data-i18n="contact.email">Email Me</span>
-					</a>
+					<div class="bg-white rounded-lg overflow-hidden">
+						<iframe
+							src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3pg1YXQcWOZ6lPDAuxfpmvF4aFYW5DLnOu5qRXONzgYG8488VOpU_B0R5ZZvDTVHttagZ9cGm9?gv=true"
+							class="w-full h-[600px] md:h-[811px] block"
+							title="Book a Consultation"></iframe>
+					</div>
 				</div>
 			</section>
 		</main>
@@ -273,6 +282,7 @@
 					'hero.subtitle':
 						'A Frankfurt-based Computer Scientist specializing in DevOps and automation. I face challenges head-on and learn fast.',
 					'hero.cta': 'Challenge Accepted',
+					'hero.bookCta': 'Book a Consultation',
 					'about.title': 'About Me',
 					'about.text1':
 						"My journey began with a Computer Science degree in the tech hub of Frankfurt, where I developed a deep appreciation for elegant code and robust architecture. I don't just write scripts; I engineer solutions.",
@@ -280,10 +290,8 @@
 						'I am passionate about the open web and believe in building software that is not only powerful and efficient but also accessible to everyone. Automating myself out of a job is the goal, so I can move on to the next bigger problem.',
 					'skills.title': 'Core Arsenal',
 					'philosophy.title': 'My Philosophy',
-					'contact.title': "Let's Connect",
-					'contact.text':
-						'Have a challenging project in mind? Or just want to talk about web standards and the future of DevOps? My inbox is open.',
-					'contact.email': 'Email Me',
+					'booking.title': 'Book a Consultation',
+					'booking.text': 'Ready to tackle your next challenge together? Pick a time that works for you.',
 					'footer.copyright':
 						'© 2024 Solomon Obinna Ozoemenam. Built with passion and a keyboard.',
 				},
@@ -293,6 +301,7 @@
 					'hero.subtitle':
 						'Ein Informatiker aus Frankfurt, spezialisiert auf DevOps und Automatisierung. Ich stelle mich Herausforderungen und lerne schnell.',
 					'hero.cta': 'Herausforderung Angenommen',
+					'hero.bookCta': 'Beratungsgespräch Buchen',
 					'about.title': 'Über Mich',
 					'about.text1':
 						'Meine Reise begann mit einem Informatikstudium im Tech-Hub Frankfurt, wo ich eine tiefe Wertschätzung für eleganten Code und robuste Architektur entwickelte. Ich schreibe nicht nur Skripte; ich konzipiere Lösungen.',
@@ -300,10 +309,8 @@
 						'Ich brenne für ein offenes Web und glaube daran, Software zu bauen, die nicht nur leistungsstark und effizient, sondern auch für jeden zugänglich ist. Das Ziel ist, mich selbst aus dem Job zu automatisieren, um mich der nächsten, größeren Herausforderung zu widmen.',
 					'skills.title': 'Kern-Arsenal',
 					'philosophy.title': 'Meine Philosophie',
-					'contact.title': 'Lass Uns Reden',
-					'contact.text':
-						'Hast du ein herausforderndes Projekt im Kopf? Oder möchtest du einfach über Web-Standards und die Zukunft von DevOps sprechen? Mein Posteingang ist offen.',
-					'contact.email': 'E-Mail Schreiben',
+					'booking.title': 'Beratungsgespräch Buchen',
+					'booking.text': 'Bereit, die nächste Herausforderung gemeinsam anzugehen? Wähle einen Termin, der dir passt.',
 					'footer.copyright':
 						'© 2024 Solomon Obinna Ozoemenam. Gebaut mit Leidenschaft und einer Tastatur.',
 				},
@@ -359,6 +366,7 @@
 				});
 			});
 		</script>
+
 	</body>
 </html>
 
