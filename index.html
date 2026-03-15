@@ -37,6 +37,15 @@
 			    outline-offset: 2px;
 			    border-radius: 4px;
 			}
+
+			/* Cal.com embed container */
+			#cal-booking-placeholder {
+			    width: 100%;
+			    min-height: 600px;
+			    border-radius: 0.5rem;
+			    overflow: hidden;
+			    border: 1px solid #374151;
+			}
 		</style>
 	</head>
 	<body
@@ -86,12 +95,18 @@
 						A Frankfurt-based Computer Scientist specializing in DevOps and
 						automation. I face challenges head-on and learn fast.
 					</p>
-					<div class="mt-8">
+					<div class="mt-8 flex flex-wrap gap-4 justify-center">
 						<a
 							href="#contact"
 							class="inline-block bg-accent text-dark-bg font-bold px-8 py-3 rounded hover:bg-white transition-colors focus-visible"
 							data-i18n="hero.cta"
 							>Challenge Accepted</a
+						>
+						<a
+							href="#booking"
+							class="inline-block bg-transparent border-2 border-accent text-accent font-bold px-8 py-3 rounded hover:bg-accent hover:text-dark-bg transition-all focus-visible"
+							data-i18n="hero.bookCta"
+							>Book a Consultation</a
 						>
 					</div>
 				</div>
@@ -236,6 +251,32 @@
 				</div>
 			</section>
 
+			<!-- Booking Section -->
+			<section id="booking" class="py-20 px-6 bg-gray-900/50 border-t border-gray-800">
+				<div class="container mx-auto max-w-4xl">
+					<h2
+						class="text-3xl md:text-4xl font-bold text-white mb-4 text-center"
+						data-i18n="booking.title">
+						Book a Consultation
+					</h2>
+					<p class="text-lg text-center mb-10" data-i18n="booking.text">
+						Ready to tackle your next challenge together? Pick a time that works for you.
+					</p>
+					<div id="cal-booking-placeholder"></div>
+					<div class="text-center mt-8">
+						<a
+							id="booking-fallback-link"
+							href="https://cal.com/ozoemenamsolomon/consultation"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-block bg-accent text-dark-bg font-bold px-8 py-3 rounded hover:bg-white transition-colors focus-visible"
+							data-i18n="booking.cta"
+							>Schedule Now</a
+						>
+					</div>
+				</div>
+			</section>
+
 			<!-- Contact Section -->
 			<section id="contact" class="py-20 px-6 border-t border-gray-800">
 				<div class="container mx-auto max-w-4xl text-center">
@@ -273,6 +314,7 @@
 					'hero.subtitle':
 						'A Frankfurt-based Computer Scientist specializing in DevOps and automation. I face challenges head-on and learn fast.',
 					'hero.cta': 'Challenge Accepted',
+					'hero.bookCta': 'Book a Consultation',
 					'about.title': 'About Me',
 					'about.text1':
 						"My journey began with a Computer Science degree in the tech hub of Frankfurt, where I developed a deep appreciation for elegant code and robust architecture. I don't just write scripts; I engineer solutions.",
@@ -280,6 +322,9 @@
 						'I am passionate about the open web and believe in building software that is not only powerful and efficient but also accessible to everyone. Automating myself out of a job is the goal, so I can move on to the next bigger problem.',
 					'skills.title': 'Core Arsenal',
 					'philosophy.title': 'My Philosophy',
+					'booking.title': 'Book a Consultation',
+					'booking.text': 'Ready to tackle your next challenge together? Pick a time that works for you.',
+					'booking.cta': 'Schedule Now',
 					'contact.title': "Let's Connect",
 					'contact.text':
 						'Have a challenging project in mind? Or just want to talk about web standards and the future of DevOps? My inbox is open.',
@@ -293,6 +338,7 @@
 					'hero.subtitle':
 						'Ein Informatiker aus Frankfurt, spezialisiert auf DevOps und Automatisierung. Ich stelle mich Herausforderungen und lerne schnell.',
 					'hero.cta': 'Herausforderung Angenommen',
+					'hero.bookCta': 'Beratungsgespräch Buchen',
 					'about.title': 'Über Mich',
 					'about.text1':
 						'Meine Reise begann mit einem Informatikstudium im Tech-Hub Frankfurt, wo ich eine tiefe Wertschätzung für eleganten Code und robuste Architektur entwickelte. Ich schreibe nicht nur Skripte; ich konzipiere Lösungen.',
@@ -300,6 +346,9 @@
 						'Ich brenne für ein offenes Web und glaube daran, Software zu bauen, die nicht nur leistungsstark und effizient, sondern auch für jeden zugänglich ist. Das Ziel ist, mich selbst aus dem Job zu automatisieren, um mich der nächsten, größeren Herausforderung zu widmen.',
 					'skills.title': 'Kern-Arsenal',
 					'philosophy.title': 'Meine Philosophie',
+					'booking.title': 'Beratungsgespräch Buchen',
+					'booking.text': 'Bereit, die nächste Herausforderung gemeinsam anzugehen? Wähle einen Termin, der dir passt.',
+					'booking.cta': 'Jetzt Buchen',
 					'contact.title': 'Lass Uns Reden',
 					'contact.text':
 						'Hast du ein herausforderndes Projekt im Kopf? Oder möchtest du einfach über Web-Standards und die Zukunft von DevOps sprechen? Mein Posteingang ist offen.',
@@ -357,6 +406,84 @@
 						target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 					}
 				});
+			});
+		</script>
+
+		<!-- Cal.com inline embed -->
+		<script type="text/javascript">
+			(function (C, A, L) {
+				let p = function (a, ar) { a.q.push(ar); };
+				let d = C.document;
+				C.Cal = C.Cal || function () {
+					let cal = C.Cal;
+					let ar = arguments;
+					if (!cal.loaded) {
+						cal.ns = {};
+						cal.q = cal.q || [];
+						d.head.appendChild(d.createElement('script')).src = A;
+						cal.loaded = true;
+					}
+					if (ar[0] === L) {
+						const api = function () { p(api, arguments); };
+						const namespace = ar[1];
+						api.q = api.q || [];
+						if (typeof namespace === 'string') {
+							cal.ns[namespace] = cal.ns[namespace] || api;
+							p(cal.ns[namespace], ar);
+							return;
+						}
+						p(cal, ar);
+						return;
+					}
+					p(cal, ar);
+				};
+			})(window, 'https://app.cal.com/embed/embed.js', 'init');
+
+			// Site color palette — keep in sync with Tailwind @theme above
+			var CAL_LINK       = 'ozoemenamsolomon/consultation';
+			var COLOR_ACCENT   = '#22d3ee';
+			var COLOR_ACCENT_E = '#06b6d4';
+			var COLOR_DARK_BG  = '#030712';
+			var COLOR_BG       = '#111827';
+			var COLOR_BG_EMPH  = '#1f2937';
+			var COLOR_BORDER   = '#374151';
+			var COLOR_BORDER_E = '#4b5563';
+			var COLOR_TEXT     = '#d1d5db';
+			var COLOR_TEXT_E   = '#f9fafb';
+			var COLOR_TEXT_M   = '#6b7280';
+
+			// Keep the fallback link in sync with CAL_LINK
+			var fallbackLink = document.getElementById('booking-fallback-link');
+			if (fallbackLink) {
+				fallbackLink.href = 'https://cal.com/' + CAL_LINK;
+			}
+
+			Cal('init', 'consultation', { origin: 'https://app.cal.com' });
+
+			Cal.ns.consultation('inline', {
+				elementOrSelector: '#cal-booking-placeholder',
+				config: { layout: 'month_view' },
+				calLink: CAL_LINK,
+			});
+
+			Cal.ns.consultation('ui', {
+				theme: 'dark',
+				cssVarsPerTheme: {
+					dark: {
+						'--cal-brand':           COLOR_ACCENT,
+						'--cal-brand-emphasis':  COLOR_ACCENT_E,
+						'--cal-brand-text':      COLOR_DARK_BG,
+						'--cal-bg':              COLOR_BG,
+						'--cal-bg-muted':        COLOR_DARK_BG,
+						'--cal-bg-emphasis':     COLOR_BG_EMPH,
+						'--cal-border':          COLOR_BORDER,
+						'--cal-border-emphasis': COLOR_BORDER_E,
+						'--cal-text':            COLOR_TEXT,
+						'--cal-text-emphasis':   COLOR_TEXT_E,
+						'--cal-text-muted':      COLOR_TEXT_M,
+					},
+				},
+				hideEventTypeDetails: false,
 			});
 		</script>
 	</body>
